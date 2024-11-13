@@ -1,4 +1,4 @@
-package com.example.demo.events;
+package main.java.com.example.demo.events;
 
 public interface Event {
 }

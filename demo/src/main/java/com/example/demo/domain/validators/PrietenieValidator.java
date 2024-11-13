@@ -1,10 +1,10 @@
-package com.example.demo.domain.validators;
+package main.java.com.example.demo.domain.validators;
 
-import com.example.demo.domain.Prietenie;
-import com.example.demo.domain.Tuple;
+import main.java.com.example.demo.domain.Prietenie;
+import main.java.com.example.demo.domain.Tuple;
 
-import com.example.demo.repo.db.UserDatabaseRepository;
-import com.example.demo.repo.db.FriendshipDatabaseRepository;
+import main.java.com.example.demo.repo.db.UserDatabaseRepository;
+import main.java.com.example.demo.repo.db.FriendshipDatabaseRepository;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -27,9 +27,9 @@ public class PrietenieValidator implements Validator<Prietenie> {
                 errors += "Invalid id. ";
             if (repo.findOne(prietenie.getIdFriend2()) == null)
                 errors += "Invalid id. ";
-            if (repo2.findOne(new Tuple<>(prietenie.getIdFriend2(), prietenie.getIdFriend1())) != null)
+            if (!repo2.findOne(new Tuple<>(prietenie.getIdFriend2(), prietenie.getIdFriend1())).isEmpty())
                 errors += "Already friends. ";
-            if (repo2.findOne(prietenie.getId()) != null)
+            if (!repo2.findOne(prietenie.getId()).isEmpty())
                 errors += "Already friends. ";
             if (!errors.equals("")) {
                 throw new ValidationException(errors);

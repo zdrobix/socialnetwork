@@ -1,0 +1,133 @@
+Looking for all: 2024-11-07T19:04:09.619357800
+Looking for all: 2024-11-08T09:31:31.470192500
+Looking for all: 2024-11-08T09:35:47.653040400
+Looking for all: 2024-11-08T09:35:47.701039200
+Looking for all: 2024-11-08T09:37:12.570895100
+Looking for all: 2024-11-08T09:37:12.649414100
+Looking for all: 2024-11-08T09:37:30.235062500
+Looking for all: 2024-11-08T09:40:15.861118
+Looking for all: 2024-11-08T09:41:12.414951900
+Looking for all: 2024-11-08T09:41:58.685754400
+Looking for all: 2024-11-08T09:43:23.353606800
+Looking for all: 2024-11-08T09:44:45.341768300
+Looking for all: 2024-11-08T09:46:16.171356900
+Looking for all: 2024-11-08T09:49:42.165193900
+Looking for all: 2024-11-08T09:52:43.764884100
+Looking for all: 2024-11-08T09:54:22.531764500
+Looking for all: 2024-11-08T10:05:02.191435500
+Looking for all: 2024-11-08T10:05:16.645274700
+Looking for all: 2024-11-08T10:06:00.941315100
+Looking for all: 2024-11-08T10:07:53.676616300
+Looking for all: 2024-11-08T10:08:19.310786
+Looking for all: 2024-11-08T10:08:44.837990700
+Looking for all: 2024-11-08T10:08:55.890536800
+Looking for all: 2024-11-08T10:15:12.294778300
+Looking for all: 2024-11-08T10:17:43.742358900
+Looking for all: 2024-11-08T10:18:09.170339700
+Looking for all: 2024-11-08T10:18:50.387391300
+Looking for all: 2024-11-08T10:19:08.712382200
+Looking for all: 2024-11-08T10:19:09.416814400
+Looking for all: 2024-11-08T10:21:37.535283400
+Looking for all: 2024-11-08T10:22:34.476183600
+Looking for all: 2024-11-08T10:22:51.902109300
+Looking for all: 2024-11-08T10:23:08.687188600
+Looking for all: 2024-11-08T10:24:46.991343100
+Looking for all: 2024-11-08T10:25:23.637491400
+Looking for all: 2024-11-08T10:25:54.445321900
+Looking for all: 2024-11-08T10:26:22.475714200
+Looking for all: 2024-11-08T10:26:32.949350800
+Looking for all: 2024-11-08T10:26:45.186305600
+Looking for all: 2024-11-08T10:27:03.171728100
+Looking for all: 2024-11-08T10:27:32.761636800
+Looking for all: 2024-11-08T10:28:43.342901
+Looking for all: 2024-11-08T10:28:56.381691400
+Looking for all: 2024-11-08T10:29:26.993475200
+Looking for all: 2024-11-08T10:33:21.619990500
+Looking for all: 2024-11-08T10:33:35.059545600
+Looking for all: 2024-11-08T10:33:51.404430300
+Looking for all: 2024-11-08T10:34:39.885083800
+Looking for all: 2024-11-08T10:40:27.414274800
+Looking for all: 2024-11-08T10:42:11.202188100
+Looking for all: 2024-11-08T10:42:47.999240200
+Looking for all: 2024-11-08T10:42:51.925387900
+Looking for all: 2024-11-08T10:43:19.232129600
+Looking for all: 2024-11-08T10:43:27.323182700
+Looking for all: 2024-11-08T10:43:28.686171500
+Looking for all: 2024-11-08T10:43:28.830460100
+Looking for all: 2024-11-08T10:43:59.688663800
+Looking for all: 2024-11-08T10:44:29.632864300
+Looking for all: 2024-11-08T10:44:38.252180500
+Looking for all: 2024-11-08T10:44:38.697577700
+Looking for all: 2024-11-08T10:44:38.840791600
+Looking for all: 2024-11-08T10:44:39.088116600
+Looking for all: 2024-11-08T10:46:02.849357
+Looking for all: 2024-11-08T10:46:52.223317300
+Looking for all: 2024-11-08T10:47:01.259507600
+Looking for all: 2024-11-08T10:48:22.092567600
+Looking for all: 2024-11-08T10:48:28.083252
+Looking for all: 2024-11-08T10:48:39.476871300
+Looking for all: 2024-11-08T10:48:43.829223200
+Looking for all: 2024-11-08T10:50:33.253172500
+Looking for all: 2024-11-08T10:50:44.824063
+Looking for all: 2024-11-08T10:50:46.634749100
+Looking for all: 2024-11-08T10:50:50.955100600
+Looking for all: 2024-11-08T10:50:53.423970800
+Looking for all: 2024-11-08T10:50:56.582515800
+Looking for all: 2024-11-08T10:50:59.378981200
+Looking for all: 2024-11-08T10:53:30.332681400
+Looking for all: 2024-11-08T10:53:41.353013500
+Saving: Utilizator{firstName='NOu', lastName='USERRRR'}2024-11-08T10:53:41.436657900
+Looking for all: 2024-11-08T10:53:47.864732700
+Looking for all: 2024-11-08T10:54:11.230758200
+Looking for all: 2024-11-08T10:54:15.855248200
+Saving: Utilizator{firstName='aasa', lastName='asassa'}2024-11-08T10:54:15.908692200
+Looking for all: 2024-11-08T10:54:15.952690
+Looking for all: 2024-11-08T10:57:50.171340400
+Looking for: Utilizator{firstName='aasa', lastName='asassa'}2024-11-08T10:58:32.124718900
+Looking for: Utilizator{firstName='aasa', lastName='asassa'}2024-11-08T10:58:32.220063300
+Looking for: Utilizator{firstName='aasa', lastName='asassa'}2024-11-08T10:58:32.369838
+Deleting: Utilizator{firstName='aasa', lastName='asassa'}2024-11-08T10:58:32.423087700
+Looking for all: 2024-11-08T10:58:32.461517400
+Looking for: null2024-11-08T10:58:45.328231900
+Looking for: null2024-11-08T10:58:45.402527
+Looking for all: 2024-11-08T10:59:30.629909100
+Looking for: null2024-11-08T10:59:36.846570500
+Looking for all: 2024-11-08T10:59:36.892324
+Looking for all: 2024-11-08T10:59:42.222588400
+Looking for: null2024-11-08T10:59:44.468670600
+Looking for all: 2024-11-08T10:59:44.511747400
+Looking for: Utilizator{firstName='NOu', lastName='USERRRR'}2024-11-08T10:59:50.450572600
+Looking for: Utilizator{firstName='NOu', lastName='USERRRR'}2024-11-08T10:59:50.633526500
+Looking for: Utilizator{firstName='NOu', lastName='USERRRR'}2024-11-08T10:59:50.671479600
+Deleting: Utilizator{firstName='NOu', lastName='USERRRR'}2024-11-08T10:59:50.816854600
+Looking for all: 2024-11-08T10:59:50.854659400
+Looking for: null2024-11-08T11:00:10.895253
+Looking for all: 2024-11-08T11:00:10.934654300
+Looking for all: 2024-11-08T11:01:15.334358100
+Looking for all: 2024-11-08T11:01:41.260263400
+Looking for: Utilizator{firstName='b', lastName='b'}2024-11-08T11:01:46.689842400
+Looking for: Utilizator{firstName='b', lastName='b'}2024-11-08T11:01:46.886963800
+Looking for: Utilizator{firstName='b', lastName='b'}2024-11-08T11:01:46.925641500
+Deleting: Utilizator{firstName='b', lastName='b'}2024-11-08T11:01:46.968234
+Looking for all: 2024-11-08T11:01:47.106668700
+Looking for all: 2024-11-08T11:02:02.297065200
+Saving: Utilizator{firstName='bb', lastName='bb'}2024-11-08T11:02:02.342631700
+Looking for all: 2024-11-08T11:02:02.490281
+Looking for: Utilizator{firstName='bb', lastName='bb'}2024-11-08T11:02:11.119835600
+Looking for: Utilizator{firstName='bb', lastName='bb'}2024-11-08T11:02:11.307537700
+Looking for: Utilizator{firstName='bb', lastName='bb'}2024-11-08T11:02:11.345079100
+Deleting: Utilizator{firstName='bb', lastName='bb'}2024-11-08T11:02:11.390896700
+Looking for all: 2024-11-08T11:02:11.433011300
+Looking for all: 2024-11-08T11:02:54.846253900
+Looking for all: 2024-11-08T11:36:51.315396500
+Looking for all: 2024-11-08T11:46:02.051759300
+Looking for: Utilizator{firstName='a', lastName='a'}2024-11-08T11:46:14.738945200
+Looking for: Utilizator{firstName='a', lastName='a'}2024-11-08T11:46:14.927095700
+Looking for: Utilizator{firstName='a', lastName='a'}2024-11-08T11:46:15.077004200
+Deleting: Utilizator{firstName='a', lastName='a'}2024-11-08T11:46:15.121887400
+Looking for all: 2024-11-08T11:46:15.160664
+Looking for all: 2024-11-08T11:46:27.038072800
+Looking for all: 2024-11-08T11:46:30.754539600
+Saving: Utilizator{firstName='as', lastName='as'}2024-11-08T11:46:30.800390300
+Looking for all: 2024-11-08T11:46:30.838615400
+Looking for all: 2024-11-08T11:47:21.271312500

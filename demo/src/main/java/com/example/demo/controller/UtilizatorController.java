@@ -1,29 +1,32 @@
-package com.example.demo.controller;
+package main.java.com.example.demo.controller;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
-import com.example.demo.domain.Utilizator;
-import com.example.demo.events.UtilizatorEntityChangeEvent;
-import com.example.demo.observer.Observer;
-import com.example.demo.service.Service;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
+import javafx.scene.control.TextArea;
 
-import java.sql.SQLException;
+import main.java.com.example.demo.domain.Cerere;
+import main.java.com.example.demo.domain.Utilizator;
+import main.java.com.example.demo.events.UtilizatorEntityChangeEvent;
+import main.java.com.example.demo.observer.Observer;
+import main.java.com.example.demo.service.Service;
 
+import java.time.LocalDate;
 
 public class UtilizatorController implements Observer<UtilizatorEntityChangeEvent> {
     Service service;
     ObservableList<Utilizator> model = FXCollections.observableArrayList();
+    ObservableList<Cerere> modelCerere = FXCollections.observableArrayList();
+    Long selectedId = null;
+    Long selectedRequestId = null;
 
     @FXML
     private TableView<Utilizator> tableView;
@@ -31,8 +34,18 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     private TableColumn<Utilizator,String> tableColumnFirstName;
     @FXML
     private TableColumn<Utilizator,String> tableColumnLastName;
+
+    @FXML
+    private TableView<Cerere> tableViewRequest;
+    @FXML
+    private TableColumn<Cerere,String> tableColumnRequestFrom = new TableColumn<>("From");
+    @FXML
+    private TableColumn<Cerere,LocalDate> tableColumnRequestDate = new TableColumn<>("Date");
+
     @FXML
     private Label currentUserLabel;
+    @FXML
+    private Label friendLabel;
 
     @FXML
     private TextArea logInText;
@@ -40,8 +53,6 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     private TextArea firstNameText;
     @FXML
     private TextArea lastNameText;
-    @FXML
-    private TextArea deleteIdText;
 
     public void setUtilizatorService(Service service) {
         this.service = service;
@@ -52,17 +63,75 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     public void initialize() {
         this.tableColumnFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         this.tableColumnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        this.tableView.setMaxHeight(200);
-        this.tableView.setMaxWidth(200);
         this.tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.tableView.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+                    if (newValue != null) {
+                        this.selectedId = this.service
+                                .getUtilizatorName(
+                                        newValue.getFirstName(),
+                                        newValue.getLastName()
+                                )
+                                .getId();
+                        System.out.println(selectedId);
+                    }
+                });
+
+        this.tableColumnRequestFrom.setCellValueFactory(data -> {
+            Cerere cerere = data.getValue();
+            var user = this.service.getUtilizator(cerere.getFrom());
+            return new SimpleStringProperty(user.getFirstName() + " " + user.getLastName());
+        });
+        this.tableColumnRequestDate.setCellValueFactory(data -> {
+            Cerere cerere = data.getValue();
+            LocalDate requestDate = cerere.getDate();
+            return new SimpleObjectProperty<>(requestDate);
+        });
+        this.tableViewRequest.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.tableViewRequest.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldVallue, newValue) -> {
+                    if (newValue != null) {
+                        this.selectedRequestId = newValue.getFrom();
+                    }
+                });
     }
 
     private void initModel() {
         this.model.clear();
-        for(Utilizator utilizator : service.getAll()) {
+        for(Utilizator utilizator : this.service.getAll()) {
             this.model.add(utilizator);
         }
-        this.tableView.setItems(model);
+        this.tableView.setItems(this.model);
+
+    }
+
+    private void initModelRequest() {
+        this.modelCerere.clear();
+        if (this.service.getCereriForCurrent() == null)
+            return;
+        for (Cerere cerere : this.service.getCereriForCurrent())
+            this.modelCerere.add(cerere);
+
+        this.tableViewRequest.setItems(this.modelCerere);
+    }
+
+    private void initLabelFriends() {
+        this.friendLabel.setText("");
+        if (this.service.currentUser == null)
+            return;
+
+        StringBuilder labelText = new StringBuilder("Friends:\n\n");
+
+        this.service
+                .getFriendsForCurrent()
+                .forEach(friendId -> {
+                    Utilizator user = this.service.getUtilizator(friendId);
+                    labelText.append(user.getFirstName()).append(" ").append(user.getLastName()).append('\n');
+                });
+
+        this.friendLabel.setText(labelText.toString());
     }
 
     @Override
@@ -71,16 +140,14 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     }
 
     public void handleDeleteUtilizator(ActionEvent actionEvent)  {
+        if (selectedId == null)
+            return;
         this.service.deleteUtilizator(
-                Long.parseLong(
-                    this.deleteIdText.getText().trim()
-                )
+                this.selectedId
         );
         this.initModel();
-        this.deleteIdText.clear();
-    }
-
-    public void handleUpdateUtilizator(ActionEvent actionEvent) {
+        this.initLabelFriends();
+        this.initModelRequest();
     }
 
     public void handleAddUtilizator(ActionEvent actionEvent) {
@@ -104,10 +171,38 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
         try {
             if (this.service.login(Long.parseLong(splitCredentials[0]), splitCredentials[1])) {
                 this.currentUserLabel.setText("Current user: " + this.service.currentUser.getFirstName() + " " + this.service.currentUser.getLastName());
-            } else this.currentUserLabel.setText("Current user: Failed to login");
+                this.initModelRequest();
+                this.initLabelFriends();
+                return;
+            } else {
+                this.currentUserLabel.setText("Current user: Failed to login");
+            }
         } catch (Exception ex) {
-            this.currentUserLabel.setText("Invalid format for ID and NAME");
+            this.currentUserLabel.setText("Invalid ID format");
         }
         this.logInText.clear();
+        this.modelCerere.clear();
+        this.friendLabel.setText("");
+    }
+
+    public void handleSendRequest(ActionEvent actionEvent) {
+        if (this.selectedId == null)
+            return;
+        if (this.service.currentUser == null)
+            return;
+
+        this.service.addCerere(this.service.currentUser.getId(), this.selectedId);
+        this.initModelRequest();
+    }
+
+    public void handleAcceptRequest(ActionEvent actionEvent) {
+        System.out.println(this.selectedRequestId + " " + this.service.currentUser.getId());
+        if (this.service.currentUser == null)
+            return;
+        if (this.selectedRequestId == null)
+            return;
+        this.service.deleteCerere(this.selectedRequestId, this.service.currentUser.getId(), true);
+        this.initLabelFriends();
+        this.initModelRequest();
     }
 }

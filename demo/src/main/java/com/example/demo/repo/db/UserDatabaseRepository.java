@@ -1,9 +1,9 @@
-package com.example.demo.repo.db;
+package main.java.com.example.demo.repo.db;
 
-import com.example.demo.domain.Utilizator;
-import com.example.demo.domain.validators.Validator;
-import com.example.demo.logs.Logger;
-import com.example.demo.repo.Repository;
+import main.java.com.example.demo.domain.Utilizator;
+import main.java.com.example.demo.domain.validators.Validator;
+import main.java.com.example.demo.logs.Logger;
+import main.java.com.example.demo.repo.Repository;
 
 import java.sql.*;
 import java.util.*;

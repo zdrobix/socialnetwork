@@ -1,8 +1,7 @@
 package main.java.com.example.demo.repo.db;
 
-import main.java.com.example.demo.domain.Utilizator;
+import main.java.com.example.demo.domain.Cerere;
 import main.java.com.example.demo.domain.validators.Validator;
-import main.java.com.example.demo.logs.Logger;
 import main.java.com.example.demo.repo.Repository;
 import main.java.com.example.demo.domain.Tuple;
 import main.java.com.example.demo.domain.Prietenie;
@@ -18,18 +17,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public class FriendshipDatabaseRepository implements Repository<Tuple<Long, Long>, Prietenie> {
+public class FriendRequestDatabaseRepository implements Repository<Tuple<Long, Long>, Cerere> {
 
     private List<String> connectionListCredentials;
     private Validator<Prietenie> validator;
 
-    public FriendshipDatabaseRepository(String url, String username, String password, Validator<Prietenie> validator_)  {
+    public FriendRequestDatabaseRepository(String url, String username, String password, Validator<Prietenie> validator_)  {
         this.connectionListCredentials = Arrays.asList(url, username, password);
         this.validator = validator_;
     }
 
     @Override
-    public Optional<Prietenie> findOne(Tuple<Long, Long> ID) throws SQLException, IllegalArgumentException {
+    public Optional<Cerere> findOne(Tuple<Long, Long> ID) throws SQLException, IllegalArgumentException {
         if (ID == null)
             throw new IllegalArgumentException("ID cannot be null");
         var connection = UserDatabaseRepository
@@ -38,14 +37,16 @@ public class FriendshipDatabaseRepository implements Repository<Tuple<Long, Long
             return Optional.empty();
 
         PreparedStatement statement = connection
-                .prepareStatement("SELECT * FROM FRIENDS WHERE id_friend1 = ? AND id_friend2 = ?");
-        statement.setLong(1, max(ID.getLeft(),ID.getRight()));
-        statement.setLong(2, min(ID.getLeft(),ID.getRight()));
+                .prepareStatement("SELECT * FROM FRIEND_REQUESTS WHERE (id_from = ? AND id_to = ?) OR (id_from = ? AND id_to = ?);");
+        statement.setLong(1, ID.getLeft());
+        statement.setLong(2, ID.getRight());
+        statement.setLong(3, ID.getRight());
+        statement.setLong(4, ID.getLeft());
         ResultSet result = statement.executeQuery();
 
-        Prietenie prietenie = null;
+        Cerere cerere = null;
         if (result.next()) {
-            prietenie = new Prietenie(
+            cerere = new Cerere(
                     max(result.getLong(1),
                             result.getLong(2)),
                     min(result.getLong(1),
@@ -55,32 +56,30 @@ public class FriendshipDatabaseRepository implements Repository<Tuple<Long, Long
         }
         result.close();
         connection.close();
-        return Optional.ofNullable(prietenie);
+        return Optional.ofNullable(cerere);
     }
 
     @Override
-    public Iterable<Prietenie> findAll() throws SQLException {
+    public Iterable<Cerere> findAll() throws SQLException {
         var connection = UserDatabaseRepository
                 .connectToDb(this.connectionListCredentials);
         if (connection == null)
             return null;
-        Map<Tuple<Long, Long>, Prietenie> friends = new HashMap<>();
+        Map<Tuple<Long, Long>, Cerere> cereri = new HashMap<>();
 
         var result = connection
-                .prepareStatement("SELECT * FROM FRIENDS")
+                .prepareStatement("SELECT * FROM FRIEND_REQUESTS")
                 .executeQuery();
 
         while (result.next()) {
-            var id1 = max(result.getLong(1),
-                    result.getLong(2));
-            var id2 = min(result.getLong(1),
-                    result.getLong(2));
-            friends.putIfAbsent(
+            var id1 = result.getLong(1);
+            var id2 = result.getLong(2);
+            cereri.putIfAbsent(
                     new Tuple(
                             id1,
                             id2
                     ),
-                    new Prietenie(
+                    new Cerere(
                             id1,
                             id2,
                             result.getDate(3).toLocalDate()
@@ -89,62 +88,59 @@ public class FriendshipDatabaseRepository implements Repository<Tuple<Long, Long
         }
         result.close();
         connection.close();
-        return friends.values();
+        return cereri.values();
     }
 
     @Override
-    public Optional<Prietenie> save(Prietenie prietenie) throws SQLException, IllegalArgumentException {
-        if (prietenie == null)
-            throw new IllegalArgumentException("Friendship cannot be null");
+    public Optional<Cerere> save(Cerere cerere) throws SQLException, IllegalArgumentException {
+        if (cerere == null)
+            throw new IllegalArgumentException("Request cannot be null");
         var connection = UserDatabaseRepository
                 .connectToDb(this.connectionListCredentials);
         if (connection == null)
             return Optional.empty();
-
         PreparedStatement statement = connection
-                .prepareStatement("INSERT INTO FRIENDS (id_friend1, id_friend2, date) VALUES (?, ?, ?)");
-
+                .prepareStatement("INSERT INTO FRIEND_REQUESTS (id_from, id_to, date) VALUES (?, ?, ?)");
         statement.setLong(1,
-                max(prietenie.getIdFriend1(),
-                        prietenie.getIdFriend2()));
+                cerere.getFrom());
         statement.setLong(2,
-                min(prietenie.getIdFriend1(),
-                        prietenie.getIdFriend2()));
-        statement.setDate(3, Date.valueOf(prietenie.getDate()));
+                cerere.getTo());
+        statement.setDate(3, Date.valueOf(cerere.getDate()));
         statement.executeUpdate();
-        return Optional.of(prietenie);
+        return Optional.of(cerere);
     }
 
     @Override
-    public Optional<Prietenie> delete(Tuple<Long, Long> ID) throws SQLException, IllegalArgumentException {
+    public Optional<Cerere> delete(Tuple<Long, Long> ID) throws SQLException, IllegalArgumentException {
         if (ID == null)
             throw new IllegalArgumentException("ID cannot be null");
         var connection = UserDatabaseRepository
                 .connectToDb(this.connectionListCredentials);
         if (connection == null)
             return Optional.empty();
-        Prietenie prietenieToDelete = this.findOne(ID).get();
-        if (prietenieToDelete == null)
+
+        Optional<Cerere> cerereOptional = this.findOne(ID);
+        if (!cerereOptional.isPresent()) {
             return Optional.empty();
+        }
+        Cerere cerereToDelete = cerereOptional.get();
 
         PreparedStatement statement = connection
-                .prepareStatement("DELETE FROM FRIENDS WHERE id_friend1 = ? AND id_friend2 = ?;");
-        statement.setLong(1,
-                max(ID.getLeft(),
-                        ID.getRight()));
-        statement.setLong(2,
-                min(ID.getLeft(),
-                        ID.getRight()));
+                .prepareStatement("DELETE FROM FRIEND_REQUESTS WHERE (id_from = ? AND id_to = ?) OR (id_from = ? AND id_to = ?);");
+        statement.setLong(1, ID.getLeft());
+        statement.setLong(2, ID.getRight());
+        statement.setLong(3, ID.getRight());
+        statement.setLong(4, ID.getLeft());
         statement.executeUpdate();
 
-        return Optional.of(prietenieToDelete);
+        return Optional.of(cerereToDelete);
     }
 
     @Override
-    public Optional<Prietenie> update(Prietenie prietenie) throws SQLException {
-        if (prietenie == null)
-            throw new IllegalArgumentException("user is null");
-        validator.validate(prietenie);
+    public Optional<Cerere> update(Cerere cerere) throws SQLException {
+        if (cerere == null)
+            throw new IllegalArgumentException("cerere is null");
+        validator.validate(cerere.asPrietenie());
         return Optional.empty();
     }
 

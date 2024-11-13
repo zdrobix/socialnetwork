@@ -1,14 +1,16 @@
-package com.example.demo.service;
+package main.java.com.example.demo.service;
 
-import com.example.demo.domain.Prietenie;
-import com.example.demo.domain.Tuple;
-import com.example.demo.domain.validators.PrietenieValidator;
-import com.example.demo.domain.validators.ValidationException;
-import com.example.demo.domain.Utilizator;
+import main.java.com.example.demo.domain.Cerere;
+import main.java.com.example.demo.domain.Prietenie;
+import main.java.com.example.demo.domain.Tuple;
+import main.java.com.example.demo.domain.validators.PrietenieValidator;
+import main.java.com.example.demo.domain.validators.ValidationException;
+import main.java.com.example.demo.domain.Utilizator;
 
-import com.example.demo.logs.Logger;
-import com.example.demo.repo.db.UserDatabaseRepository;
-import com.example.demo.repo.db.FriendshipDatabaseRepository;
+import main.java.com.example.demo.logs.Logger;
+import main.java.com.example.demo.repo.db.FriendRequestDatabaseRepository;
+import main.java.com.example.demo.repo.db.UserDatabaseRepository;
+import main.java.com.example.demo.repo.db.FriendshipDatabaseRepository;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -24,13 +26,15 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class Service {
-    private final UserDatabaseRepository repo;
+    private final UserDatabaseRepository repoUseri;
     private final FriendshipDatabaseRepository repoPrieteni;
+    private final FriendRequestDatabaseRepository repoCereri;
     public Utilizator currentUser;
 
-    public Service(UserDatabaseRepository repo_, FriendshipDatabaseRepository repoPrieteni_) {
-        this.repo = repo_;
+    public Service(UserDatabaseRepository repo_, FriendshipDatabaseRepository repoPrieteni_, FriendRequestDatabaseRepository repoCereri_) {
+        this.repoUseri = repo_;
         this.repoPrieteni = repoPrieteni_;
+        this.repoCereri = repoCereri_;
         this.currentUser = null;
     }
 
@@ -38,9 +42,9 @@ public class Service {
         try {
             var user = new Utilizator(firstName, lastName);
             user.setId(
-                    this.repo.generateFirstId()
+                    this.repoUseri.generateFirstId()
             );
-            this.repo.save(user);
+            this.repoUseri.save(user);
         } catch (ValidationException ex) {
             Logger.LogException("save", firstName + " " + lastName, ex.getMessage());
         } catch (SQLException ex) {
@@ -50,7 +54,7 @@ public class Service {
 
     public Utilizator deleteUtilizator (long id)  {
         try {
-            if (this.repo.findOne(id).isEmpty()) {
+            if (this.repoUseri.findOne(id).isEmpty()) {
                 Logger.LogException("delete", "null", "");
                 return null;
             }
@@ -64,16 +68,16 @@ public class Service {
                         }
                     }
             );
-            this.repo.findOne(id)
+            this.repoUseri.findOne(id)
                     .get()
                     .getFriends()
                     .forEach(
                             idUser -> {
                                 try {
-                                    this.repo.findOne(idUser)
+                                    this.repoUseri.findOne(idUser)
                                             .get()
                                             .removeFriend(
-                                                    this.repo.findOne(id)
+                                                    this.repoUseri.findOne(id)
                                                             .get()
                                             );
                                 } catch (SQLException ex) {
@@ -81,8 +85,20 @@ public class Service {
                                 }
                             }
                     );
-            this.repo.delete(id).isEmpty();
-        } catch (ValidationException | IOException e) {
+            this.repoCereri.findAll()
+                    .forEach(
+                            cerere -> {
+                                if (cerere.getFrom() == id || cerere.getTo() == id) {
+                                    try {
+                                        this.repoCereri.delete(cerere.getId());
+                                    } catch (SQLException ex) {
+                                        Logger.LogException("connect", "", ex.getMessage());
+                                    }
+                                }
+                            }
+                    );
+            return this.repoUseri.delete(id).get();
+        } catch (ValidationException e) {
             Logger.LogException("delete", "" + id, "Trying to delete an invalid user");
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
@@ -94,23 +110,20 @@ public class Service {
     {
         try {
             var friends = new Prietenie(id1, id2, LocalDate.now());
-            friends.setId(
-                    new Tuple<>(
-                            id1, id2));
-            PrietenieValidator.validate2(friends, this.repo, this.repoPrieteni);
+            PrietenieValidator.validate2(friends, this.repoUseri, this.repoPrieteni);
             this.repoPrieteni.save(friends);
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
-        } catch (IllegalArgumentException ex) {
+        } catch (ValidationException ex) {
             Logger.LogException("save", "null", ex.getMessage());
         }
     }
 
     public void deletePrietenie (long id1, long id2) {
         try {
-            PrietenieValidator.validate3(id1, id2, this.repo);
-            var user1 = this.repo.findOne(id1).get();
-            var user2 = this.repo.findOne(id2).get();
+            PrietenieValidator.validate3(id1, id2, this.repoUseri);
+            var user1 = this.repoUseri.findOne(id1).get();
+            var user2 = this.repoUseri.findOne(id2).get();
             if (user1 == null || user2 == null)
                 Logger.LogException("delete", "null friendship", "");
             user1.removeFriend(user2);
@@ -123,6 +136,43 @@ public class Service {
             Logger.LogException("delete", id1 + " " + id2, ex.getMessage());
         }
     }
+
+    public void addCerere (long id1, long id2)
+    {
+        try {
+            var cerere = new Cerere(id1, id2, LocalDate.now());
+            cerere.sedIdCerere();
+            if (!this.repoPrieteni.findOne(new Tuple<>(
+                    max(id1, id2),
+                    min(id1, id2)
+            )).isEmpty())
+                return;
+            if (this.repoCereri.findOne(cerere.getId()).isEmpty())
+                this.repoCereri.save(cerere);
+        } catch (SQLException ex) {
+            Logger.LogException("connect", "", ex.getMessage());
+        } catch (IllegalArgumentException ex) {
+            Logger.LogException("save", "null", ex.getMessage());
+        } catch (ValidationException ex) {
+            Logger.LogException("save", id1 + " " + id2, ex.getMessage());
+        }
+    }
+
+    public void deleteCerere (long id1, long id2, boolean accept) {
+        try {
+            if (accept && this.repoPrieteni.findOne(new Tuple(max(id1, id2), min(id1, id2))).isEmpty()) {
+                this.addPrietenie(id1, id2);
+            }
+            this.repoCereri.delete(new Tuple<>(
+                    id1, id2));
+        } catch (SQLException ex) {
+            Logger.LogException("connect", "", ex.getMessage());
+        } catch (IllegalArgumentException ex) {
+            Logger.LogException("delete", id1 + " " + id2, ex.getMessage());
+        }
+    }
+
+
 
     private Integer DFS(Long userId, Set<Long> visited, List<Long> userIds)  {
         try {
@@ -158,7 +208,7 @@ public class Service {
         Set<Long> visited = new HashSet<>();
         AtomicInteger count = new AtomicInteger();
         List<Long> list = new ArrayList<>();
-        this.repo.findAll()
+        this.repoUseri.findAll()
                 .forEach(
                         user -> {
                             Long userId = user.getId();
@@ -176,7 +226,7 @@ public class Service {
             Set<Long> visited = new HashSet<>();
             List<Long> largestCommunityIds = new ArrayList<>();
             final int[] maxSize = {0};
-            this.repo.findAll()
+            this.repoUseri.findAll()
                     .forEach(
                             user -> {
                                 Long userId = user.getId();
@@ -200,9 +250,26 @@ public class Service {
 
     public Utilizator getUtilizator(Long id) {
         try {
-            return this.repo.findOne(id).get();
+            return this.repoUseri.findOne(id).get();
         } catch (Exception ex) {
             Logger.LogException("findOne", id.toString(), ex.getMessage());
+        }
+        return null;
+    }
+
+    public Utilizator getUtilizatorName(String firstName, String lastName) {
+        try {
+            AtomicReference<Utilizator> result = new AtomicReference<>();
+            this.repoUseri.findAll().forEach(
+                    user -> {
+                        if (user.getFirstName().equals(firstName) && user.getLastName().equals(lastName))
+                            result.set(user);
+                    }
+            );
+            if (result != null)
+                return result.get();
+        } catch (Exception ex) {
+            Logger.LogException("findOne", firstName + " " + lastName, ex.getMessage());
         }
         return null;
     }
@@ -210,7 +277,7 @@ public class Service {
     public List<Utilizator> getAll() {
         try {
             List<Utilizator> result = new ArrayList<>();
-            this.repo.findAll().forEach(
+            this.repoUseri.findAll().forEach(
                     user -> {
                         result.add(user);
                     }
@@ -224,9 +291,8 @@ public class Service {
 
     public boolean login (Long id, String name) {
         try {
-            this.currentUser = null;
             AtomicReference<Utilizator> result = new AtomicReference<>();
-            this.repo.findAll().forEach(
+            this.repoUseri.findAll().forEach(
                     user -> {
                         if (user.getId().equals(id) && user.getLastName().equals(name)) {
                             result.set(user);
@@ -235,12 +301,51 @@ public class Service {
             );
             if (result.get() != null)
             {
-                this.currentUser = result.get();
+                this.currentUser = result.get(); System.out.println(currentUser.toString());
                 return true;
             }
-        } catch (SQLException e) {
-            Logger.LogException("connect", "", e.getMessage());
+            this.currentUser = null;
+        } catch (SQLException ex) {
+            Logger.LogException("connect", "", ex.getMessage());
         }
         return false;
+    }
+
+    public List<Cerere> getCereriForCurrent() {
+        try {
+            List<Cerere> result = new ArrayList<>();
+            if (repoCereri.findAll() == null)
+                return null;
+            this.repoCereri.findAll().forEach(
+                    cerere -> {
+                        if (cerere.getTo().equals(this.currentUser.getId()))
+                            result.add(cerere);
+                    }
+            );
+            return result;
+        } catch (SQLException ex) {
+            Logger.LogException("connect", "", ex.getMessage());
+        }
+        return null;
+    }
+
+    public List<Long> getFriendsForCurrent() {
+        try {
+            List<Long> result = new ArrayList<>();
+            if (repoPrieteni.findAll() == null)
+                return null;
+            this.repoPrieteni.findAll().forEach(
+                    prieteni -> {
+                        if (prieteni.getIdFriend2().equals(this.currentUser.getId()))
+                            result.add(prieteni.getIdFriend1());
+                        if (prieteni.getIdFriend1().equals(this.currentUser.getId()))
+                            result.add(prieteni.getIdFriend2());
+                    }
+            );
+            return result;
+        } catch (SQLException ex) {
+            Logger.LogException("connect", "", ex.getMessage());
+        }
+        return null;
     }
 }

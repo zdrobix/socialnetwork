@@ -11,28 +11,50 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextArea?>
 <VBox alignment="CENTER_LEFT" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.demo.controller.UtilizatorController">
+      fx:controller="main.java.com.example.demo.controller.UtilizatorController"
+      stylesheets="@styles.css">
   <padding>
     <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
   </padding>
-  <Label fx:id="currentUserLabel" text="Not logged in" />
+
   <HBox spacing="20.0">
-    <TableView fx:id="tableView" >
-      <columns>
-        <TableColumn fx:id="tableColumnFirstName" text="First Name"/>
-        <TableColumn fx:id="tableColumnLastName" text="Last Name"/>
-      </columns>
-    </TableView>
-    <VBox spacing="10.0">
-      <HBox spacing="20.0">
-        <TextArea fx:id="logInText" prefHeight="20" prefWidth="100" text="ID NAME" ></TextArea>
-        <Button fx:id="logInButton" prefHeight="20" prefWidth="100" text="login" onAction="#handleLogInButton"></Button>
-        <TextArea fx:id="deleteIdText" prefHeight="20" prefWidth="100"  ></TextArea>
-        <Button fx:id="deleteButton" prefHeight="20" prefWidth="100" text="delete" onAction="#handleDeleteUtilizator"></Button>
-      </HBox>
-      <TextArea fx:id="firstNameText" prefHeight="20" prefWidth="100" ></TextArea>
-      <TextArea fx:id="lastNameText" prefHeight="20" prefWidth="100" ></TextArea>
-      <Button fx:id="addButton" prefHeight="20" prefWidth="100" text="add" onAction="#handleAddUtilizator"></Button>
+    <VBox>
+      <Label  text="Users" />
+      <TableView fx:id="tableView" >
+        <columns>
+          <TableColumn fx:id="tableColumnFirstName" text="First Name"/>
+          <TableColumn fx:id="tableColumnLastName" text="Last Name"/>
+        </columns>
+      </TableView>
     </VBox>
+    <VBox>
+      <Label fx:id="currentUserLabel" text="Not logged in" />
+      <VBox spacing="10.0">
+        <HBox spacing="20.0">
+          <TextArea fx:id="logInText" prefHeight="20" prefWidth="100" text="ID NAME" ></TextArea>
+          <Button fx:id="sendRequestButton" prefHeight="20" prefWidth="100" text="send req" onAction="#handleSendRequest"></Button>
+        </HBox>
+        <HBox spacing="20.0">
+          <Button fx:id="logInButton" prefHeight="20" prefWidth="100" text="login" onAction="#handleLogInButton"></Button>
+          <Button fx:id="deleteButton" prefHeight="20" prefWidth="100" text="delete" onAction="#handleDeleteUtilizator"></Button>
+        </HBox>
+        <TextArea fx:id="firstNameText" prefHeight="20" prefWidth="100" ></TextArea>
+        <TextArea fx:id="lastNameText" prefHeight="20" prefWidth="100" ></TextArea>
+        <HBox spacing="20.0">
+          <Button fx:id="addButton" prefHeight="20" prefWidth="100" text="add" onAction="#handleAddUtilizator"></Button>
+          <Button fx:id="acceptButton" prefHeight="20" prefWidth="100" text="accept" onAction="#handleAcceptRequest"></Button>
+        </HBox>
+      </VBox>
+    </VBox>
+    <VBox>
+      <Label  text="Friend Requests" />
+      <TableView fx:id="tableViewRequest" >
+        <columns>
+          <TableColumn fx:id="tableColumnRequestFrom" text="From"/>
+          <TableColumn fx:id="tableColumnRequestDate" text="Date"/>
+        </columns>
+      </TableView>
+    </VBox>
+    <Label  fx:id="friendLabel" text="" />
   </HBox>
 </VBox>

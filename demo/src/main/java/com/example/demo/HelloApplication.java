@@ -1,4 +1,4 @@
-package com.example.demo;
+package main.java.com.example.demo;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,13 +8,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import com.example.demo.controller.UtilizatorController;
-import com.example.demo.service.Service;
-import com.example.demo.repo.db.UserDatabaseRepository;
-import com.example.demo.repo.db.FriendshipDatabaseRepository;
+import main.java.com.example.demo.controller.UtilizatorController;
+import main.java.com.example.demo.repo.db.FriendRequestDatabaseRepository;
+import main.java.com.example.demo.service.Service;
+import main.java.com.example.demo.repo.db.UserDatabaseRepository;
+import main.java.com.example.demo.repo.db.FriendshipDatabaseRepository;
 
-import com.example.demo.domain.validators.UtilizatorValidator;
-import com.example.demo.domain.validators.PrietenieValidator;
+import main.java.com.example.demo.domain.validators.UtilizatorValidator;
+import main.java.com.example.demo.domain.validators.PrietenieValidator;
 
 public class HelloApplication extends Application {
     Service service;
@@ -33,6 +34,12 @@ public class HelloApplication extends Application {
                                 new UtilizatorValidator()
                         ),
                         new FriendshipDatabaseRepository(
+                                "jdbc:postgresql://localhost:5432/socialnetwork",
+                                "postgres",
+                                "parola",
+                                new PrietenieValidator()
+                        ),
+                        new FriendRequestDatabaseRepository(
                                 "jdbc:postgresql://localhost:5432/socialnetwork",
                                 "postgres",
                                 "parola",
