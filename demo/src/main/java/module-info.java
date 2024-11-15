@@ -13,7 +13,7 @@ module com.example.demo {
     //requires eu.hansolo.tilesfx;
     //requires com.almasb.fxgl.all;
     requires java.sql;
-    requires javafx.swt;
+    //requires javafx.swt;
 
     opens com.example.demo to javafx.fxml;
     opens com.example.demo.controller to javafx.fxml;

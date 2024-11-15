@@ -38,7 +38,10 @@ public class AccountController implements IController {
     private TextField passwordTextFieldSignUp;
 
     public void handleLogin(ActionEvent actionEvent) {
-
+        this.service.login(
+                usernameTextFieldLogIn.getText(),
+                passwordTextFieldLogIn.getText()
+        );
     }
 
     public void handleSignup(ActionEvent actionEvent) {

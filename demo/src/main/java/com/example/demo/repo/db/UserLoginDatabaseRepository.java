@@ -2,6 +2,7 @@ package com.example.demo.repo.db;
 
 import com.example.demo.domain.Username;
 import com.example.demo.domain.Utilizator;
+import com.example.demo.password.Crypter;
 import com.example.demo.repo.Repository;
 
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class UserLoginDatabaseRepository implements Repository<String, Username>
         statement.setString(1, s);
         var result = statement.executeQuery();
         if (result.next()) {
-            username = new Username(result.getString(1), result.getString(2));
+            username = new Username(result.getString(1), result.getString(2), result.getLong(3));
         }
         result.close();
         connection.close();
@@ -55,9 +56,10 @@ public class UserLoginDatabaseRepository implements Repository<String, Username>
             return Optional.empty();
 
         PreparedStatement statement = connection
-                .prepareStatement("INSERT INTO USER_LOGIN (username, password) VALUES (?, ?)");
+                .prepareStatement("INSERT INTO USER_LOGIN (username, password, id) VALUES (?, ?, ?)");
         statement.setString(1, entity.getUsername());
         statement.setString(2, entity.getPassword());
+        statement.setLong(3,entity.getIdLong());
         statement.executeUpdate();
         return Optional.of(entity);
     }

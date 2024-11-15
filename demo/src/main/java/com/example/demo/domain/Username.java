@@ -9,16 +9,18 @@ import java.util.Scanner;
 
 public class Username extends Entity<String>{
 
-    private final String keycryptPasswordPath = "C:\\Users\\Alex\\Desktop\\key.txt";
-    private String keycryptPassword = "";
+    private static String keycryptPasswordPath = "C:\\Users\\Alex\\Desktop\\key.txt";
+    private static String keycryptPassword = "";
 
     private String username;
     private String password;
+    private Long id;
 
     public Username() {}
 
-    public Username(String username, String password) {
+    public Username(String username, String password, Long id) {
         this.username = username;
+        this.id = id;
         try {
             this.keycryptPassword = new Scanner(new File(this.keycryptPasswordPath)).nextLine();
         } catch (FileNotFoundException e) {}
@@ -35,5 +37,9 @@ public class Username extends Entity<String>{
 
     public String getPassword() {
         return this.password;
+    }
+
+    public Long getIdLong () {
+        return this.id;
     }
 }

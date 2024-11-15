@@ -5,18 +5,17 @@ import com.example.demo.domain.validators.PrietenieValidator;
 import com.example.demo.domain.validators.ValidationException;
 
 import com.example.demo.logs.Logger;
+import com.example.demo.password.Crypter;
 import com.example.demo.repo.db.FriendRequestDatabaseRepository;
 import com.example.demo.repo.db.UserDatabaseRepository;
 import com.example.demo.repo.db.FriendshipDatabaseRepository;
 import com.example.demo.repo.db.UserLoginDatabaseRepository;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -45,7 +44,7 @@ public class Service {
                     this.repoUseri.generateFirstId()
             );
             this.repoUseri.save(user);
-            this.repoLogin.save(new Username(username, password));
+            this.repoLogin.save(new Username(username, password, user.getId()));
         } catch (ValidationException ex) {
             Logger.LogException("save", firstName + " " + lastName, ex.getMessage());
         } catch (SQLException ex) {
@@ -296,7 +295,21 @@ public class Service {
         try {
 
             AtomicReference<Utilizator> result = new AtomicReference<>();
-            Long id = 0L;
+            var login = this.repoLogin.findOne(username).get();
+            if (login == null)
+                return false;
+            if (!password.equals(
+                    Crypter.decrypt(
+                            login.getPassword(),
+                            new Scanner(
+                                    new File(
+                                            "C:\\Users\\Alex\\Desktop\\key.txt"
+                                    )
+                            )
+                                    .nextLine())))
+                return false;
+
+            Long id = login.getIdLong(); System.out.println(id + " " + login.getUsername() + '\n');
             this.repoUseri.findAll().forEach(
                     user -> {
                         if (user.getId().equals(id) ) {
@@ -312,6 +325,10 @@ public class Service {
             this.currentUser = null;
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return false;
     }
