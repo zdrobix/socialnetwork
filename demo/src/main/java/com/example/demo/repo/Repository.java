@@ -1,6 +1,6 @@
-package main.java.com.example.demo.repo;
+package com.example.demo.repo;
 
-import main.java.com.example.demo.domain.Entity;
+import com.example.demo.domain.Entity;
 
 import java.io.IOException;
 import java.sql.SQLException;

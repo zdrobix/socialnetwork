@@ -1,7 +1,7 @@
-package main.java.com.example.demo.events;
+package com.example.demo.events;
 
 
-import main.java.com.example.demo.domain.Utilizator;
+import com.example.demo.domain.Utilizator;
 
 public class UtilizatorEntityChangeEvent implements Event {
     private ChangeEventType type;

@@ -2333,3 +2333,9 @@ Looking for: Utilizator{firstName='Marius', lastName='Popica'}2024-11-12T16:39:4
 Looking for: Utilizator{firstName='George', lastName='Barbu'}2024-11-12T16:39:46.155172800
 Looking for: Utilizator{firstName='George', lastName='Barbu'}2024-11-12T16:39:46.214998
 Looking for: Utilizator{firstName='George', lastName='Barbu'}2024-11-12T16:39:46.272586700
+Looking for all: 2024-11-13T11:22:21.075202
+Looking for all: 2024-11-15T13:44:28.038429400
+Looking for all: 2024-11-15T13:46:28.904737400
+Looking for all: 2024-11-15T13:47:30.742158300
+Looking for all: 2024-11-15T13:48:08.494514100
+Looking for all: 2024-11-15T13:48:50.607932800

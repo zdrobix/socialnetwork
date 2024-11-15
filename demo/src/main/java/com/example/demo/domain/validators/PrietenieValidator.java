@@ -1,10 +1,10 @@
-package main.java.com.example.demo.domain.validators;
+package com.example.demo.domain.validators;
 
-import main.java.com.example.demo.domain.Prietenie;
-import main.java.com.example.demo.domain.Tuple;
+import com.example.demo.domain.Prietenie;
+import com.example.demo.domain.Tuple;
 
-import main.java.com.example.demo.repo.db.UserDatabaseRepository;
-import main.java.com.example.demo.repo.db.FriendshipDatabaseRepository;
+import com.example.demo.repo.db.UserDatabaseRepository;
+import com.example.demo.repo.db.FriendshipDatabaseRepository;
 
 import java.io.IOException;
 import java.sql.SQLException;

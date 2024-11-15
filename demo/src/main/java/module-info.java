@@ -1,4 +1,4 @@
-module main.java.com.example.demo {
+module com.example.demo {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -13,13 +13,14 @@ module main.java.com.example.demo {
     //requires eu.hansolo.tilesfx;
     //requires com.almasb.fxgl.all;
     requires java.sql;
+    requires javafx.swt;
 
-    opens main.java.com.example.demo to javafx.fxml;
-    opens main.java.com.example.demo.controller to javafx.fxml;
-    opens main.java.com.example.demo.domain to javafx.base;
+    opens com.example.demo to javafx.fxml;
+    opens com.example.demo.controller to javafx.fxml;
+    opens com.example.demo.domain to javafx.base;
 
-    exports main.java.com.example.demo;
-    exports main.java.com.example.demo.controller;
+    exports com.example.demo;
+    exports com.example.demo.controller;
 
 
 }

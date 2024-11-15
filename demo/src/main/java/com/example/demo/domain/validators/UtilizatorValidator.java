@@ -1,6 +1,6 @@
-package main.java.com.example.demo.domain.validators;
+package com.example.demo.domain.validators;
 
-import main.java.com.example.demo.domain.Utilizator;
+import com.example.demo.domain.Utilizator;
 
 public class UtilizatorValidator implements Validator<Utilizator> {
     @Override

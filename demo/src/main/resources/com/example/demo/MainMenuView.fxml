@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox  xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo.controller.MainMenuController"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox fx:id="sidebar" style="-fx-background-color: #333; -fx-padding: 10; -fx-spacing: 10;" prefWidth="150">
+        <Button fx:id="btnHome" text="Home" onAction="#handleHome"/>
+        <Button fx:id="btnFriends" text="Friends" onAction="#handleFriends"/>
+        <Button fx:id="btnAccount" text="Account" onAction="#handleAccount"/>
+        <Button fx:id="btnAboutUs" text="About Us" onAction="#handleAboutUs"/>
+    </VBox>
+    <StackPane fx:id="mainContent" style="-fx-background-color: #f0f0f0;" HBox.hgrow="ALWAYS">
+        <fx:include source="HomeView.fxml"/>
+    </StackPane>
+</HBox >

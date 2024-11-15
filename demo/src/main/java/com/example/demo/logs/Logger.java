@@ -1,4 +1,4 @@
-package main.java.com.example.demo.logs;
+package com.example.demo.logs;
 
 import java.io.FileWriter;
 import java.time.LocalDateTime;

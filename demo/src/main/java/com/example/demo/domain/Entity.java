@@ -1,4 +1,4 @@
-package main.java.com.example.demo.domain;
+package com.example.demo.domain;
 
 import java.io.Serializable;
 

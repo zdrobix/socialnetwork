@@ -1,21 +1,24 @@
-package main.java.com.example.demo;
+package com.example.demo;
 
+import com.example.demo.repo.db.UserLoginDatabaseRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import main.java.com.example.demo.controller.UtilizatorController;
-import main.java.com.example.demo.repo.db.FriendRequestDatabaseRepository;
-import main.java.com.example.demo.service.Service;
-import main.java.com.example.demo.repo.db.UserDatabaseRepository;
-import main.java.com.example.demo.repo.db.FriendshipDatabaseRepository;
+import com.example.demo.controller.MainMenuController;
+import com.example.demo.controller.UtilizatorController;
+import com.example.demo.repo.db.FriendRequestDatabaseRepository;
+import com.example.demo.service.Service;
+import com.example.demo.repo.db.UserDatabaseRepository;
+import com.example.demo.repo.db.FriendshipDatabaseRepository;
 
-import main.java.com.example.demo.domain.validators.UtilizatorValidator;
-import main.java.com.example.demo.domain.validators.PrietenieValidator;
+import com.example.demo.domain.validators.UtilizatorValidator;
+import com.example.demo.domain.validators.PrietenieValidator;
 
 public class HelloApplication extends Application {
     Service service;
@@ -44,19 +47,26 @@ public class HelloApplication extends Application {
                                 "postgres",
                                 "parola",
                                 new PrietenieValidator()
-                        ));
+                        ),
+                        new UserLoginDatabaseRepository(
+                                "jdbc:postgresql://localhost:5432/socialnetwork",
+                                "postgres",
+                                "parola"));
         initView(primaryStage);
         primaryStage.setWidth(800);
         primaryStage.show();
     }
 
     private void initView(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/demo/UtilizatorView.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/demo/UtilizatorView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/demo/MainMenuView.fxml"));
 
-        VBox userLayout = fxmlLoader.load();
+        HBox userLayout = fxmlLoader.load();
         primaryStage.setScene(new Scene(userLayout));
 
-        UtilizatorController userController = fxmlLoader.getController();
-        userController.setUtilizatorService(service);
+        //UtilizatorController userController = fxmlLoader.getController();
+        MainMenuController menuController = fxmlLoader.getController();
+        menuController.setController(service);
+        //userController.setUtilizatorService(service);
     }
 }

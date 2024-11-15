@@ -1,4 +1,4 @@
-package main.java.com.example.demo.controller;
+package com.example.demo.controller;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,11 +13,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextArea;
 
-import main.java.com.example.demo.domain.Cerere;
-import main.java.com.example.demo.domain.Utilizator;
-import main.java.com.example.demo.events.UtilizatorEntityChangeEvent;
-import main.java.com.example.demo.observer.Observer;
-import main.java.com.example.demo.service.Service;
+import com.example.demo.domain.Cerere;
+import com.example.demo.domain.Utilizator;
+import com.example.demo.events.UtilizatorEntityChangeEvent;
+import com.example.demo.observer.Observer;
+import com.example.demo.service.Service;
 
 import java.time.LocalDate;
 
@@ -151,38 +151,38 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     }
 
     public void handleAddUtilizator(ActionEvent actionEvent) {
-        this.service.addUtilizator(
-            this.firstNameText.getText().trim(),
-            this.lastNameText.getText().trim()
-        );
-        this.initModel();
-        this.firstNameText.clear();
-        this.lastNameText.clear();
+        //this.service.addUtilizator(
+        //    this.firstNameText.getText().trim(),
+        //    this.lastNameText.getText().trim()
+        //);
+        //this.initModel();
+        //this.firstNameText.clear();
+        //this.lastNameText.clear();
     }
 
     public void handleLogInButton(ActionEvent actionEvent) {
-        var splitCredentials = this.logInText
-                                        .getText()
-                                        .split(" ");
-        if (splitCredentials.length != 2) {
-            this.currentUserLabel.setText("Invalid format");
-            return;
-        }
-        try {
-            if (this.service.login(Long.parseLong(splitCredentials[0]), splitCredentials[1])) {
-                this.currentUserLabel.setText("Current user: " + this.service.currentUser.getFirstName() + " " + this.service.currentUser.getLastName());
-                this.initModelRequest();
-                this.initLabelFriends();
-                return;
-            } else {
-                this.currentUserLabel.setText("Current user: Failed to login");
-            }
-        } catch (Exception ex) {
-            this.currentUserLabel.setText("Invalid ID format");
-        }
-        this.logInText.clear();
-        this.modelCerere.clear();
-        this.friendLabel.setText("");
+        //var splitCredentials = this.logInText
+        //                                .getText()
+        //                                .split(" ");
+        //if (splitCredentials.length != 2) {
+        //    this.currentUserLabel.setText("Invalid format");
+        //    return;
+        //}
+        //try {
+        //    if (this.service.login(Long.parseLong(splitCredentials[0]))) {
+        //        this.currentUserLabel.setText("Current user: " + this.service.currentUser.getFirstName() + " " + this.service.currentUser.getLastName());
+        //        this.initModelRequest();
+        //        this.initLabelFriends();
+        //        return;
+        //    } else {
+        //        this.currentUserLabel.setText("Current user: Failed to login");
+        //    }
+        //} catch (Exception ex) {
+        //    this.currentUserLabel.setText("Invalid ID format");
+        //}
+        //this.logInText.clear();
+        //this.modelCerere.clear();
+        //this.friendLabel.setText("");
     }
 
     public void handleSendRequest(ActionEvent actionEvent) {

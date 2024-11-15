@@ -1,10 +1,14 @@
-package main.java.com.example.demo.repo.db;
+package com.example.demo.repo.db;
 
-import main.java.com.example.demo.domain.Utilizator;
-import main.java.com.example.demo.domain.validators.Validator;
-import main.java.com.example.demo.logs.Logger;
-import main.java.com.example.demo.repo.Repository;
+import com.example.demo.domain.Utilizator;
+import com.example.demo.domain.validators.Validator;
+import com.example.demo.logs.Logger;
+import com.example.demo.password.Crypter;
+import com.example.demo.repo.Repository;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.sql.*;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;

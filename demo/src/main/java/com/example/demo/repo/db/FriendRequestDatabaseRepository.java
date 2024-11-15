@@ -1,10 +1,10 @@
-package main.java.com.example.demo.repo.db;
+package com.example.demo.repo.db;
 
-import main.java.com.example.demo.domain.Cerere;
-import main.java.com.example.demo.domain.validators.Validator;
-import main.java.com.example.demo.repo.Repository;
-import main.java.com.example.demo.domain.Tuple;
-import main.java.com.example.demo.domain.Prietenie;
+import com.example.demo.domain.Cerere;
+import com.example.demo.domain.validators.Validator;
+import com.example.demo.repo.Repository;
+import com.example.demo.domain.Tuple;
+import com.example.demo.domain.Prietenie;
 
 import java.io.IOException;
 import java.sql.Date;

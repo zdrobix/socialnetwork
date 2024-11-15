@@ -1,16 +1,14 @@
-package main.java.com.example.demo.service;
+package com.example.demo.service;
 
-import main.java.com.example.demo.domain.Cerere;
-import main.java.com.example.demo.domain.Prietenie;
-import main.java.com.example.demo.domain.Tuple;
-import main.java.com.example.demo.domain.validators.PrietenieValidator;
-import main.java.com.example.demo.domain.validators.ValidationException;
-import main.java.com.example.demo.domain.Utilizator;
+import com.example.demo.domain.*;
+import com.example.demo.domain.validators.PrietenieValidator;
+import com.example.demo.domain.validators.ValidationException;
 
-import main.java.com.example.demo.logs.Logger;
-import main.java.com.example.demo.repo.db.FriendRequestDatabaseRepository;
-import main.java.com.example.demo.repo.db.UserDatabaseRepository;
-import main.java.com.example.demo.repo.db.FriendshipDatabaseRepository;
+import com.example.demo.logs.Logger;
+import com.example.demo.repo.db.FriendRequestDatabaseRepository;
+import com.example.demo.repo.db.UserDatabaseRepository;
+import com.example.demo.repo.db.FriendshipDatabaseRepository;
+import com.example.demo.repo.db.UserLoginDatabaseRepository;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -29,26 +27,31 @@ public class Service {
     private final UserDatabaseRepository repoUseri;
     private final FriendshipDatabaseRepository repoPrieteni;
     private final FriendRequestDatabaseRepository repoCereri;
+    private final UserLoginDatabaseRepository repoLogin;
     public Utilizator currentUser;
 
-    public Service(UserDatabaseRepository repo_, FriendshipDatabaseRepository repoPrieteni_, FriendRequestDatabaseRepository repoCereri_) {
+    public Service(UserDatabaseRepository repo_, FriendshipDatabaseRepository repoPrieteni_, FriendRequestDatabaseRepository repoCereri_, UserLoginDatabaseRepository repoLogin_) {
         this.repoUseri = repo_;
         this.repoPrieteni = repoPrieteni_;
         this.repoCereri = repoCereri_;
+        this.repoLogin = repoLogin_;
         this.currentUser = null;
     }
 
-    public void addUtilizator (String firstName, String lastName) {
+    public void addUtilizator (String firstName, String lastName, String username, String password) {
         try {
             var user = new Utilizator(firstName, lastName);
             user.setId(
                     this.repoUseri.generateFirstId()
             );
             this.repoUseri.save(user);
+            this.repoLogin.save(new Username(username, password));
         } catch (ValidationException ex) {
             Logger.LogException("save", firstName + " " + lastName, ex.getMessage());
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
+        } catch (IOException ex) {
+
         }
     }
 
@@ -289,12 +292,14 @@ public class Service {
         return null;
     }
 
-    public boolean login (Long id, String name) {
+    public boolean login (String username, String password) {
         try {
+
             AtomicReference<Utilizator> result = new AtomicReference<>();
+            Long id = 0L;
             this.repoUseri.findAll().forEach(
                     user -> {
-                        if (user.getId().equals(id) && user.getLastName().equals(name)) {
+                        if (user.getId().equals(id) ) {
                             result.set(user);
                         }
                     }

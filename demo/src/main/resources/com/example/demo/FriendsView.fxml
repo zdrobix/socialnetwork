@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo.controller.FriendsController"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox>
+        <HBox spacing="20.0">
+            <TableView fx:id="tableViewRequest"  >
+                <columns>
+                    <TableColumn fx:id="tableColumnRequestFrom" text="From"/>
+                    <TableColumn fx:id="tableColumnRequestDate" text="Date"/>
+                </columns>
+            </TableView>
+            <TableView fx:id="tableViewFriends" >
+                <columns>
+                    <TableColumn fx:id="firstNameColumn" text="first name"/>
+                    <TableColumn fx:id="lastNameColumn" text="last name"/>
+                    <TableColumn fx:id="dateColumn" text="friends since"/>
+                </columns>
+            </TableView>
+        </HBox>
+    </VBox>
+</AnchorPane>
