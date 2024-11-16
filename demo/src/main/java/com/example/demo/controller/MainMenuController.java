@@ -1,16 +1,16 @@
 package com.example.demo.controller;
 
+import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.service.Service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 
-public class MainMenuController implements IController{
+public class MainMenuController extends IController {
     private Service service;
     @FXML
     private StackPane mainContent;
@@ -51,5 +51,10 @@ public class MainMenuController implements IController{
 
     public void setController (Service service_) {
         this.service = service_;
+    }
+
+    @Override
+    public void update(EntityChangeEvent utilizatorEntityChangeEvent) {
+
     }
 }

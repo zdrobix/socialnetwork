@@ -18,7 +18,7 @@
                    AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
             <VBox fx:id="loginVbox" alignment="CENTER" spacing="10.0">
                 <TextField fx:id="usernameTextFieldLogIn" promptText="username" maxWidth="200.0"/>
-                <TextField fx:id="passwordTextFieldLogIn" promptText="password" maxWidth="200.0"/>
+                <PasswordField fx:id="passwordTextFieldLogIn" promptText="password" maxWidth="200.0"/>
                 <Button text="Log In" onAction="#handleLogin" prefWidth="200.0"/>
             </VBox>
 
@@ -26,7 +26,7 @@
                 <TextField fx:id="usernameTextFieldSignUp" promptText="username" maxWidth="200.0"/>
                 <TextField fx:id="firstNameTextFieldSignUp" promptText="first name" maxWidth="200.0"/>
                 <TextField fx:id="lastNameTextFieldSignUp" promptText="last name" maxWidth="200.0"/>
-                <TextField fx:id="passwordTextFieldSignUp" promptText="password" maxWidth="200.0"/>
+                <PasswordField fx:id="passwordTextFieldSignUp" promptText="password" maxWidth="200.0"/>
                 <Button text="Sign Up" onAction="#handleSignup" prefWidth="200.0"/>
             </VBox>
 

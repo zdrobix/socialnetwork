@@ -15,13 +15,13 @@ import javafx.scene.control.TextArea;
 
 import com.example.demo.domain.Cerere;
 import com.example.demo.domain.Utilizator;
-import com.example.demo.events.UtilizatorEntityChangeEvent;
+import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.observer.Observer;
 import com.example.demo.service.Service;
 
 import java.time.LocalDate;
 
-public class UtilizatorController implements Observer<UtilizatorEntityChangeEvent> {
+public class UtilizatorController implements Observer<EntityChangeEvent> {
     Service service;
     ObservableList<Utilizator> model = FXCollections.observableArrayList();
     ObservableList<Cerere> modelCerere = FXCollections.observableArrayList();
@@ -29,7 +29,7 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     Long selectedRequestId = null;
 
     @FXML
-    private TableView<Utilizator> tableView;
+    private TableView<Utilizator> tableViewFriends;
     @FXML
     private TableColumn<Utilizator,String> tableColumnFirstName;
     @FXML
@@ -63,8 +63,8 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     public void initialize() {
         this.tableColumnFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         this.tableColumnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        this.tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        this.tableView.getSelectionModel()
+        this.tableViewFriends.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.tableViewFriends.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
@@ -103,7 +103,7 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
         for(Utilizator utilizator : this.service.getAll()) {
             this.model.add(utilizator);
         }
-        this.tableView.setItems(this.model);
+        this.tableViewFriends.setItems(this.model);
 
     }
 
@@ -118,24 +118,24 @@ public class UtilizatorController implements Observer<UtilizatorEntityChangeEven
     }
 
     private void initLabelFriends() {
-        this.friendLabel.setText("");
-        if (this.service.currentUser == null)
-            return;
-
-        StringBuilder labelText = new StringBuilder("Friends:\n\n");
-
-        this.service
-                .getFriendsForCurrent()
-                .forEach(friendId -> {
-                    Utilizator user = this.service.getUtilizator(friendId);
-                    labelText.append(user.getFirstName()).append(" ").append(user.getLastName()).append('\n');
-                });
-
-        this.friendLabel.setText(labelText.toString());
+        //this.friendLabel.setText("");
+        //if (this.service.currentUser == null)
+        //    return;
+//
+        //StringBuilder labelText = new StringBuilder("Friends:\n\n");
+//
+        //this.service
+        //        .getFriendsForCurrent()
+        //        .forEach(friendId -> {
+        //            Utilizator user = this.service.getUtilizator(friendId);
+        //            labelText.append(user.getFirstName()).append(" ").append(user.getLastName()).append('\n');
+        //        });
+//
+        //this.friendLabel.setText(labelText.toString());
     }
 
     @Override
-    public void update(UtilizatorEntityChangeEvent utilizatorEntityChangeEvent) {
+    public void update(EntityChangeEvent utilizatorEntityChangeEvent) {
 
     }
 

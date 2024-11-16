@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.demo.controller.HomeController"
             prefHeight="400.0" prefWidth="600.0">
-            <VBox>
-                <Label fx:id="header" text="Welcome to SocialNetwork!"></Label>
-                <Label fx:id="subheader" text="Access the account tab to login or sign up."></Label>
-            </VBox>
+            <HBox alignment="CENTER"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                  AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                  prefHeight="200.0" prefWidth="400.0">
+                <StackPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                           AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+                    <VBox alignment="CENTER_LEFT" spacing="10.0">
+                        <Label fx:id="subheader" text="Welcome to SocialNetwork!"/>
+                        <Label  text="" />
+                        <HBox spacing="20.0">
+                            <TextField fx:id="searchTextField" promptText="Search" maxWidth="300.0"/>
+                            <Button text="Search" onAction="#handleSearch" prefWidth="100.0"/>
+                        </HBox>
+                        <TableView fx:id="tableView" maxHeight="200.0" maxWidth="400.0">
+                            <columns>
+                                <TableColumn fx:id="tableColumnFirstName" text="First Name"/>
+                                <TableColumn fx:id="tableColumnLastName" text="Last Name"/>
+                            </columns>
+                        </TableView>
+                        <Button text="Send request" onAction="#handleSendRequest"/>
+                    </VBox>
+                </StackPane>
+            </HBox>
 </AnchorPane>

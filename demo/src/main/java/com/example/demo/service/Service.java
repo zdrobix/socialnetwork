@@ -4,29 +4,38 @@ import com.example.demo.domain.*;
 import com.example.demo.domain.validators.PrietenieValidator;
 import com.example.demo.domain.validators.ValidationException;
 
+import com.example.demo.events.ChangeEventType;
+import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.logs.Logger;
+import com.example.demo.observer.Observer;
 import com.example.demo.password.Crypter;
 import com.example.demo.repo.db.FriendRequestDatabaseRepository;
 import com.example.demo.repo.db.UserDatabaseRepository;
 import com.example.demo.repo.db.FriendshipDatabaseRepository;
 import com.example.demo.repo.db.UserLoginDatabaseRepository;
+import com.example.demo.observer.Observable;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public class Service {
+public class Service implements Observable<EntityChangeEvent> {
     private final UserDatabaseRepository repoUseri;
     private final FriendshipDatabaseRepository repoPrieteni;
     private final FriendRequestDatabaseRepository repoCereri;
     private final UserLoginDatabaseRepository repoLogin;
+
+    private List<Observer<EntityChangeEvent>> observers = new ArrayList<>();
+
     public Utilizator currentUser;
 
     public Service(UserDatabaseRepository repo_, FriendshipDatabaseRepository repoPrieteni_, FriendRequestDatabaseRepository repoCereri_, UserLoginDatabaseRepository repoLogin_) {
@@ -43,8 +52,11 @@ public class Service {
             user.setId(
                     this.repoUseri.generateFirstId()
             );
-            this.repoUseri.save(user);
-            this.repoLogin.save(new Username(username, password, user.getId()));
+            if (!this.repoUseri.save(user).isEmpty()) {
+                this.repoLogin.save(new Username(username, password, user.getId()));
+                EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.ADD, user);
+                notifyObservers(event);
+            }
         } catch (ValidationException ex) {
             Logger.LogException("save", firstName + " " + lastName, ex.getMessage());
         } catch (SQLException ex) {
@@ -99,7 +111,11 @@ public class Service {
                                 }
                             }
                     );
-            return this.repoUseri.delete(id).get();
+            var user = this.repoUseri.delete(id);
+            if ( user.isPresent()) {
+                notifyObservers(new EntityChangeEvent(ChangeEventType.DELETE, user.get()));
+                return user.get();
+            }
         } catch (ValidationException e) {
             Logger.LogException("delete", "" + id, "Trying to delete an invalid user");
         } catch (SQLException ex) {
@@ -165,89 +181,13 @@ public class Service {
             if (accept && this.repoPrieteni.findOne(new Tuple(max(id1, id2), min(id1, id2))).isEmpty()) {
                 this.addPrietenie(id1, id2);
             }
-            this.repoCereri.delete(new Tuple<>(
-                    id1, id2));
+            EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.DELETE, this.repoCereri.delete(new Tuple<>(id1, id2)));
+            notifyObservers(event);
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         } catch (IllegalArgumentException ex) {
             Logger.LogException("delete", id1 + " " + id2, ex.getMessage());
         }
-    }
-
-
-
-    private Integer DFS(Long userId, Set<Long> visited, List<Long> userIds)  {
-        try {
-            visited.add(userId);
-            AtomicInteger size = new AtomicInteger(1);
-            userIds.add(userId);
-            var list_friends = new ArrayList<Long>();
-            this.repoPrieteni.findAll()
-                    .forEach(
-                            friendship -> {
-                                if (friendship.getIdFriend1() != null && friendship.getIdFriend1() == userId)
-                                    list_friends.add(friendship.getIdFriend2());
-                                if (friendship.getIdFriend2() != null && friendship.getIdFriend2() == userId)
-                                    list_friends.add(friendship.getIdFriend1());
-                            }
-                    );
-            list_friends
-                    .forEach(
-                            friendId -> {
-                                if (!visited.contains(friendId)) {
-                                    size.addAndGet(DFS(friendId, visited, userIds));
-                                }
-                            }
-                    );
-            return size.get();
-        } catch (Exception ex) {
-            Logger.LogException("connect", "", ex.getMessage());
-        }
-        return 0;
-    }
-
-    public Integer numberOfCommunities() throws SQLException {
-        Set<Long> visited = new HashSet<>();
-        AtomicInteger count = new AtomicInteger();
-        List<Long> list = new ArrayList<>();
-        this.repoUseri.findAll()
-                .forEach(
-                        user -> {
-                            Long userId = user.getId();
-                            if (userId != null && !visited.contains(userId)) {
-                                DFS(userId, visited, list);
-                                count.getAndIncrement();
-                            }
-                        }
-                );
-        return count.get();
-    }
-
-    public List<Long> largestCommunity () throws SQLException {
-        try {
-            Set<Long> visited = new HashSet<>();
-            List<Long> largestCommunityIds = new ArrayList<>();
-            final int[] maxSize = {0};
-            this.repoUseri.findAll()
-                    .forEach(
-                            user -> {
-                                Long userId = user.getId();
-                                if (userId != null && !visited.contains(userId)) {
-                                    List<Long> userIds = new ArrayList<>();
-                                    int size = DFS(userId, visited, userIds);
-                                    if (size > maxSize[0]) {
-                                        maxSize[0] = size;
-                                        largestCommunityIds.clear();
-                                        largestCommunityIds.addAll(userIds);
-                                    }
-                                }
-                            }
-                    );
-            return largestCommunityIds;
-        } catch (SQLException ex) {
-            Logger.LogException("connect", "", ex.getMessage());
-        }
-        return null;
     }
 
     public Utilizator getUtilizator(Long id) {
@@ -293,7 +233,6 @@ public class Service {
 
     public boolean login (String username, String password) {
         try {
-
             AtomicReference<Utilizator> result = new AtomicReference<>();
             var login = this.repoLogin.findOne(username).get();
             if (login == null)
@@ -351,17 +290,28 @@ public class Service {
         return null;
     }
 
-    public List<Long> getFriendsForCurrent() {
+    public Prietenie getPrietenie(Long id1, Long id2) {
         try {
-            List<Long> result = new ArrayList<>();
+            return this.repoPrieteni.findOne(
+                    new Tuple<>(max(id1, id2), min(id1, id2))
+            ).get();
+        } catch (SQLException ex) {
+            Logger.LogException("connect", "", ex.getMessage());
+        }
+        return null;
+    }
+
+    public List<Utilizator> getFriendsForCurrent() {
+        try {
+            List<Utilizator> result = new ArrayList<>();
             if (repoPrieteni.findAll() == null)
                 return null;
             this.repoPrieteni.findAll().forEach(
                     prieteni -> {
                         if (prieteni.getIdFriend2().equals(this.currentUser.getId()))
-                            result.add(prieteni.getIdFriend1());
+                            result.add(this.getUtilizator(prieteni.getIdFriend1()));
                         if (prieteni.getIdFriend1().equals(this.currentUser.getId()))
-                            result.add(prieteni.getIdFriend2());
+                            result.add(this.getUtilizator(prieteni.getIdFriend2()));
                     }
             );
             return result;
@@ -369,5 +319,20 @@ public class Service {
             Logger.LogException("connect", "", ex.getMessage());
         }
         return null;
+    }
+
+    @Override
+    public void addObserver(Observer<EntityChangeEvent> e) {
+        observers.add(e);
+    }
+
+    @Override
+    public void removeObserver(Observer<EntityChangeEvent> e) {
+
+    }
+
+    @Override
+    public void notifyObservers(EntityChangeEvent t) {
+        observers.stream().forEach(x->x.update(t));
     }
 }

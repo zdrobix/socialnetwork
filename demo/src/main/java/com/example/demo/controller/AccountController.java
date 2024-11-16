@@ -1,14 +1,16 @@
 package com.example.demo.controller;
 
+import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.service.Service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
-public class AccountController implements IController {
+public class AccountController extends IController {
 
     private Service service;
 
@@ -25,7 +27,7 @@ public class AccountController implements IController {
     private TextField usernameTextFieldLogIn;
 
     @FXML
-    private TextField passwordTextFieldLogIn;
+    private PasswordField passwordTextFieldLogIn;
 
     @FXML
     private TextField usernameTextFieldSignUp;
@@ -37,7 +39,7 @@ public class AccountController implements IController {
     private TextField lastNameTextFieldSignUp;
 
     @FXML
-    private TextField passwordTextFieldSignUp;
+    private PasswordField passwordTextFieldSignUp;
 
     @FXML
     private Label firstnameLabel, lastnameLabel;
@@ -46,18 +48,32 @@ public class AccountController implements IController {
         if ( this.service.login(
                 usernameTextFieldLogIn.getText(),
                 passwordTextFieldLogIn.getText())) {
-            firstnameLabel.setText("First Name: " + this.service.currentUser.getFirstName());
-            lastnameLabel.setText("Last Name: " + this.service.currentUser.getLastName());
-            loginVbox.setVisible(false);
-            labelLogIn.setVisible(false);
-            labelSignUp.setVisible(false);
-            userInfoVbox.setVisible(true);
+                this.showUserInfo();
         }
         usernameTextFieldLogIn.clear();
         passwordTextFieldLogIn.clear();
     }
 
+    public void showUserInfo() {
+        firstnameLabel.setText("First Name: " + this.service.currentUser.getFirstName());
+        lastnameLabel.setText("Last Name: " + this.service.currentUser.getLastName());
+        loginVbox.setVisible(false);
+        labelLogIn.setVisible(false);
+        labelSignUp.setVisible(false);
+        userInfoVbox.setVisible(true);
+    }
+
     public void handleSignup(ActionEvent actionEvent) {
+        this.service.addUtilizator(
+                firstNameTextFieldSignUp.getText(),
+                lastNameTextFieldSignUp.getText(),
+                usernameTextFieldSignUp.getText(),
+                passwordTextFieldSignUp.getText()
+        );
+        firstNameTextFieldSignUp.clear();
+        lastNameTextFieldSignUp.clear();
+        usernameTextFieldSignUp.clear();
+        passwordTextFieldSignUp.clear();
     }
 
     public void showLoginVbox(MouseEvent mouseEvent) {
@@ -76,11 +92,19 @@ public class AccountController implements IController {
 
     public void setController (Service service_) {
         this.service = service_;
+        if (this.service.currentUser != null)
+            this.showUserInfo();
+        else this.showLoginVbox(null);
     }
 
     public void handleLogout(ActionEvent actionEvent) {
         this.service.currentUser = null;
         userInfoVbox.setVisible(false);
         this.showLoginVbox(null);
+    }
+
+    @Override
+    public void update(EntityChangeEvent utilizatorEntityChangeEvent) {
+        //does nothing
     }
 }

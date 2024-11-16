@@ -67,6 +67,7 @@ public class HelloApplication extends Application {
         //UtilizatorController userController = fxmlLoader.getController();
         MainMenuController menuController = fxmlLoader.getController();
         menuController.setController(service);
+        menuController.handleHome();
         //userController.setUtilizatorService(service);
     }
 }

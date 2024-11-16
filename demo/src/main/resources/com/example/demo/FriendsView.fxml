@@ -10,21 +10,40 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.demo.controller.FriendsController"
             prefHeight="400.0" prefWidth="600.0">
-    <VBox>
-        <HBox spacing="20.0">
-            <TableView fx:id="tableViewRequest"  >
-                <columns>
-                    <TableColumn fx:id="tableColumnRequestFrom" text="From"/>
-                    <TableColumn fx:id="tableColumnRequestDate" text="Date"/>
-                </columns>
-            </TableView>
-            <TableView fx:id="tableViewFriends" >
-                <columns>
-                    <TableColumn fx:id="firstNameColumn" text="first name"/>
-                    <TableColumn fx:id="lastNameColumn" text="last name"/>
-                    <TableColumn fx:id="dateColumn" text="friends since"/>
-                </columns>
-            </TableView>
-        </HBox>
+    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="400.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+          AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+
+        <StackPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+            <HBox spacing="20.0" alignment="CENTER">
+                <VBox spacing="10.0">
+                    <Label text="Friend Requests: "/>
+                    <TableView fx:id="tableViewRequest"  maxHeight="200.0" prefWidth="200.0">
+                        <columns>
+                            <TableColumn fx:id="tableColumnRequestFrom" text="From"/>
+                            <TableColumn fx:id="tableColumnRequestDate" text="Date"/>
+                        </columns>
+                    </TableView>
+                    <HBox spacing="10.0">
+                        <Button text="Accept" onAction="#handleAcceptRequest" prefWidth="100.0"/>
+                        <Button text="Delete" onAction="#handleDeleteRequest" prefWidth="100.0"/>
+                    </HBox>
+                </VBox>
+                <VBox spacing="10.0">
+                    <Label text="Friends : "/>
+                    <TableView fx:id="tableViewFriends" maxHeight="200.0" prefWidth="200.0">
+                        <columns>
+                            <TableColumn fx:id="nameColumn" text="Name"/>
+                            <TableColumn fx:id="dateColumn" text="Friends since"/>
+                        </columns>
+                    </TableView>
+                    <HBox spacing="10.0">
+                        <Button text="Remove" onAction="#handleRemove" prefWidth="100.0"/>
+                        <Button text="Block" prefWidth="100.0"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </StackPane>
     </VBox>
 </AnchorPane>
