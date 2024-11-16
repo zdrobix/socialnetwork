@@ -21,4 +21,8 @@ public class Crypter {
         byte[] decryptedPassword = cipher.doFinal(decodedPassword);
         return new String(decryptedPassword);
     }
+
+    public static Object decrypt2(String password, String s) throws Exception {
+        return decrypt(decrypt(password, s), s);
+    }
 }

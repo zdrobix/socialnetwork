@@ -17,6 +17,8 @@ public class AccountController implements IController {
     @FXML
     private VBox signupVbox;
     @FXML
+    private VBox userInfoVbox;
+    @FXML
     private Label labelLogIn, labelSignUp;
 
     @FXML
@@ -37,11 +39,22 @@ public class AccountController implements IController {
     @FXML
     private TextField passwordTextFieldSignUp;
 
+    @FXML
+    private Label firstnameLabel, lastnameLabel;
+
     public void handleLogin(ActionEvent actionEvent) {
-        this.service.login(
+        if ( this.service.login(
                 usernameTextFieldLogIn.getText(),
-                passwordTextFieldLogIn.getText()
-        );
+                passwordTextFieldLogIn.getText())) {
+            firstnameLabel.setText("First Name: " + this.service.currentUser.getFirstName());
+            lastnameLabel.setText("Last Name: " + this.service.currentUser.getLastName());
+            loginVbox.setVisible(false);
+            labelLogIn.setVisible(false);
+            labelSignUp.setVisible(false);
+            userInfoVbox.setVisible(true);
+        }
+        usernameTextFieldLogIn.clear();
+        passwordTextFieldLogIn.clear();
     }
 
     public void handleSignup(ActionEvent actionEvent) {
@@ -63,5 +76,11 @@ public class AccountController implements IController {
 
     public void setController (Service service_) {
         this.service = service_;
+    }
+
+    public void handleLogout(ActionEvent actionEvent) {
+        this.service.currentUser = null;
+        userInfoVbox.setVisible(false);
+        this.showLoginVbox(null);
     }
 }

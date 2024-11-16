@@ -298,18 +298,18 @@ public class Service {
             var login = this.repoLogin.findOne(username).get();
             if (login == null)
                 return false;
-            if (!password.equals(
-                    Crypter.decrypt(
-                            login.getPassword(),
-                            new Scanner(
-                                    new File(
-                                            "C:\\Users\\Alex\\Desktop\\key.txt"
-                                    )
+            var decrypted_password = Crypter.decrypt2(
+                    login.getPassword(),
+                    new Scanner(
+                            new File(
+                                    "C:\\Users\\Alex\\Desktop\\key.txt"
                             )
-                                    .nextLine())))
+                    )
+                            .nextLine());
+            if (!decrypted_password.equals(password))
                 return false;
 
-            Long id = login.getIdLong(); System.out.println(id + " " + login.getUsername() + '\n');
+            Long id = login.getIdLong();
             this.repoUseri.findAll().forEach(
                     user -> {
                         if (user.getId().equals(id) ) {
