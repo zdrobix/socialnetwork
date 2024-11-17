@@ -34,6 +34,7 @@
                 <TextField fx:id="firstNameTextUserInfo" promptText="" maxWidth="200.0"/>
                 <TextField fx:id="lastNameTextUserInfo" promptText="" maxWidth="200.0"/>
                 <Button onAction="#handleUpdate" text="Update" maxWidth="200.0"/>
+                <Button onAction="#handleUploadPhoto" text="Upload photo" maxWidth="200.0"/>
                 <Button onAction="#handleLogout" text="Log Out" maxWidth="200.0"/>
             </VBox>
         </StackPane>

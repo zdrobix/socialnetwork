@@ -5,12 +5,16 @@ import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.service.Service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import org.w3c.dom.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 
 public class AccountController extends IController {
 
@@ -122,5 +126,12 @@ public class AccountController extends IController {
             user
         );
 
+    }
+
+    public void handleUploadPhoto(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        Stage fileChooserStage = new Stage();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png"));
+        fileChooser.showOpenDialog(fileChooserStage);
     }
 }
