@@ -23,6 +23,8 @@ public class MainMenuController extends IController {
 
     @FXML
     public void handleFriends() {
+        if (this.service.currentUser == null)
+            return;
         loadView("/com/example/demo/FriendsView.fxml");
     }
 
