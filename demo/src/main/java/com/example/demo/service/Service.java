@@ -22,6 +22,7 @@ import java.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -129,7 +130,10 @@ public class Service implements Observable<EntityChangeEvent> {
         try {
             var friends = new Prietenie(id1, id2, LocalDate.now());
             PrietenieValidator.validate2(friends, this.repoUseri, this.repoPrieteni);
-            this.repoPrieteni.save(friends);
+            if (this.repoPrieteni.save(friends).isPresent()) {
+                EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.ADD, friends);
+                notifyObservers(event);
+            }
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         } catch (ValidationException ex) {
@@ -146,8 +150,13 @@ public class Service implements Observable<EntityChangeEvent> {
                 Logger.LogException("delete", "null friendship", "");
             user1.removeFriend(user2);
             user2.removeFriend(user1);
-            this.repoPrieteni.delete(new Tuple<>(
+            Optional<Prietenie> deleted = this.repoPrieteni.delete(new Tuple<>(
                     id1, id2));
+            if (deleted.isPresent())
+            {
+                EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.DELETE, deleted.get());
+                notifyObservers(event);
+            }
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         } catch (IllegalArgumentException ex) {
@@ -166,7 +175,11 @@ public class Service implements Observable<EntityChangeEvent> {
             )).isEmpty())
                 return;
             if (this.repoCereri.findOne(cerere.getId()).isEmpty())
-                this.repoCereri.save(cerere);
+                if(this.repoCereri.save(cerere).isPresent())
+                {
+                    EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.ADD, cerere);
+                    notifyObservers(event);
+                }
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         } catch (IllegalArgumentException ex) {
@@ -181,8 +194,11 @@ public class Service implements Observable<EntityChangeEvent> {
             if (accept && this.repoPrieteni.findOne(new Tuple(max(id1, id2), min(id1, id2))).isEmpty()) {
                 this.addPrietenie(id1, id2);
             }
-            EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.DELETE, this.repoCereri.delete(new Tuple<>(id1, id2)));
-            notifyObservers(event);
+            Optional<Cerere> cerere = this.repoCereri.delete(new Tuple<>(id1, id2));
+            if (cerere.isPresent()) {
+                EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.DELETE, cerere.get());
+                notifyObservers(event);
+            }
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         } catch (IllegalArgumentException ex) {
