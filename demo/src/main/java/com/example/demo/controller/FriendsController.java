@@ -9,7 +9,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,6 +16,7 @@ import javafx.scene.control.TableView;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FriendsController extends IController{
 
@@ -41,6 +41,9 @@ public class FriendsController extends IController{
     Long selectedRequestId = null;
     Long selectedFriendId = null;
 
+    Map<Long, Utilizator> utilizatorCache = new HashMap<>();
+    Map<Long, Prietenie> prietenieCache = new HashMap<>();
+
     @Override
     public void setController(Service service) {
         this.service = service;
@@ -52,10 +55,9 @@ public class FriendsController extends IController{
 
     @FXML
     public void initializeData() {
-        Map<Long, Utilizator> utilizatorCache = new HashMap<>();
         this.modelCereri
                 .forEach(cerere ->
-                                utilizatorCache.put(
+                                this.utilizatorCache.put(
                                         cerere.getFrom(),
                                         this.service.getUtilizator(
                                                 cerere.getFrom()
@@ -63,25 +65,24 @@ public class FriendsController extends IController{
                                 )
                 );
 
-        Map<Long, Prietenie> prietenieCache = new HashMap<>();
         this.modelFriends
                 .forEach(prieten ->
-                        prietenieCache.put(
+                        this.prietenieCache.put(
                                 prieten.getId(),
-                                service.getPrietenie(
-                                        service.currentUser.getId(),
+                                this.service.getPrietenie(
+                                        this.service.currentUser.getId(),
                                         prieten.getId())
                         )
                 );
-        this.initTableFriends(prietenieCache);
-        this.initTableRequest(utilizatorCache);
+        this.initTableFriends();
+        this.initTableRequest();
     }
 
-    private void initTableFriends(Map<Long, Prietenie> prietenieCache) {
+    private void initTableFriends() {
         this.nameColumnFriends.setCellValueFactory(
                 data -> new SimpleObjectProperty<>(data.getValue().getFirstName() + " " + data.getValue().getLastName()));
         this.dateColumnFriends.setCellValueFactory(data -> {
-            Prietenie prietenie = prietenieCache.get(data.getValue().getId());
+            Prietenie prietenie = this.prietenieCache.get(data.getValue().getId());
             return new SimpleObjectProperty<>(prietenie.getDate());
         });
         this.tableViewFriends.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -95,9 +96,9 @@ public class FriendsController extends IController{
         this.tableViewFriends.setItems(modelFriends);
     }
 
-    private void initTableRequest(Map<Long, Utilizator> utilizatorCache) {
+    private void initTableRequest() {
         this.tableColumnRequestFrom.setCellValueFactory(data -> {
-            Utilizator user = utilizatorCache.get(data.getValue().getFrom());
+            Utilizator user = this.utilizatorCache.get(data.getValue().getFrom());
             return new SimpleStringProperty(user.getFirstName() + " " + user.getLastName());
         });
         this.tableColumnRequestDate.setCellValueFactory(data -> {
@@ -133,41 +134,56 @@ public class FriendsController extends IController{
     public void update(EntityChangeEvent utilizatorEntityChangeEvent) {
         switch (utilizatorEntityChangeEvent.getType()) {
             case ADD:
-                if (utilizatorEntityChangeEvent.getData() instanceof Cerere)
+                if (utilizatorEntityChangeEvent.getData() instanceof Cerere) {
                     this.modelCereri.add((Cerere) utilizatorEntityChangeEvent.getData());
-                if (utilizatorEntityChangeEvent.getData() instanceof Prietenie) {
-                    Prietenie added = (Prietenie)utilizatorEntityChangeEvent.getData();
-                    if (this.service.currentUser.getId() == added.getIdFriend1())
-                        this.modelFriends.add(this.service.getUtilizator(added.getIdFriend2()));
-                    else this.modelFriends.add(this.service.getUtilizator(added.getIdFriend1()));
+                }
+                if (utilizatorEntityChangeEvent.getData() instanceof Prietenie prietenie) {
+                    if (Objects.equals(this.service.currentUser.getId(), prietenie.getIdFriend1())) {
+                        this.prietenieCache.put(
+                                prietenie.getIdFriend2(),
+                                this.service.getPrietenie(
+                                        this.service.currentUser.getId(),
+                                        prietenie.getIdFriend2())
+                        );
+                        this.modelFriends.add(this.service.getUtilizator(prietenie.getIdFriend2()));
+                    }
+                    else {
+                        this.prietenieCache.put(
+                                prietenie.getIdFriend1(),
+                                this.service.getPrietenie(
+                                        this.service.currentUser.getId(),
+                                        prietenie.getIdFriend1())
+                        );
+                        this.modelFriends.add(this.service.getUtilizator(prietenie.getIdFriend1()));
+                    }
                 }
                 break;
             case DELETE:
-                if (utilizatorEntityChangeEvent.getData() instanceof Cerere)
-                    this.modelCereri.remove((Cerere)utilizatorEntityChangeEvent.getData());
-                if (utilizatorEntityChangeEvent.getData() instanceof Prietenie) {
-                    Prietenie deletedP = (Prietenie)utilizatorEntityChangeEvent.getData();
-                    if (this.service.currentUser.getId() == deletedP.getIdFriend1())
-                        this.modelFriends.remove(this.service.getUtilizator(deletedP.getIdFriend2()));
-                    else this.modelFriends.remove(this.service.getUtilizator(deletedP.getIdFriend1()));
+                if (utilizatorEntityChangeEvent.getData() instanceof Cerere) {
+                    this.modelCereri.remove((Cerere) utilizatorEntityChangeEvent.getData());
+                }
+                if (utilizatorEntityChangeEvent.getData() instanceof Prietenie prietenie) {
+                    if (Objects.equals(this.service.currentUser.getId(), prietenie.getIdFriend1()))
+                        this.modelFriends.remove(this.service.getUtilizator(prietenie.getIdFriend2()));
+                    else this.modelFriends.remove(this.service.getUtilizator(prietenie.getIdFriend1()));
                 }
                 break;
         }
     }
 
-    public void handleAcceptRequest(ActionEvent actionEvent) {
+    public void handleAcceptRequest() {
         if (this.selectedRequestId == null)
             return;
         this.service.deleteCerere(this.selectedRequestId, this.service.currentUser.getId(), true);
     }
 
-    public void handleDeleteRequest(ActionEvent actionEvent) {
+    public void handleDeleteRequest() {
         if (this.selectedRequestId == null)
             return;
         this.service.deleteCerere(this.selectedRequestId, this.service.currentUser.getId(), false);
     }
 
-    public void handleRemove(ActionEvent actionEvent) {
+    public void handleRemove() {
         if (this.selectedFriendId == null)
             return;
         this.service.deletePrietenie(this.selectedFriendId, this.service.currentUser.getId());
