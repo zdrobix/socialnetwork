@@ -1,6 +1,7 @@
 package com.example.demo.domain;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Cerere extends Entity<Tuple<Long, Long>> {
     LocalDate date;
@@ -45,5 +46,18 @@ public class Cerere extends Entity<Tuple<Long, Long>> {
     @Override
     public String toString() {
         return this.from + "," + this.to + "," + this.date;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Cerere cerere = (Cerere) obj;
+        return this.from == cerere.from && this.to == cerere.to;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.from, this.to);
     }
 }
