@@ -121,6 +121,25 @@ public class Service implements Observable<EntityChangeEvent> {
         }
     }
 
+    public Utilizator updateUtilizator(Utilizator u) {
+        Optional<Utilizator> oldUser = null;
+        try {
+            oldUser = this.repoUseri.findOne(u.getId());
+        } catch (SQLException ex) {
+            Logger.LogException("connect", "", ex.getMessage());
+        }
+        if(oldUser.isPresent()) {
+            Optional<Utilizator> newUser = null;
+            try {
+                newUser = this.repoUseri.update(u);
+            } catch (SQLException ex) {
+                Logger.LogException("connect", "", ex.getMessage());
+            }
+            return newUser.orElse(null);
+        }
+        return oldUser.orElse(null);
+    }
+
     public void addPrietenie (long id1, long id2)
     {
         try {
@@ -169,6 +188,8 @@ public class Service implements Observable<EntityChangeEvent> {
                     max(id1, id2),
                     min(id1, id2)
             )).isPresent())
+                return;
+            if (id1 == id2)
                 return;
             if (this.repoCereri.findOne(cerere.getId()).isEmpty())
                 if(this.repoCereri.save(cerere).isPresent())
