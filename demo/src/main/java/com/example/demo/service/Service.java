@@ -35,7 +35,7 @@ public class Service implements Observable<EntityChangeEvent> {
     private final FriendRequestDatabaseRepository repoCereri;
     private final UserLoginDatabaseRepository repoLogin;
 
-    private List<Observer<EntityChangeEvent>> observers = new ArrayList<>();
+    private final List<Observer<EntityChangeEvent>> observers = new ArrayList<>();
 
     public Utilizator currentUser;
 
@@ -53,7 +53,7 @@ public class Service implements Observable<EntityChangeEvent> {
             user.setId(
                     this.repoUseri.generateFirstId()
             );
-            if (!this.repoUseri.save(user).isEmpty()) {
+            if (this.repoUseri.save(user).isPresent()) {
                 this.repoLogin.save(new Username(username, password, user.getId()));
                 EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.ADD, user);
                 notifyObservers(event);
@@ -63,15 +63,15 @@ public class Service implements Observable<EntityChangeEvent> {
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         } catch (IOException ex) {
-
+            System.out.println("IOException " + ex.getMessage());
         }
     }
 
-    public Utilizator deleteUtilizator (long id)  {
+    public void deleteUtilizator (long id)  {
         try {
             if (this.repoUseri.findOne(id).isEmpty()) {
                 Logger.LogException("delete", "null", "");
-                return null;
+                return;
             }
             this.repoPrieteni.findAll().forEach(
                     prietenie -> {
@@ -113,16 +113,12 @@ public class Service implements Observable<EntityChangeEvent> {
                             }
                     );
             var user = this.repoUseri.delete(id);
-            if ( user.isPresent()) {
-                notifyObservers(new EntityChangeEvent(ChangeEventType.DELETE, user.get()));
-                return user.get();
-            }
+            user.ifPresent(utilizator -> notifyObservers(new EntityChangeEvent<>(ChangeEventType.DELETE, utilizator)));
         } catch (ValidationException e) {
             Logger.LogException("delete", "" + id, "Trying to delete an invalid user");
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         }
-        return null;
     }
 
     public void addPrietenie (long id1, long id2)
@@ -131,7 +127,7 @@ public class Service implements Observable<EntityChangeEvent> {
             var friends = new Prietenie(id1, id2, LocalDate.now());
             PrietenieValidator.validate2(friends, this.repoUseri, this.repoPrieteni);
             if (this.repoPrieteni.save(friends).isPresent()) {
-                EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.ADD, friends);
+                EntityChangeEvent<Prietenie> event = new EntityChangeEvent<>(ChangeEventType.ADD, friends);
                 notifyObservers(event);
             }
         } catch (SQLException ex) {
@@ -144,17 +140,17 @@ public class Service implements Observable<EntityChangeEvent> {
     public void deletePrietenie (long id1, long id2) {
         try {
             PrietenieValidator.validate3(id1, id2, this.repoUseri);
-            var user1 = this.repoUseri.findOne(id1).get();
-            var user2 = this.repoUseri.findOne(id2).get();
-            if (user1 == null || user2 == null)
+            Optional<Utilizator> user1 = this.repoUseri.findOne(id1);
+            Optional<Utilizator>  user2 = this.repoUseri.findOne(id2);
+            if (user1.isEmpty() || user2.isEmpty())
                 Logger.LogException("delete", "null friendship", "");
-            user1.removeFriend(user2);
-            user2.removeFriend(user1);
+            user1.get().removeFriend(user2.get());
+            user2.get().removeFriend(user1.get());
             Optional<Prietenie> deleted = this.repoPrieteni.delete(new Tuple<>(
                     id1, id2));
             if (deleted.isPresent())
             {
-                EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.DELETE, deleted.get());
+                EntityChangeEvent<Prietenie> event = new EntityChangeEvent<>(ChangeEventType.DELETE, deleted.get());
                 notifyObservers(event);
             }
         } catch (SQLException ex) {
@@ -169,15 +165,15 @@ public class Service implements Observable<EntityChangeEvent> {
         try {
             var cerere = new Cerere(id1, id2, LocalDate.now());
             cerere.sedIdCerere();
-            if (!this.repoPrieteni.findOne(new Tuple<>(
+            if (this.repoPrieteni.findOne(new Tuple<>(
                     max(id1, id2),
                     min(id1, id2)
-            )).isEmpty())
+            )).isPresent())
                 return;
             if (this.repoCereri.findOne(cerere.getId()).isEmpty())
                 if(this.repoCereri.save(cerere).isPresent())
                 {
-                    EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.ADD, cerere);
+                    EntityChangeEvent<Cerere> event = new EntityChangeEvent<>(ChangeEventType.ADD, cerere);
                     notifyObservers(event);
                 }
         } catch (SQLException ex) {
@@ -191,12 +187,12 @@ public class Service implements Observable<EntityChangeEvent> {
 
     public void deleteCerere (long id1, long id2, boolean accept) {
         try {
-            if (accept && this.repoPrieteni.findOne(new Tuple(max(id1, id2), min(id1, id2))).isEmpty()) {
+            if (accept && this.repoPrieteni.findOne(new Tuple<>(max(id1, id2), min(id1, id2))).isEmpty()) {
                 this.addPrietenie(id1, id2);
             }
             Optional<Cerere> cerere = this.repoCereri.delete(new Tuple<>(id1, id2));
             if (cerere.isPresent()) {
-                EntityChangeEvent event = new EntityChangeEvent<>(ChangeEventType.DELETE, cerere.get());
+                EntityChangeEvent<Cerere> event = new EntityChangeEvent<>(ChangeEventType.DELETE, cerere.get());
                 notifyObservers(event);
             }
         } catch (SQLException ex) {
@@ -224,8 +220,7 @@ public class Service implements Observable<EntityChangeEvent> {
                             result.set(user);
                     }
             );
-            if (result != null)
-                return result.get();
+            return result.get();
         } catch (Exception ex) {
             Logger.LogException("findOne", firstName + " " + lastName, ex.getMessage());
         }
@@ -236,9 +231,7 @@ public class Service implements Observable<EntityChangeEvent> {
         try {
             List<Utilizator> result = new ArrayList<>();
             this.repoUseri.findAll().forEach(
-                    user -> {
-                        result.add(user);
-                    }
+                    user -> result.add(user)
             );
             return result;
         } catch (SQLException ex) {
@@ -251,8 +244,6 @@ public class Service implements Observable<EntityChangeEvent> {
         try {
             AtomicReference<Utilizator> result = new AtomicReference<>();
             var login = this.repoLogin.findOne(username).get();
-            if (login == null)
-                return false;
             var decrypted_password = Crypter.decrypt2(
                     login.getPassword(),
                     new Scanner(
@@ -280,8 +271,6 @@ public class Service implements Observable<EntityChangeEvent> {
             this.currentUser = null;
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -308,9 +297,10 @@ public class Service implements Observable<EntityChangeEvent> {
 
     public Prietenie getPrietenie(Long id1, Long id2) {
         try {
-            return this.repoPrieteni.findOne(
-                    new Tuple<>(max(id1, id2), min(id1, id2))
-            ).get();
+            Optional<Prietenie> prietenie = this.repoPrieteni.findOne(
+                    new Tuple<>(max(id1, id2), min(id1, id2)));
+            if (prietenie.isPresent())
+                return prietenie.get();
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         }
@@ -349,6 +339,6 @@ public class Service implements Observable<EntityChangeEvent> {
 
     @Override
     public void notifyObservers(EntityChangeEvent t) {
-        observers.stream().forEach(x->x.update(t));
+        observers.forEach(x->x.update(t));
     }
 }
