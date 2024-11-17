@@ -31,9 +31,10 @@
             </VBox>
 
             <VBox fx:id="userInfoVbox" alignment="CENTER" spacing="10.0" visible="false">
-                <Label fx:id="firstnameLabel"/>
-                <Label fx:id="lastnameLabel"/>
-                <Button fx:id="logoutButton" onAction="#handleLogout" text="Log Out" maxWidth="200.0"/>
+                <TextField fx:id="firstNameTextUserInfo" promptText="" maxWidth="200.0"/>
+                <TextField fx:id="lastNameTextUserInfo" promptText="" maxWidth="200.0"/>
+                <Button onAction="#handleUpdate" text="Update" maxWidth="200.0"/>
+                <Button onAction="#handleLogout" text="Log Out" maxWidth="200.0"/>
             </VBox>
         </StackPane>
         <HBox alignment="CENTER" spacing="20.0">
