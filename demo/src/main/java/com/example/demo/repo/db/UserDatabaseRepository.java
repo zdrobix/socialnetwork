@@ -133,11 +133,23 @@ public class UserDatabaseRepository implements Repository<Long, Utilizator> {
         return Optional.of(userToDelete);
     }
 
-    public Optional<Utilizator> update(Utilizator user) {
-        if (user == null)
-            throw new IllegalArgumentException("user is null");
+    @Override
+    public Optional<Utilizator> update(Utilizator user) throws SQLException {
+        if(user == null)
+            throw new IllegalArgumentException("entity must be not null!");
         validator.validate(user);
-        return Optional.empty();
+        String sql = "update users set first_name = ?, last_name = ? where id = ?";
+        try (Connection connection = connectToDb(this.connectionListCredentials);
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+            ps.setLong(3, user.getId());
+            if( ps.executeUpdate() > 0 )
+                return Optional.empty();
+            return Optional.ofNullable(user);
+        } catch (SQLException e) {
+            throw new SQLException();
+        }
     }
 
     public int size() throws SQLException {
