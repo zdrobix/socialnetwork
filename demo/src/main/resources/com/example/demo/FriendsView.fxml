@@ -34,8 +34,8 @@
                     <Label text="Friends : "/>
                     <TableView fx:id="tableViewFriends" maxHeight="200.0" prefWidth="200.0">
                         <columns>
-                            <TableColumn fx:id="nameColumn" text="Name"/>
-                            <TableColumn fx:id="dateColumn" text="Friends since"/>
+                            <TableColumn fx:id="nameColumnFriends" text="Name"/>
+                            <TableColumn fx:id="dateColumnFriends" text="Friends since"/>
                         </columns>
                     </TableView>
                     <HBox spacing="10.0">
