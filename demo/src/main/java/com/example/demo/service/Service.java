@@ -20,10 +20,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static java.lang.Math.max;
@@ -328,16 +325,16 @@ public class Service implements Observable<EntityChangeEvent> {
         return null;
     }
 
-    public List<Utilizator> getFriendsForCurrent() {
+    public List<Utilizator> getFriendsFor(Long id) {
         try {
             List<Utilizator> result = new ArrayList<>();
             if (repoPrieteni.findAll() == null)
                 return null;
             this.repoPrieteni.findAll().forEach(
                     prieteni -> {
-                        if (prieteni.getIdFriend2().equals(this.currentUser.getId()))
+                        if (prieteni.getIdFriend2().equals(id))
                             result.add(this.getUtilizator(prieteni.getIdFriend1()));
-                        if (prieteni.getIdFriend1().equals(this.currentUser.getId()))
+                        if (prieteni.getIdFriend1().equals(id))
                             result.add(this.getUtilizator(prieteni.getIdFriend2()));
                     }
             );
@@ -361,5 +358,11 @@ public class Service implements Observable<EntityChangeEvent> {
     @Override
     public void notifyObservers(EntityChangeEvent t) {
         observers.forEach(x->x.update(t));
+    }
+
+    public List<Utilizator> getFriendsInCommon(Long id1, Long id2) {
+        var id1Friends = this.getFriendsFor(id1);
+        id1Friends.retainAll(this.getFriendsFor(id2));
+        return id1Friends;
     }
 }

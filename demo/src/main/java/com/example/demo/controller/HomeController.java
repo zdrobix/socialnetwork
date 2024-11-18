@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.HelloApplication;
 import com.example.demo.domain.Utilizator;
 import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.service.Service;
@@ -7,6 +8,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -14,8 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -139,6 +145,19 @@ public class HomeController extends IController{
         this.service.addCerere(this.service.currentUser.getId(), this.selectedId);
     }
 
-    public void handleOpenProfile(ActionEvent actionEvent) {
+    public void handleOpenProfile(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/demo/UserInfo.fxml"));
+
+        AnchorPane userLayout = fxmlLoader.load();
+        stage.setScene(new Scene(userLayout));
+
+        UserInfoController userInfoController = fxmlLoader.getController();
+        userInfoController.setId(this.selectedId);
+        userInfoController.setController(service);
+
+        stage.setWidth(400);
+        stage.setHeight(400);
+        stage.show();
     }
 }

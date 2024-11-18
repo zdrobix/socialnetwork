@@ -119,7 +119,7 @@ public class FriendsController extends IController{
     private void initModelFriends() {
         if (this.service.currentUser == null)
             return;
-        this.modelFriends.setAll(this.service.getFriendsForCurrent());
+        this.modelFriends.setAll(this.service.getFriendsFor(this.service.currentUser.getId()));
     }
 
     private void initModelRequest() {
