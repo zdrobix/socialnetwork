@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.Utilizator;
 import com.example.demo.events.EntityChangeEvent;
+import com.example.demo.logs.Logger;
 import com.example.demo.service.Service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 
 public class AccountController extends IController {
@@ -132,6 +138,20 @@ public class AccountController extends IController {
         FileChooser fileChooser = new FileChooser();
         Stage fileChooserStage = new Stage();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png"));
-        fileChooser.showOpenDialog(fileChooserStage);
+
+        File uploadedPhoto = fileChooser.showOpenDialog(fileChooserStage);
+        if (uploadedPhoto == null)
+            return;
+        File destinationFolder = new File("Q:/info/java/lab3/demo/src/main/resources/user_photos");
+        String fileName = this.service.currentUser.getFirstName()
+                        + this.service.currentUser.getLastName()
+                        + this.service.currentUser.getId()
+                        + ".png";
+        File file = new File(destinationFolder, fileName);
+        try {
+            Files.copy(uploadedPhoto.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
