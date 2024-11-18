@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -36,7 +37,7 @@ public class FriendsController extends IController{
     @FXML
     private TableColumn<Utilizator,String> nameColumnFriends;
     @FXML
-    private TableColumn<Utilizator, LocalDate> dateColumnFriends;
+    private TableColumn<Utilizator, String> dateColumnFriends;
 
     Long selectedRequestId = null;
     Long selectedFriendId = null;
@@ -83,7 +84,7 @@ public class FriendsController extends IController{
                 data -> new SimpleObjectProperty<>(data.getValue().getFirstName() + " " + data.getValue().getLastName()));
         this.dateColumnFriends.setCellValueFactory(data -> {
             Prietenie prietenie = this.prietenieCache.get(data.getValue().getId());
-            return new SimpleObjectProperty<>(prietenie.getDate());
+            return new SimpleObjectProperty<>(ChronoUnit.DAYS.between(prietenie.getDate(), LocalDate.now())/7 + 1 + "w");
         });
         this.tableViewFriends.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.tableViewFriends.getSelectionModel()

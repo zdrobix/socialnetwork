@@ -160,4 +160,8 @@ public class HomeController extends IController{
         stage.setHeight(400);
         stage.show();
     }
+
+    public void handleOpenChat(ActionEvent actionEvent) {
+
+    }
 }

@@ -53,15 +53,26 @@ public class UserInfoController extends IController{
     private void setFriends() {
         if (this.service.currentUser == null)
             return;
+        if (this.service.currentUser.getId() == this.selectedId) {
+            this.friendsCommonLabel.setText("Your profile.");
+            return;
+        }
         List<Utilizator> friendsCommon = this.service.getFriendsInCommon(this.service.currentUser.getId(), this.selectedId);
         if (friendsCommon.isEmpty()) {
             this.friendsCommonLabel.setText("No friends in common");
             return;
         }
-        final String[] text = {"Friends in common: \n\n"};
-        friendsCommon.forEach(
-                friend -> text[0] += friend.getFirstName() + " " + friend.getLastName() + "\n"
-        );
+        final String[] text = {"Friends in common: \n"};
+        if (friendsCommon.stream().count() > 4)
+            text[0] += friendsCommon.get(0).getFirstName() + " " + friendsCommon.get(0).getLastName() + "\n"
+                                    + friendsCommon.get(1).getFirstName() + " " + friendsCommon.get(1).getLastName()  + "\n"
+                                    + "and " +(friendsCommon.stream().count() - 2) + " others";
+        else if (friendsCommon.stream().count() == 3)
+            text[0] += friendsCommon.get(0).getFirstName() + " " + friendsCommon.get(0).getLastName() + "\n"
+                    + friendsCommon.get(1).getFirstName() + " " + friendsCommon.get(1).getLastName()  + "\n"
+                    + "and one other";
+        else friendsCommon.forEach(fr -> text[0] += fr.getFirstName() + " " + fr.getLastName() + "\n");
+
         this.friendsCommonLabel.setText(text[0]);
     }
 
