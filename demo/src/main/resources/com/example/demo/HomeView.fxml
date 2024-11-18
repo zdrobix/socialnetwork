@@ -20,13 +20,17 @@
                             <TextField fx:id="searchTextField" promptText="Search" maxWidth="300.0"/>
                             <Button text="Search" onAction="#handleSearch" prefWidth="100.0"/>
                         </HBox>
-                        <TableView fx:id="tableView" maxHeight="200.0" maxWidth="400.0">
+                        <TableView fx:id="tableView" maxHeight="200.0" maxWidth="400.0" >
                             <columns>
-                                <TableColumn fx:id="tableColumnFirstName" text="First Name"/>
-                                <TableColumn fx:id="tableColumnLastName" text="Last Name"/>
+                                <TableColumn fx:id="tableColumnFirstName" text="First Name" />
+                                <TableColumn fx:id="tableColumnLastName" text="Last Name" />
+                                <TableColumn fx:id="tableColumnPhoto" text="Photo" />
                             </columns>
                         </TableView>
-                        <Button text="Send request" onAction="#handleSendRequest"/>
+                        <HBox spacing="20.0">
+                            <Button text="Send request" onAction="#handleSendRequest"/>
+                            <Button text="Open profile" onAction="#handleOpenProfile"/>
+                        </HBox>
                     </VBox>
                 </StackPane>
             </HBox>
