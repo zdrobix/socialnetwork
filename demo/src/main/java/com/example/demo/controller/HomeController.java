@@ -12,7 +12,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -28,6 +31,8 @@ public class HomeController extends IController{
     private TableColumn<Utilizator,String> tableColumnFirstName;
     @FXML
     private TableColumn<Utilizator,String> tableColumnLastName;
+    @FXML
+    private TableColumn<Utilizator, ImageView> tableColumnPhoto;
 
     @FXML
     private Label subheader;
@@ -50,6 +55,24 @@ public class HomeController extends IController{
     public void initialize() {
         tableColumnFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         tableColumnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        tableColumnPhoto.setCellValueFactory(data -> {
+            String fileName = data.getValue().getFirstName()
+                            + data.getValue().getLastName()
+                            + data.getValue().getId()
+                            + ".png";
+            File file = new File("Q:/info/java/lab3/demo/src/main/resources/user_photos/" + fileName);
+            if (!file.exists()) {
+                file = new File("Q:/info/java/lab3/demo/src/main/resources/user_photos/userphoto.png");
+            }
+            Image image = new Image(file.toURI().toString());
+            ImageView imageView = new ImageView(image);
+
+            imageView.setFitHeight(20);
+            imageView.setFitWidth(20);
+
+            return new javafx.beans.property.SimpleObjectProperty<>(imageView);
+        });
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tableView.setItems(model);
 
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -114,5 +137,8 @@ public class HomeController extends IController{
         if (this.service.currentUser == null)
             return;
         this.service.addCerere(this.service.currentUser.getId(), this.selectedId);
+    }
+
+    public void handleOpenProfile(ActionEvent actionEvent) {
     }
 }
