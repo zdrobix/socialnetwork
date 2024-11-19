@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.repo.db.UserLoginDatabaseRepository;
+import com.example.demo.repo.db.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,10 +12,7 @@ import java.io.IOException;
 
 import com.example.demo.controller.MainMenuController;
 import com.example.demo.controller.UtilizatorController;
-import com.example.demo.repo.db.FriendRequestDatabaseRepository;
 import com.example.demo.service.Service;
-import com.example.demo.repo.db.UserDatabaseRepository;
-import com.example.demo.repo.db.FriendshipDatabaseRepository;
 
 import com.example.demo.domain.validators.UtilizatorValidator;
 import com.example.demo.domain.validators.PrietenieValidator;
@@ -51,7 +48,13 @@ public class HelloApplication extends Application {
                         new UserLoginDatabaseRepository(
                                 "jdbc:postgresql://localhost:5432/socialnetwork",
                                 "postgres",
-                                "parola"));
+                                "parola"
+                        ),
+                        new MessageDatabaseRepository(
+                                "jdbc:postgresql://localhost:5432/socialnetwork",
+                                "postgres",
+                                "parola"
+                        ));
         initView(primaryStage);
         primaryStage.setWidth(800);
         primaryStage.show();
