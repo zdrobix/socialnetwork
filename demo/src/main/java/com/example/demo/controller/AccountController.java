@@ -91,6 +91,8 @@ public class AccountController extends IController {
     }
 
     public void showLoginVbox(MouseEvent mouseEvent) {
+        labelLogIn.setVisible(true);
+        labelSignUp.setVisible(true);
         signupVbox.setVisible(false);
         loginVbox.setVisible(true);
         labelLogIn.setUnderline(true);

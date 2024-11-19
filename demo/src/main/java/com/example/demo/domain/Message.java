@@ -16,7 +16,6 @@ public class Message extends Entity<Long>{
         this.dateTime = dateTime;
         this.id_reply = id_reply;
         this.text = text;
-        super.setId(id);
         System.out.println(this);
     }
 
@@ -45,18 +44,26 @@ public class Message extends Entity<Long>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Message message = (Message) o;
-        if (message.id == null)
+        if (message.getId() == null)
             return false;
-        return message.id.equals(this.id);
+        return message.getId().equals(super.getId());
     }
 
     @Override
     public int hashCode() {
-        return this.id.hashCode();
+        return super.getId().hashCode();
     }
 
     @Override
     public String toString() {
-        return this.id + " " + this.id_to + " " + this.id_from + " " + this.dateTime + " " + this.id_reply + " " + this.text;
+        return super.getId() + " " + this.id_to + " " + this.id_from + " " + this.dateTime + " " + this.id_reply + " " + this.text;
+    }
+
+    public String getDateTime2() {
+        return "\'" + this.dateTime + "\'";
+    }
+
+    public String getText2() {
+        return "\'" + this.text + "\'";
     }
 }

@@ -69,12 +69,6 @@ public class ChatController extends IController{
     }
 
     public void handleSendMessage(ActionEvent actionEvent) {
-        new Message(0L, 0L, 0L, Timestamp.valueOf(LocalDateTime.now()), 0L, "salut, ce faci>" );
-        this.service.addMessage(
-                this.selectedId,
-                0L,
-                "Salut, ce faci?"
-        );
         this.service.addMessage(
                 this.selectedId,
                 0L,

@@ -109,8 +109,9 @@ public class UserDatabaseRepository implements Repository<Long, Utilizator> {
                 .prepareStatement("INSERT INTO USERS (id, first_name, last_name) VALUES (?, ?, ?)");
         statement.setLong(1, user.getId());
         statement.setString(2, user.getFirstName());
-        statement.setString(3, user.getLastName());
+        statement.setString(3, user.getLastName());System.out.println(statement);
         statement.executeUpdate();
+        connection.close();
         logger.LogModify("save", user.toString());
         return Optional.of(user);
     }

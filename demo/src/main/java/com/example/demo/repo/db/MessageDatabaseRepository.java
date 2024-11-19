@@ -8,6 +8,7 @@ import com.example.demo.repo.Repository;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.*;
 
 import static com.example.demo.repo.db.UserDatabaseRepository.connectToDb;
@@ -93,15 +94,19 @@ public class MessageDatabaseRepository implements Repository<Long, Message> {
         if (connection == null)
             return Optional.empty();
         PreparedStatement statement = connection
-                .prepareStatement("INSERT INTO MESSAGES (id_to, id_from, date, id_reply, text_message) " +
-                        "VALUES (?, ?, ?, ?, ?)");
+                .prepareStatement("INSERT INTO MESSAGES (id_to, id_from, datetime, id_reply, text) " +
+                        "VALUES (" +"?, ?, ?, ?, ?);");
         statement.setLong(1, message.getId_to());
         statement.setLong(2, message.getId_from());
         statement.setTimestamp(3, message.getDateTime());
-        statement.setLong(4, message.getId_reply());
-        statement.setString(5, message.getText());
+        if (message.getId_reply() != null)
+            statement.setLong(4, message.getId_reply());
+        else statement.setNull(4, Types.BIGINT);
+        statement.setString(5, message.getText());System.out.println(statement);
+        System.out.println(statement);
         statement.executeUpdate();
         logger.LogModify("save", message.toString());
+        connection.close();System.out.println("a");
         return Optional.of(message);
     }
 
@@ -115,23 +120,5 @@ public class MessageDatabaseRepository implements Repository<Long, Message> {
     public Optional<Message> update(Message message) throws SQLException {
         //not implemented
         return Optional.empty();
-    }
-
-    public Long generateFirstId() throws SQLException, IOException {
-        List<Long> numbers = new ArrayList<>();
-        this.findAll()
-                .forEach(
-                        message -> numbers.add(message.getId())
-                );
-        Collections.sort(numbers);
-        long newId = 1;
-        for (var num : numbers) {
-            if (num == newId)
-                newId++;
-            else
-            if (num > newId)
-                break;
-        }
-        return newId;
     }
 }
