@@ -1,38 +1,41 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.Message;
+import com.example.demo.domain.MessageFormatter;
 import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.service.Service;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class ChatController extends IController{
     private Service service;
+    private Long idCurrent;
     private Long selectedId;
 
     @FXML
-    public Label titleChatBox;
+    private Label titleChatBox;
     @FXML
-    public Label messageHistory;
+    private VBox messageHistory;
     @FXML
     private TextField messageTextField;
-
     @FXML
-    private VBox chatBox;
+    private ScrollPane scrollPane;
+
 
     @Override
     void setController(Service service) {
         this.service = service;
+        this.idCurrent = service.currentUser.getId();
+        this.initialize2();
         this.initialize2();
     }
 
@@ -41,26 +44,35 @@ public class ChatController extends IController{
     }
 
     void initialize2() {
-        var sortedMessages = this.service.loadMessagesBetween(this.service.currentUser.getId(), this.selectedId);
-        if (sortedMessages == null)
+        titleChatBox.setText("Chat with " + this.service.getUtilizator(selectedId).getFirstName());
+        var sortedMessages = this.service.loadMessagesBetween(this.idCurrent, this.selectedId);
+        if (sortedMessages.isEmpty()) {
+            this.populateEmpty(15);
             return;
-        if (sortedMessages.isEmpty())
-            return;
+        }
+        this.populateEmpty(15 - sortedMessages.size());
         sortedMessages
-                .sort(new Comparator<Message>() {
-                    @Override
-                    public int compare(Message o1, Message o2) {
-                        return o1.getDateTime().compareTo(o2.getDateTime());
-                    }
-                });
-        final String[] textMessages = {""};
+                .sort(Comparator.comparing(Message::getDateTime));
         sortedMessages
                 .forEach(
                         message -> {
-                            textMessages[0] += message.getText();
+                            this.addMessageChat(
+                                    message.getText(),
+                                    message.getId_from(),
+                                    message.getId_to()
+                            ); System.out.println(message.getId());
                         }
                 );
-        this.messageHistory.setText(textMessages[0]);
+        this.addListenerSendMessage();
+    }
+
+    private void populateEmpty (int size) {
+        this.messageHistory.getChildren().clear();
+        for (int i = 15 - size; i > 0; i--) {
+            Label empty = new Label("");
+            empty.getStyleClass().add("empty");
+            this.messageHistory.getChildren().add(empty);
+        }
     }
 
     @Override
@@ -74,6 +86,31 @@ public class ChatController extends IController{
                 0L,
                 this.messageTextField.getText()
         );
-        this.messageHistory.setText(this.messageHistory.getText() + "\n" + this.messageTextField.getText());
+        this.addMessageChat(this.messageTextField.getText(), this.idCurrent, this.selectedId);
+        this.messageTextField.setText("");
+    }
+
+    private void addMessageChat(String message, Long from, Long to) {
+
+        Label messageLabel = new Label(MessageFormatter.getFormattedMessage(message, 36) + " ");
+        messageLabel.setWrapText(true);
+        messageLabel.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        messageLabel.setMinWidth(Region.USE_PREF_SIZE);
+        messageLabel.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        if (to == this.idCurrent)
+            messageLabel.getStyleClass().add("message-user1");
+        if (from == this.idCurrent)
+             messageLabel.getStyleClass().add("message-user2");
+        this.messageHistory.getChildren().add(messageLabel);
+
+        Platform.runLater(() -> scrollPane.setVvalue(1.0));
+    }
+
+    private void addListenerSendMessage() {
+        messageTextField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handleSendMessage(new ActionEvent());
+            }
+        });
     }
 }
