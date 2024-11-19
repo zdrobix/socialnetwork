@@ -10,6 +10,10 @@
     -fx-text-fill: #333333;
 }
 
+.emptylabel{
+    -fx-text-fill: transparent;
+}
+
 .table-view .column-header {
     -fx-background-color: #e0c9f3;
     -fx-text-fill: #333333;
@@ -107,5 +111,21 @@
 
 .table-view .scroll-bar .track {
     -fx-background-color: transparent;
+}
+
+.message-user1 {
+    -fx-background-color: #9b7fd3;
+    -fx-padding: 5;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
+}
+
+.message-user2 {
+    -fx-background-color: #807d80;
+    -fx-padding: 5;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
 }
 

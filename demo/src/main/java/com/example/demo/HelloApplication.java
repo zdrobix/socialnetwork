@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.domain.Message;
+import com.example.demo.domain.MessageFormatter;
 import com.example.demo.repo.db.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
