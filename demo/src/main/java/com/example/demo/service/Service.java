@@ -256,6 +256,8 @@ public class Service implements Observable<EntityChangeEvent> {
                     message -> {
                         if (Objects.equals(message.getId_from(), id_from) && Objects.equals(message.getId_to(), id_to))
                             messages.add(message);
+                        if (Objects.equals(message.getId_to(), id_from) && Objects.equals(message.getId_from(), id_to))
+                            messages.add(message);
                     }
             );
             return messages;
@@ -308,7 +310,12 @@ public class Service implements Observable<EntityChangeEvent> {
     public boolean login (String username, String password) {
         try {
             AtomicReference<Utilizator> result = new AtomicReference<>();
-            var login = this.repoLogin.findOne(username).get();
+            Optional<Username> loginfind = this.repoLogin.findOne(username);
+            if (loginfind.isEmpty()) {
+                System.out.println("invalid login");
+                return false;
+            }
+            var login = loginfind.get();
             var decrypted_password = Crypter.decrypt2(
                     login.getPassword(),
                     new Scanner(

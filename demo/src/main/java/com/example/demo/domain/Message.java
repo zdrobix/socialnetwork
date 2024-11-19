@@ -16,7 +16,6 @@ public class Message extends Entity<Long>{
         this.dateTime = dateTime;
         this.id_reply = id_reply;
         this.text = text;
-        System.out.println(this);
     }
 
     public Long getId_from() {
