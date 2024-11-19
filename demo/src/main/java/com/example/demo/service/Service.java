@@ -4,22 +4,22 @@ import com.example.demo.domain.*;
 import com.example.demo.domain.validators.PrietenieValidator;
 import com.example.demo.domain.validators.ValidationException;
 
+import com.example.demo.domain.validators.Validator;
 import com.example.demo.events.ChangeEventType;
 import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.logs.Logger;
 import com.example.demo.observer.Observer;
 import com.example.demo.password.Crypter;
-import com.example.demo.repo.db.FriendRequestDatabaseRepository;
-import com.example.demo.repo.db.UserDatabaseRepository;
-import com.example.demo.repo.db.FriendshipDatabaseRepository;
-import com.example.demo.repo.db.UserLoginDatabaseRepository;
+import com.example.demo.repo.db.*;
 import com.example.demo.observer.Observable;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -31,17 +31,19 @@ public class Service implements Observable<EntityChangeEvent> {
     private final FriendshipDatabaseRepository repoPrieteni;
     private final FriendRequestDatabaseRepository repoCereri;
     private final UserLoginDatabaseRepository repoLogin;
+    private final MessageDatabaseRepository repoMessage;
 
     private final List<Observer<EntityChangeEvent>> observers = new ArrayList<>();
 
     public Utilizator currentUser;
 
-    public Service(UserDatabaseRepository repo_, FriendshipDatabaseRepository repoPrieteni_, FriendRequestDatabaseRepository repoCereri_, UserLoginDatabaseRepository repoLogin_) {
+    public Service(UserDatabaseRepository repo_, FriendshipDatabaseRepository repoPrieteni_, FriendRequestDatabaseRepository repoCereri_, UserLoginDatabaseRepository repoLogin_, MessageDatabaseRepository repoMessage_) {
         this.repoUseri = repo_;
         this.repoPrieteni = repoPrieteni_;
         this.repoCereri = repoCereri_;
         this.repoLogin = repoLogin_;
-        this.currentUser = null;
+        this.repoMessage = repoMessage_;
+        this.currentUser = this.getUtilizator(1L);
     }
 
     public void addUtilizator (String firstName, String lastName, String username, String password) {
@@ -118,23 +120,20 @@ public class Service implements Observable<EntityChangeEvent> {
         }
     }
 
-    public Utilizator updateUtilizator(Utilizator u) {
-        Optional<Utilizator> oldUser = null;
+    public void updateUtilizator(Utilizator u) {
+        Optional<Utilizator> oldUser = Optional.empty();
         try {
             oldUser = this.repoUseri.findOne(u.getId());
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         }
         if(oldUser.isPresent()) {
-            Optional<Utilizator> newUser = null;
             try {
-                newUser = this.repoUseri.update(u);
+                this.repoUseri.update(u);
             } catch (SQLException ex) {
                 Logger.LogException("connect", "", ex.getMessage());
             }
-            return newUser.orElse(null);
         }
-        return oldUser.orElse(null);
     }
 
     public void addPrietenie (long id1, long id2)
@@ -218,6 +217,54 @@ public class Service implements Observable<EntityChangeEvent> {
         } catch (IllegalArgumentException ex) {
             Logger.LogException("delete", id1 + " " + id2, ex.getMessage());
         }
+    }
+
+    public void addMessage(Long id_to, Long id_reply, String text) {
+        try {
+            //if (id_reply != 0 && this.repoMessage.findOne(id_reply).isEmpty())
+            //    return;
+            //if (this.currentUser.getId() == id_to)
+            //    return;
+            Optional<Message> message = this.repoMessage.save(
+                    new Message(
+                            this.currentUser.getId(),
+                            id_to,
+                            Timestamp.valueOf(LocalDateTime.now()),
+                            id_reply,
+                            text
+                    )
+
+            );
+            if (message.isPresent()) {
+                EntityChangeEvent<Message> event = new EntityChangeEvent<>(ChangeEventType.DELETE, message.get());
+                notifyObservers(event);
+            }
+        } catch (SQLException ex) {
+            Logger.LogException("connect", "", ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("Ioexception: " + ex.getMessage());
+        }
+    }
+
+    public List<Message> loadMessagesBetween (Long id_from, Long id_to) {
+        try {
+            if (Objects.equals(id_from, id_to))
+                return null;
+            PrietenieValidator.validate3(id_from, id_to, this.repoUseri);
+            List<Message> messages = new ArrayList<>();
+            this.repoMessage.findAll().forEach(
+                    message -> {
+                        if (Objects.equals(message.getId_from(), id_from) && Objects.equals(message.getId_to(), id_to))
+                            messages.add(message);
+                    }
+            );
+            return messages;
+        } catch (SQLException ex) {
+            Logger.LogException("connect", "", ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
 
     public Utilizator getUtilizator(Long id) {
