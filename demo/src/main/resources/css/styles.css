@@ -128,3 +128,21 @@
     -fx-text-fill: white;
     -fx-font-weight: normal;
 }
+
+.reply-button {
+    width: 40px;
+    height: 40px;
+    background-color: #807d80;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.reply-button:hover {
+    background-color: #333333;
+}

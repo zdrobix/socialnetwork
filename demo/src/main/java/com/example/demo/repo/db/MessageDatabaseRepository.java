@@ -8,6 +8,7 @@ import com.example.demo.repo.Repository;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.*;
 
@@ -105,7 +106,7 @@ public class MessageDatabaseRepository implements Repository<Long, Message> {
         statement.setString(5, message.getText());
         statement.executeUpdate();
         logger.LogModify("save", message.toString());
-        connection.close();System.out.println("a");
+        connection.close();
         return Optional.of(message);
     }
 

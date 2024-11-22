@@ -83,10 +83,10 @@ public class ChatController extends IController{
     public void update(EntityChangeEvent entityChangeEvent) {
         if (!(entityChangeEvent.getData() instanceof Message))
             return;
-        System.out.println("Functie update apelata");
-
-        if (entityChangeEvent.getType() == ChangeEventType.ADD)
-            this.addMessageChat((Message)entityChangeEvent.getData());
+        if (entityChangeEvent.getType() == ChangeEventType.ADD) {
+            this.addMessageChat((Message) entityChangeEvent.getData());
+            System.out.println((Message) entityChangeEvent.getData());
+        }
     }
 
     public void handleSendMessage(ActionEvent actionEvent) {
@@ -96,7 +96,6 @@ public class ChatController extends IController{
                 0L,
                 this.messageTextField.getText()
         );
-        this.addMessageChat(message);
         this.messageTextField.setText("");
     }
 
@@ -109,10 +108,11 @@ public class ChatController extends IController{
         messageLabel.setPrefHeight(Region.USE_COMPUTED_SIZE);
         if (message.getId_from() == this.idCurrent) {
             messageLabel.getStyleClass().add("message-user1");
-            Button buttonReply = getButtonReply();
+            Button buttonReply = getButtonReply(message.getId());
             this.messageHistory.getChildren().add(
                     new HBox(
                             messageLabel,
+                            new Label(" "),
                             buttonReply
                     )
             );
@@ -123,21 +123,16 @@ public class ChatController extends IController{
                     messageLabel
             );
         }
-
         Platform.runLater(() -> scrollPane.setVvalue(1.0));
     }
 
-    private static Button getButtonReply() {
+    private Button getButtonReply(Long idMessage) {
         Button buttonReply = new Button("R");
-        buttonReply.setStyle(
-                "-fx-opacity: 0.5;" +
-                        "-fx-background-color: #D3D3D3;" +
-                        "-fx-font-size: 8px;" +
-                        "-fx-text-fill: transparent;" +
-                        "-fx-border-radius: 50%;" +
-                        "-fx-padding: 0px;" +
-                        "-fx-opacity: 0.5;" +
-                        "-fx-border-width: 2px;"
+        buttonReply.getStyleClass().add("reply-button");
+        buttonReply.setOnAction(
+                event -> {
+                    selectedMessageId = idMessage; System.out.println(selectedMessageId);
+                }
         );
         return buttonReply;
     }

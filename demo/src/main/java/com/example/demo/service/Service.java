@@ -232,7 +232,6 @@ public class Service implements Observable<EntityChangeEvent> {
                             id_reply,
                             text
                     )
-
             );
             if (message.isPresent()) {
                 EntityChangeEvent<Message> event = new EntityChangeEvent<>(ChangeEventType.ADD, message.get());
