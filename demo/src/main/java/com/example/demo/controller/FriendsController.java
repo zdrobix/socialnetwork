@@ -149,9 +149,10 @@ public class FriendsController extends IController{
                 if (utilizatorEntityChangeEvent.getData() instanceof Cerere) {
                     Cerere cerere = (Cerere) utilizatorEntityChangeEvent.getData();
                     this.utilizatorCache.put(cerere.getFrom(), this.service.getUtilizator(cerere.getFrom()));
-                    this.modelCereri.add(cerere);
                     if (cerere.getTo() == super.context.getCurrentUser().getId())
                         Sound.playSound();
+                    if (cerere.getTo() == super.context.getCurrentUser().getId())
+                        this.modelCereri.add(cerere);
                 }
                 if (utilizatorEntityChangeEvent.getData() instanceof Prietenie prietenie) {
                     if (Objects.equals(super.context.getCurrentUser().getId(), prietenie.getIdFriend1())) {
