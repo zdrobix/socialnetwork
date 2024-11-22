@@ -4,7 +4,6 @@ import com.example.demo.domain.*;
 import com.example.demo.domain.validators.PrietenieValidator;
 import com.example.demo.domain.validators.ValidationException;
 
-import com.example.demo.domain.validators.Validator;
 import com.example.demo.events.ChangeEventType;
 import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.logs.Logger;
@@ -35,7 +34,7 @@ public class Service implements Observable<EntityChangeEvent> {
 
     private final List<Observer<EntityChangeEvent>> observers = new ArrayList<>();
 
-    public Utilizator currentUser;
+    //public Utilizator currentUser;
 
     public Service(UserDatabaseRepository repo_, FriendshipDatabaseRepository repoPrieteni_, FriendRequestDatabaseRepository repoCereri_, UserLoginDatabaseRepository repoLogin_, MessageDatabaseRepository repoMessage_) {
         this.repoUseri = repo_;
@@ -43,7 +42,7 @@ public class Service implements Observable<EntityChangeEvent> {
         this.repoCereri = repoCereri_;
         this.repoLogin = repoLogin_;
         this.repoMessage = repoMessage_;
-        this.currentUser = this.getUtilizator(1L);
+        //this.currentUser = this.getUtilizator(1L);
     }
 
     public void addUtilizator (String firstName, String lastName, String username, String password) {
@@ -219,15 +218,15 @@ public class Service implements Observable<EntityChangeEvent> {
         }
     }
 
-    public void addMessage(Long id_to, Long id_reply, String text) {
+    public Message addMessage(Long id_from, Long id_to, Long id_reply, String text) {
         try {
-            //if (id_reply != 0 && this.repoMessage.findOne(id_reply).isEmpty())
-            //    return;
-            //if (this.currentUser.getId() == id_to)
-            //    return;
+            if (id_reply != 0 && this.repoMessage.findOne(id_reply).isEmpty())
+                return null;
+            if (id_from == id_to)
+                return null;
             Optional<Message> message = this.repoMessage.save(
                     new Message(
-                            this.currentUser.getId(),
+                            id_from,
                             id_to,
                             Timestamp.valueOf(LocalDateTime.now()),
                             id_reply,
@@ -236,14 +235,16 @@ public class Service implements Observable<EntityChangeEvent> {
 
             );
             if (message.isPresent()) {
-                EntityChangeEvent<Message> event = new EntityChangeEvent<>(ChangeEventType.DELETE, message.get());
+                EntityChangeEvent<Message> event = new EntityChangeEvent<>(ChangeEventType.ADD, message.get());
                 notifyObservers(event);
             }
+            return message.get();
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         } catch (IOException ex) {
             System.out.println("Ioexception: " + ex.getMessage());
         }
+        return null;
     }
 
     public List<Message> loadMessagesBetween (Long id_from, Long id_to) {
@@ -278,22 +279,6 @@ public class Service implements Observable<EntityChangeEvent> {
         return null;
     }
 
-    public Utilizator getUtilizatorName(String firstName, String lastName) {
-        try {
-            AtomicReference<Utilizator> result = new AtomicReference<>();
-            this.repoUseri.findAll().forEach(
-                    user -> {
-                        if (user.getFirstName().equals(firstName) && user.getLastName().equals(lastName))
-                            result.set(user);
-                    }
-            );
-            return result.get();
-        } catch (Exception ex) {
-            Logger.LogException("findOne", firstName + " " + lastName, ex.getMessage());
-        }
-        return null;
-    }
-
     public List<Utilizator> getAll() {
         try {
             List<Utilizator> result = new ArrayList<>();
@@ -307,15 +292,14 @@ public class Service implements Observable<EntityChangeEvent> {
         return null;
     }
 
-    public boolean login (String username, String password) {
+    public Utilizator login (String username, String password) {
         try {
-            AtomicReference<Utilizator> result = new AtomicReference<>();
             Optional<Username> loginfind = this.repoLogin.findOne(username);
             if (loginfind.isEmpty()) {
                 System.out.println("invalid login");
-                return false;
+                return null;
             }
-            var login = loginfind.get();
+            Username login = loginfind.get();
             var decrypted_password = Crypter.decrypt2(
                     login.getPassword(),
                     new Scanner(
@@ -325,9 +309,10 @@ public class Service implements Observable<EntityChangeEvent> {
                     )
                             .nextLine());
             if (!decrypted_password.equals(password))
-                return false;
+                return null;
 
             Long id = login.getIdLong();
+            AtomicReference<Utilizator> result = new AtomicReference<>();
             this.repoUseri.findAll().forEach(
                     user -> {
                         if (user.getId().equals(id) ) {
@@ -336,27 +321,23 @@ public class Service implements Observable<EntityChangeEvent> {
                     }
             );
             if (result.get() != null)
-            {
-                this.currentUser = result.get(); System.out.println(currentUser.toString());
-                return true;
-            }
-            this.currentUser = null;
+                return result.get();
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return false;
+        return null;
     }
 
-    public List<Cerere> getCereriForCurrent() {
+    public List<Cerere> getCereriForUser(Long id) {
         try {
             List<Cerere> result = new ArrayList<>();
             if (repoCereri.findAll() == null)
                 return null;
             this.repoCereri.findAll().forEach(
                     cerere -> {
-                        if (cerere.getTo().equals(this.currentUser.getId()))
+                        if (cerere.getTo().equals(id))
                             result.add(cerere);
                     }
             );
