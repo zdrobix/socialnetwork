@@ -2,8 +2,6 @@ module com.example.demo {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
-    requires javafx.graphics;
-    requires javafx.base;
 
     //requires org.controlsfx.controls;
     //requires com.dlsc.formsfx;
@@ -13,6 +11,8 @@ module com.example.demo {
     //requires eu.hansolo.tilesfx;
     //requires com.almasb.fxgl.all;
     requires java.sql;
+    requires javafx.media;
+    requires java.desktop;
     //requires javafx.swt;
 
     opens com.example.demo to javafx.fxml;

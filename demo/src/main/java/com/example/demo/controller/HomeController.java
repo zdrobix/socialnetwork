@@ -50,7 +50,7 @@ public class HomeController extends IController{
     @Override
     public void setController(Service service) {
         this.service = service;
-        if (this.service.currentUser == null) {
+        if (super.context.getCurrentUser() == null) {
             this.subheader.setText("Welcome to SocialNetwork!\nAccess the account tab to login or sign up.");
         }
         service.addObserver(this);
@@ -140,9 +140,9 @@ public class HomeController extends IController{
     public void handleSendRequest(ActionEvent actionEvent) {
         if (this.selectedId == null)
             return;
-        if (this.service.currentUser == null)
+        if (super.context.getCurrentUser() == null)
             return;
-        this.service.addCerere(this.service.currentUser.getId(), this.selectedId);
+        this.service.addCerere(super.context.getCurrentUser().getId(), this.selectedId);
     }
 
     public void handleOpenProfile(ActionEvent actionEvent) throws IOException {
@@ -169,6 +169,7 @@ public class HomeController extends IController{
         stage.setScene(new Scene(userLayout));
 
         ChatController userInfoController = fxmlLoader.getController();
+        userInfoController.setContext(super.context);
         userInfoController.setId(this.selectedId);
         userInfoController.setController(service);
 

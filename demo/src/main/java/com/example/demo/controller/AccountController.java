@@ -59,18 +59,20 @@ public class AccountController extends IController {
     private TextField lastNameTextUserInfo;
 
     public void handleLogin(ActionEvent actionEvent) {
-        if ( this.service.login(
-                usernameTextFieldLogIn.getText(),
-                passwordTextFieldLogIn.getText())) {
+        super.context.setCurrentUser(this.service.login(
+                                        usernameTextFieldLogIn.getText(),
+                                        passwordTextFieldLogIn.getText()
+                )
+        );
+        if (super.context.getCurrentUser() != null)
                 this.showUserInfo();
-        }
         usernameTextFieldLogIn.clear();
         passwordTextFieldLogIn.clear();
     }
 
     public void showUserInfo() {
-        firstNameTextUserInfo.setText(this.service.currentUser.getFirstName());
-        lastNameTextUserInfo.setText(this.service.currentUser.getLastName());
+        firstNameTextUserInfo.setText(super.context.getCurrentUser().getFirstName());
+        lastNameTextUserInfo.setText(super.context.getCurrentUser().getLastName());
         loginVbox.setVisible(false);
         labelLogIn.setVisible(false);
         labelSignUp.setVisible(false);
@@ -108,13 +110,13 @@ public class AccountController extends IController {
 
     public void setController (Service service_) {
         this.service = service_;
-        if (this.service.currentUser != null)
+        if (super.context.getCurrentUser() != null)
             this.showUserInfo();
         else this.showLoginVbox(null);
     }
 
     public void handleLogout(ActionEvent actionEvent) {
-        this.service.currentUser = null;
+        super.context.setCurrentUser(null);
         userInfoVbox.setVisible(false);
         this.showLoginVbox(null);
     }
@@ -129,7 +131,7 @@ public class AccountController extends IController {
                 this.firstNameTextUserInfo.getText(),
                 this.lastNameTextUserInfo.getText()
         );
-        user.setId(this.service.currentUser.getId());
+        user.setId(super.context.getCurrentUser().getId());
         this.service.updateUtilizator(
             user
         );
@@ -145,9 +147,9 @@ public class AccountController extends IController {
         if (uploadedPhoto == null)
             return;
         File destinationFolder = new File("Q:/info/java/lab3/demo/src/main/resources/user_photos");
-        String fileName = this.service.currentUser.getFirstName()
-                        + this.service.currentUser.getLastName()
-                        + this.service.currentUser.getId()
+        String fileName = super.context.getCurrentUser().getFirstName()
+                        + super.context.getCurrentUser().getLastName()
+                        + super.context.getCurrentUser().getId()
                         + ".png";
         File file = new File(destinationFolder, fileName);
         try {

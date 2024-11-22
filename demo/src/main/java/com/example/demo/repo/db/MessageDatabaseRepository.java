@@ -95,15 +95,14 @@ public class MessageDatabaseRepository implements Repository<Long, Message> {
             return Optional.empty();
         PreparedStatement statement = connection
                 .prepareStatement("INSERT INTO MESSAGES (id_to, id_from, datetime, id_reply, text) " +
-                        "VALUES (" +"?, ?, ?, ?, ?);");
+                        "VALUES (?, ?, ?, ?, ?);");
         statement.setLong(1, message.getId_to());
         statement.setLong(2, message.getId_from());
         statement.setTimestamp(3, message.getDateTime());
         if (message.getId_reply() != null)
             statement.setLong(4, message.getId_reply());
         else statement.setNull(4, Types.BIGINT);
-        statement.setString(5, message.getText());System.out.println(statement);
-        System.out.println(statement);
+        statement.setString(5, message.getText());
         statement.executeUpdate();
         logger.LogModify("save", message.toString());
         connection.close();System.out.println("a");

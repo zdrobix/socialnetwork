@@ -1,16 +1,20 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.Entity;
 import com.example.demo.domain.Message;
 import com.example.demo.domain.MessageFormatter;
+import com.example.demo.events.ChangeEventType;
 import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.service.Service;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
@@ -20,6 +24,7 @@ public class ChatController extends IController{
     private Service service;
     private Long idCurrent;
     private Long selectedId;
+    private Long selectedMessageId;
 
     @FXML
     private Label titleChatBox;
@@ -34,7 +39,8 @@ public class ChatController extends IController{
     @Override
     void setController(Service service) {
         this.service = service;
-        this.idCurrent = service.currentUser.getId();
+        this.service.addObserver(this);
+        this.idCurrent = super.context.getCurrentUser().getId();
         this.initialize2();
         this.initialize2();
     }
@@ -55,13 +61,11 @@ public class ChatController extends IController{
                 .sort(Comparator.comparing(Message::getDateTime));
         sortedMessages
                 .forEach(
-                        message -> {
+                        message ->
                             this.addMessageChat(
-                                    message.getText(),
-                                    message.getId_from(),
-                                    message.getId_to()
-                            ); System.out.println(message.getId());
-                        }
+                                    message
+                            )
+
                 );
         this.addListenerSendMessage();
     }
@@ -77,33 +81,65 @@ public class ChatController extends IController{
 
     @Override
     public void update(EntityChangeEvent entityChangeEvent) {
+        if (!(entityChangeEvent.getData() instanceof Message))
+            return;
+        System.out.println("Functie update apelata");
 
+        if (entityChangeEvent.getType() == ChangeEventType.ADD)
+            this.addMessageChat((Message)entityChangeEvent.getData());
     }
 
     public void handleSendMessage(ActionEvent actionEvent) {
-        this.service.addMessage(
+        var message = this.service.addMessage(
+                this.idCurrent,
                 this.selectedId,
                 0L,
                 this.messageTextField.getText()
         );
-        this.addMessageChat(this.messageTextField.getText(), this.idCurrent, this.selectedId);
+        this.addMessageChat(message);
         this.messageTextField.setText("");
     }
 
-    private void addMessageChat(String message, Long from, Long to) {
+    private void addMessageChat(Message message) {
 
-        Label messageLabel = new Label(MessageFormatter.getFormattedMessage(message, 36) + " ");
+        Label messageLabel = new Label(MessageFormatter.getFormattedMessage(message.getText(), 36) + " ");
         messageLabel.setWrapText(true);
         messageLabel.setPrefWidth(Region.USE_COMPUTED_SIZE);
         messageLabel.setMinWidth(Region.USE_PREF_SIZE);
         messageLabel.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        if (to == this.idCurrent)
+        if (message.getId_from() == this.idCurrent) {
             messageLabel.getStyleClass().add("message-user1");
-        if (from == this.idCurrent)
-             messageLabel.getStyleClass().add("message-user2");
-        this.messageHistory.getChildren().add(messageLabel);
+            Button buttonReply = getButtonReply();
+            this.messageHistory.getChildren().add(
+                    new HBox(
+                            messageLabel,
+                            buttonReply
+                    )
+            );
+        }
+        if (message.getId_to() == this.idCurrent) {
+            messageLabel.getStyleClass().add("message-user2");
+            this.messageHistory.getChildren().add(
+                    messageLabel
+            );
+        }
 
         Platform.runLater(() -> scrollPane.setVvalue(1.0));
+    }
+
+    private static Button getButtonReply() {
+        Button buttonReply = new Button("R");
+        buttonReply.setStyle(
+                "-fx-opacity: 0.5;" +
+                        "-fx-background-color: #D3D3D3;" +
+                        "-fx-font-size: 8px;" +
+                        "-fx-text-fill: transparent;" +
+                        "-fx-border-radius: 50%;" +
+                        "-fx-padding: 0px;" +
+                        "-fx-opacity: 0.5;" +
+                        "-fx-border-width: 2px;"
+        );
+        return buttonReply;
     }
 
     private void addListenerSendMessage() {

@@ -51,13 +51,13 @@ public class UserInfoController extends IController{
     }
 
     private void setFriends() {
-        if (this.service.currentUser == null)
+        if (super.context.getCurrentUser() == null)
             return;
-        if (this.service.currentUser.getId() == this.selectedId) {
+        if (super.context.getCurrentUser().getId() == this.selectedId) {
             this.friendsCommonLabel.setText("Your profile.");
             return;
         }
-        List<Utilizator> friendsCommon = this.service.getFriendsInCommon(this.service.currentUser.getId(), this.selectedId);
+        List<Utilizator> friendsCommon = this.service.getFriendsInCommon(super.context.getCurrentUser().getId(), this.selectedId);
         if (friendsCommon.isEmpty()) {
             this.friendsCommonLabel.setText("No friends in common");
             return;

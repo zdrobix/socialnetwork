@@ -4,6 +4,7 @@ import com.example.demo.domain.Cerere;
 import com.example.demo.domain.Prietenie;
 import com.example.demo.domain.Utilizator;
 import com.example.demo.events.EntityChangeEvent;
+import com.example.demo.events.Sound;
 import com.example.demo.service.Service;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,6 +19,9 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class FriendsController extends IController{
 
@@ -71,7 +75,7 @@ public class FriendsController extends IController{
                         this.prietenieCache.put(
                                 prieten.getId(),
                                 this.service.getPrietenie(
-                                        this.service.currentUser.getId(),
+                                        super.context.getCurrentUser().getId(),
                                         prieten.getId())
                         )
                 );
@@ -100,11 +104,15 @@ public class FriendsController extends IController{
     private void initTableRequest() {
         this.tableColumnRequestFrom.setCellValueFactory(data -> {
             Utilizator user = this.utilizatorCache.get(data.getValue().getFrom());
-            return new SimpleStringProperty(user.getFirstName() + " " + user.getLastName());
+            if (user != null)
+                return new SimpleStringProperty(user.getFirstName() + " " + user.getLastName());
+            else return null;
         });
         this.tableColumnRequestDate.setCellValueFactory(data -> {
             LocalDate requestDate = data.getValue().getDate();
-            return new SimpleObjectProperty<>(requestDate);
+            if (requestDate != null)
+                return new SimpleObjectProperty<>(requestDate);
+            else return null;
         });
         this.tableViewRequest.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.tableViewRequest.getSelectionModel()
@@ -118,16 +126,19 @@ public class FriendsController extends IController{
     }
 
     private void initModelFriends() {
-        if (this.service.currentUser == null)
+        if (super.context.getCurrentUser() == null)
             return;
-        this.modelFriends.setAll(this.service.getFriendsFor(this.service.currentUser.getId()));
+        this.modelFriends.setAll(this.service.getFriendsFor(super.context.getCurrentUser().getId()));
     }
 
     private void initModelRequest() {
-        if (this.service.currentUser == null)
+        if (super.context.getCurrentUser() == null)
             return;
-        this.service.getCereriForCurrent().forEach(x -> System.out.println(x.toString()));
-        this.modelCereri.setAll(this.service.getCereriForCurrent());
+        this.modelCereri.setAll(
+                this.service.getCereriForUser(
+                        super.context.getCurrentUser().getId()
+                )
+        );
     }
 
 
@@ -136,14 +147,18 @@ public class FriendsController extends IController{
         switch (utilizatorEntityChangeEvent.getType()) {
             case ADD:
                 if (utilizatorEntityChangeEvent.getData() instanceof Cerere) {
-                    this.modelCereri.add((Cerere) utilizatorEntityChangeEvent.getData());
+                    Cerere cerere = (Cerere) utilizatorEntityChangeEvent.getData();
+                    this.utilizatorCache.put(cerere.getFrom(), this.service.getUtilizator(cerere.getFrom()));
+                    this.modelCereri.add(cerere);
+                    if (cerere.getTo() == super.context.getCurrentUser().getId())
+                        Sound.playSound();
                 }
                 if (utilizatorEntityChangeEvent.getData() instanceof Prietenie prietenie) {
-                    if (Objects.equals(this.service.currentUser.getId(), prietenie.getIdFriend1())) {
+                    if (Objects.equals(super.context.getCurrentUser().getId(), prietenie.getIdFriend1())) {
                         this.prietenieCache.put(
                                 prietenie.getIdFriend2(),
                                 this.service.getPrietenie(
-                                        this.service.currentUser.getId(),
+                                        super.context.getCurrentUser().getId(),
                                         prietenie.getIdFriend2())
                         );
                         this.modelFriends.add(this.service.getUtilizator(prietenie.getIdFriend2()));
@@ -152,7 +167,7 @@ public class FriendsController extends IController{
                         this.prietenieCache.put(
                                 prietenie.getIdFriend1(),
                                 this.service.getPrietenie(
-                                        this.service.currentUser.getId(),
+                                        super.context.getCurrentUser().getId(),
                                         prietenie.getIdFriend1())
                         );
                         this.modelFriends.add(this.service.getUtilizator(prietenie.getIdFriend1()));
@@ -164,7 +179,7 @@ public class FriendsController extends IController{
                     this.modelCereri.remove((Cerere) utilizatorEntityChangeEvent.getData());
                 }
                 if (utilizatorEntityChangeEvent.getData() instanceof Prietenie prietenie) {
-                    if (Objects.equals(this.service.currentUser.getId(), prietenie.getIdFriend1()))
+                    if (Objects.equals(super.context.getCurrentUser().getId(), prietenie.getIdFriend1()))
                         this.modelFriends.remove(this.service.getUtilizator(prietenie.getIdFriend2()));
                     else this.modelFriends.remove(this.service.getUtilizator(prietenie.getIdFriend1()));
                 }
@@ -175,18 +190,18 @@ public class FriendsController extends IController{
     public void handleAcceptRequest() {
         if (this.selectedRequestId == null)
             return;
-        this.service.deleteCerere(this.selectedRequestId, this.service.currentUser.getId(), true);
+        this.service.deleteCerere(this.selectedRequestId, super.context.getCurrentUser().getId(), true);
     }
 
     public void handleDeleteRequest() {
         if (this.selectedRequestId == null)
             return;
-        this.service.deleteCerere(this.selectedRequestId, this.service.currentUser.getId(), false);
+        this.service.deleteCerere(this.selectedRequestId, super.context.getCurrentUser().getId(), false);
     }
 
     public void handleRemove() {
         if (this.selectedFriendId == null)
             return;
-        this.service.deletePrietenie(this.selectedFriendId, this.service.currentUser.getId());
+        this.service.deletePrietenie(this.selectedFriendId, super.context.getCurrentUser().getId());
     }
 }

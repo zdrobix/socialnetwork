@@ -1,0 +1,13 @@
+.button {
+    -fx-opacity: 0.5; /* Set opacity to make it discreet */
+    -fx-background-color: #D3D3D3; /* Light gray color */
+    -fx-font-size: 8px; /* Small text size */
+    -fx-text-fill: transparent; /* Remove text color to make it less noticeable */
+    -fx-border-radius: 50%; /* Make the button a circle */
+    -fx-min-width: 30px; /* Set the minimum width */
+    -fx-min-height: 30px; /* Set the minimum height */
+    -fx-pref-width: 30px; /* Set the preferred width */
+    -fx-pref-height: 30px; /* Set the preferred height */
+    -fx-border-color: #A9A9A9;
+    -fx-border-width: 2px;
+}
