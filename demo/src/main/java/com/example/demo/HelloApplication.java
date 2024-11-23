@@ -71,8 +71,8 @@ public class HelloApplication extends Application {
         primaryStage.setScene(new Scene(userLayout));
 
         MainMenuController menuController = fxmlLoader.getController();
-        menuController.setController(service);
         menuController.setContext(new Context(this.service.getUtilizator(1L)));
+        menuController.setController(service);
         menuController.handleHome();
     }
 }
