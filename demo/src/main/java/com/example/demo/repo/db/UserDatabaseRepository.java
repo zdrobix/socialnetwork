@@ -130,6 +130,7 @@ public class UserDatabaseRepository implements Repository<Long, Utilizator> {
                 .prepareStatement("DELETE FROM USERS WHERE ID = ?");
         statement.setLong(1, id);
         statement.executeUpdate();
+        userToDelete.setId(id);
         logger.LogModify("delete", userToDelete.toString());
         return Optional.of(userToDelete);
     }
