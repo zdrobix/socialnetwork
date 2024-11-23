@@ -129,6 +129,24 @@
     -fx-font-weight: normal;
 }
 
+.message-reply-user1 {
+    -fx-background-color: #afaaaf;
+    -fx-padding: 5;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
+    -fx-font-size: 8;
+}
+
+.message-reply-user2 {
+    -fx-background-color: #b19fd7;
+    -fx-padding: 5;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
+    -fx-font-size: 8;
+}
+
 .reply-button {
     width: 40px;
     height: 40px;

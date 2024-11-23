@@ -7416,3 +7416,371 @@ Looking for: Utilizator{firstName='Vlad', lastName='Munteanu'}2024-11-23T00:30:3
 Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T00:30:35.615992900
 Looking for: Utilizator{firstName='Marius', lastName='Popica'}2024-11-23T00:30:35.654631900
 Looking for: Utilizator{firstName='a', lastName='a'}2024-11-23T00:30:35.982865800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:36:04.980992300
+Looking for all: 2024-11-23T10:36:05.070976400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:36:05.143261600
+Looking for all: 2024-11-23T10:36:05.191463
+Looking for all: 2024-11-23T10:36:19.732703700
+Looking for all: 2024-11-23T10:36:20.851873400
+Looking for all: 2024-11-23T10:36:22.881753
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:36:26.443232900
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:36:26.482240100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:36:26.523956300
+Looking for all: 2024-11-23T10:36:26.570987500
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:36:26.619527400
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:36:26.668669800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:36:26.711183400
+Looking for all: 2024-11-23T10:36:26.756782800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:36:36.333365300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:36:36.477428900
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:36:36.634042800
+Looking for all: 2024-11-23T10:36:36.676140
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:36:36.723648700
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:36:36.764206900
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:36:36.805657800
+Looking for all: 2024-11-23T10:36:36.849625500
+Looking for: 198 32 1 2024-11-23 00:26:39.985919 0 ciao2024-11-23T10:36:55.010185900
+Saving: null 1 32 2024-11-23 10:36:55.0111953 198 acest mesaj va avea id_reply = 1982024-11-23T10:36:55.083869600
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:37:37.561403200
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:37:37.602368
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:37:37.746841
+Looking for all: 2024-11-23T10:37:37.904894100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:37:37.966110300
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:37:38.122300400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:37:38.163553700
+Looking for all: 2024-11-23T10:37:38.203602200
+Looking for: 204 1 32 2024-11-23 10:36:55.011195 198 acest mesaj va avea id_reply = 1982024-11-23T10:37:46.458395500
+Saving: null 32 1 2024-11-23 10:37:46.4583955 204 chiar are!2024-11-23T10:37:46.502106900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:37:48.700705200
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:37:48.744579100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:37:48.787619800
+Looking for all: 2024-11-23T10:37:48.938949400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:37:48.983876800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:37:49.139723900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:37:49.182177300
+Looking for all: 2024-11-23T10:37:49.326267600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:37:51.248791
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:37:51.403253200
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:37:51.445739600
+Looking for all: 2024-11-23T10:37:51.489343100
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:37:51.533663800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:37:51.683425900
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:37:51.726048400
+Looking for all: 2024-11-23T10:37:51.869641800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:38:00.650983600
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:38:00.697409800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:38:00.846875
+Looking for all: 2024-11-23T10:38:00.988499200
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:38:01.033826500
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:38:01.174266600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:38:01.213096300
+Looking for all: 2024-11-23T10:38:01.360654
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:38:06.510871300
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:38:06.655138300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:38:06.809890700
+Looking for all: 2024-11-23T10:38:06.953648100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:38:06.998676900
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:38:07.039456100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:38:07.187812700
+Looking for all: 2024-11-23T10:38:07.230417600
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:40:39.951284500
+Looking for all: 2024-11-23T10:40:40.021196600
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:40:40.095489800
+Looking for all: 2024-11-23T10:40:40.148056700
+Looking for all: 2024-11-23T10:40:54.047137700
+Looking for all: 2024-11-23T10:40:55.096932300
+Looking for all: 2024-11-23T10:40:57.267444900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:41:00.088710900
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:41:00.232232300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:41:00.386382300
+Looking for all: 2024-11-23T10:41:00.433545300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:41:00.483448700
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:41:00.526718500
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:41:00.672842100
+Looking for all: 2024-11-23T10:41:00.715777400
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:41:02.201875
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:41:02.244343700
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:41:02.399744800
+Looking for all: 2024-11-23T10:41:02.446460700
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:41:02.494687300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:41:02.649515
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:41:02.695621700
+Looking for all: 2024-11-23T10:41:02.739147600
+Saving: null 32 1 2024-11-23 10:41:12.1793289 0 salut, vezi acest mesaj?2024-11-23T10:41:12.234863400
+Looking for: 205 32 1 2024-11-23 10:37:46.458396 204 chiar are!2024-11-23T10:41:19.059802600
+Saving: null 1 32 2024-11-23 10:41:19.0609254 205 ok2024-11-23T10:41:19.107881800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:43:09.742413100
+Looking for all: 2024-11-23T10:43:09.816663
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:43:09.905541400
+Looking for all: 2024-11-23T10:43:10.076823900
+Looking for all: 2024-11-23T10:43:23.186078400
+Looking for all: 2024-11-23T10:43:24.352887200
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:43:28.891710400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:43:29.046887200
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:43:29.093658700
+Looking for all: 2024-11-23T10:43:29.141423500
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:43:29.198656400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:43:29.239757600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:43:29.385017400
+Looking for all: 2024-11-23T10:43:29.543422200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:43:30.728686300
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:43:30.772973300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:43:30.819022500
+Looking for all: 2024-11-23T10:43:30.863934900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:43:30.920824500
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:43:30.972491800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:43:31.016450200
+Looking for all: 2024-11-23T10:43:31.063574700
+Saving: null 1 32 2024-11-23 10:43:38.9024939 0 salut2024-11-23T10:43:39.065963300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:45:39.548818800
+Looking for all: 2024-11-23T10:45:39.654329200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:45:39.849190100
+Looking for all: 2024-11-23T10:45:39.909784800
+Looking for all: 2024-11-23T10:45:52.147860200
+Looking for all: 2024-11-23T10:45:53.620809500
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:45:58.212368800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:45:58.261789900
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:45:58.406058700
+Looking for all: 2024-11-23T10:45:58.563816200
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:45:58.622756400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:45:58.667925
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:45:58.811551300
+Looking for all: 2024-11-23T10:45:58.856669
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:46:00.038678500
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:46:00.088062200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:46:00.131788
+Looking for all: 2024-11-23T10:46:00.177796200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:46:00.232444
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:46:00.279750500
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:46:00.320189600
+Looking for all: 2024-11-23T10:46:00.365618
+Looking for: 208 1 32 2024-11-23 10:43:38.902494 0 salut2024-11-23T10:46:10.529450500
+Saving: null 32 1 2024-11-23 10:46:10.5304265 208 dau reply la mesajul 2082024-11-23T10:46:10.653409
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:47:14.862354600
+Looking for all: 2024-11-23T10:47:15.038381200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:47:15.104957200
+Looking for all: 2024-11-23T10:47:15.163829200
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:47:27.583856900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:47:27.631772800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:47:27.781771600
+Looking for all: 2024-11-23T10:47:27.834188700
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:47:28.002021800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:47:28.048561300
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:47:28.095274200
+Looking for all: 2024-11-23T10:47:28.142111200
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T10:47:35.995522900
+Saving: null 1 32 2024-11-23 10:47:35.9955229 209 si eu dau reply la 2092024-11-23T10:47:36.150909300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:49:33.536716600
+Looking for all: 2024-11-23T10:49:33.705845900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:49:33.881519200
+Looking for all: 2024-11-23T10:49:33.953161900
+Looking for all: 2024-11-23T10:49:47.283557400
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:49:50.394414200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:49:50.552369600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:49:50.593465500
+Looking for all: 2024-11-23T10:49:50.637349500
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:49:50.691424900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:49:50.733866500
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:49:50.773953300
+Looking for all: 2024-11-23T10:49:50.924787600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:49:52.547538800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:49:52.594269
+Looking for all: 2024-11-23T10:50:03.771203900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:50:07.244331500
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:50:07.286692800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:50:07.332814100
+Looking for all: 2024-11-23T10:50:07.376377400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:50:07.423194800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:50:07.571287900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:50:07.616871600
+Looking for all: 2024-11-23T10:50:07.663556200
+Looking for: 210 1 32 2024-11-23 10:47:35.995523 209 si eu dau reply la 2092024-11-23T10:50:13.465000600
+Saving: null 1 32 2024-11-23 10:50:13.4650006 210 okay????????????????????2024-11-23T10:50:13.617841
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:51:06.152834600
+Looking for all: 2024-11-23T10:51:06.230710300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:51:06.318944900
+Looking for all: 2024-11-23T10:51:06.382938400
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:51:15.497152100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:51:15.636723
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:51:15.676499200
+Looking for all: 2024-11-23T10:51:15.722430200
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:51:15.776397300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:51:15.917043600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:51:15.955659400
+Looking for all: 2024-11-23T10:51:16.104769
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T10:51:23.668442300
+Saving: null 32 1 2024-11-23 10:51:23.6694423 209 ce ai mo2024-11-23T10:51:23.822878800
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T10:51:31.141688300
+Saving: null 32 1 2024-11-23 10:51:31.1416883 209 salut2024-11-23T10:51:31.190416800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:54:56.022201200
+Looking for all: 2024-11-23T10:54:56.216017900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:54:56.286424800
+Looking for all: 2024-11-23T10:54:56.450278600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:55:04.685034200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:55:04.837866
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:55:04.878437300
+Looking for all: 2024-11-23T10:55:05.031834700
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:55:05.198137900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:55:05.360086
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:55:05.505642800
+Looking for all: 2024-11-23T10:55:05.547517
+Saving: null 32 1 2024-11-23 10:55:09.0138818 0 ce zici2024-11-23T10:55:09.177301400
+Saving: null 32 1 2024-11-23 10:55:16.3097041 0 eu??2024-11-23T10:55:16.464263800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:55:19.000963900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:55:19.046972600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:55:19.094186
+Looking for all: 2024-11-23T10:55:19.251496800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:55:19.406864800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:55:19.450775800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:55:19.607908600
+Looking for all: 2024-11-23T10:55:19.651529900
+Looking for all: 2024-11-23T10:55:29.029918
+Looking for all: 2024-11-23T10:55:32.143654600
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:55:35.807401500
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:55:35.848184900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:55:35.886081400
+Looking for all: 2024-11-23T10:55:35.929549500
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:55:35.973195700
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:55:36.124182600
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:55:36.168005900
+Looking for all: 2024-11-23T10:55:36.207135700
+Saving: null 1 32 2024-11-23 10:55:50.7394893 0 nimic2024-11-23T10:55:50.896951300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:56:54.130658900
+Looking for all: 2024-11-23T10:56:54.219518100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:56:54.397175700
+Looking for all: 2024-11-23T10:56:54.459069100
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:57:05.581484200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:57:05.724439600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:57:05.763630800
+Looking for all: 2024-11-23T10:57:05.915418600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:57:06.069567
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:57:06.109843
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:57:06.149295100
+Looking for all: 2024-11-23T10:57:06.192396
+Looking for all: 2024-11-23T10:57:15.462221800
+Looking for all: 2024-11-23T10:57:16.675408700
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:57:20.280328
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:57:20.432944200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:57:20.470576100
+Looking for all: 2024-11-23T10:57:20.512086300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:57:20.558604600
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T10:57:20.598215500
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T10:57:20.637217400
+Looking for all: 2024-11-23T10:57:20.680276200
+Saving: null 1 32 2024-11-23 10:57:24.2065704 0 salut2024-11-23T10:57:24.366747300
+Looking for: 217 1 32 2024-11-23 10:57:24.20657 0 salut2024-11-23T10:57:31.865491100
+Saving: null 32 1 2024-11-23 10:57:31.8654911 217 ce zici fra ti-am dat reply2024-11-23T10:57:32.024562
+Looking for: 218 32 1 2024-11-23 10:57:31.865491 217 ce zici fra ti-am dat reply2024-11-23T10:57:35.234384300
+Saving: null 1 32 2024-11-23 10:57:35.2343843 218 si eu2024-11-23T10:57:35.280183700
+Saving: null 1 32 2024-11-23 10:57:38.6267274 0 si asta nu are reply2024-11-23T10:57:38.671707400
+Looking for: 220 1 32 2024-11-23 10:57:38.626727 0 si asta nu are reply2024-11-23T10:57:41.640254200
+Saving: null 32 1 2024-11-23 10:57:41.6404771 220 corect2024-11-23T10:57:41.786935
+Saving: null 32 1 2024-11-23 10:57:42.5265276 0 corect2024-11-23T10:57:42.674352200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:05:30.064729700
+Looking for all: 2024-11-23T11:05:30.158245800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:05:30.236397100
+Looking for all: 2024-11-23T11:05:30.303716700
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T11:05:40.556744900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:05:40.597216300
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T11:05:40.743998400
+Looking for all: 2024-11-23T11:05:40.787281400
+Looking for: 198 32 1 2024-11-23 00:26:39.985919 0 ciao2024-11-23T11:05:40.957457300
+Looking for: 204 1 32 2024-11-23 10:36:55.011195 198 acest mesaj va avea id_reply = 1982024-11-23T11:05:40.997303500
+Looking for: 205 32 1 2024-11-23 10:37:46.458396 204 chiar are!2024-11-23T11:05:41.038765300
+Looking for: 208 1 32 2024-11-23 10:43:38.902494 0 salut2024-11-23T11:05:41.184866500
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:05:41.325310900
+Looking for: 210 1 32 2024-11-23 10:47:35.995523 209 si eu dau reply la 2092024-11-23T11:05:41.468116100
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:05:41.608981400
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:05:41.750054
+Looking for: 217 1 32 2024-11-23 10:57:24.20657 0 salut2024-11-23T11:05:41.790682300
+Looking for: 218 32 1 2024-11-23 10:57:31.865491 217 ce zici fra ti-am dat reply2024-11-23T11:05:41.831556
+Looking for: 220 1 32 2024-11-23 10:57:38.626727 0 si asta nu are reply2024-11-23T11:05:41.871348300
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T11:05:41.911575900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:05:41.952500200
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T11:05:41.990895700
+Looking for all: 2024-11-23T11:05:42.029750
+Looking for: 198 32 1 2024-11-23 00:26:39.985919 0 ciao2024-11-23T11:05:42.073650100
+Looking for: 204 1 32 2024-11-23 10:36:55.011195 198 acest mesaj va avea id_reply = 1982024-11-23T11:05:42.218614200
+Looking for: 205 32 1 2024-11-23 10:37:46.458396 204 chiar are!2024-11-23T11:05:42.259244500
+Looking for: 208 1 32 2024-11-23 10:43:38.902494 0 salut2024-11-23T11:05:42.300084800
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:05:42.452839600
+Looking for: 210 1 32 2024-11-23 10:47:35.995523 209 si eu dau reply la 2092024-11-23T11:05:42.592771300
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:05:42.630592400
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:05:42.670943900
+Looking for: 217 1 32 2024-11-23 10:57:24.20657 0 salut2024-11-23T11:05:42.810568700
+Looking for: 218 32 1 2024-11-23 10:57:31.865491 217 ce zici fra ti-am dat reply2024-11-23T11:05:42.850366200
+Looking for: 220 1 32 2024-11-23 10:57:38.626727 0 si asta nu are reply2024-11-23T11:05:42.890100500
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:07:20.264244800
+Looking for all: 2024-11-23T11:07:20.340381600
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:07:20.527118800
+Looking for all: 2024-11-23T11:07:20.589096800
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T11:08:44.653253300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:08:44.699807700
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T11:08:44.744432800
+Looking for all: 2024-11-23T11:08:44.795958900
+Looking for: 198 32 1 2024-11-23 00:26:39.985919 0 ciao2024-11-23T11:08:44.866023200
+Looking for: 204 1 32 2024-11-23 10:36:55.011195 198 acest mesaj va avea id_reply = 1982024-11-23T11:08:44.919198800
+Looking for: 205 32 1 2024-11-23 10:37:46.458396 204 chiar are!2024-11-23T11:08:44.980834900
+Looking for: 208 1 32 2024-11-23 10:43:38.902494 0 salut2024-11-23T11:08:45.139084400
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:08:45.186660300
+Looking for: 210 1 32 2024-11-23 10:47:35.995523 209 si eu dau reply la 2092024-11-23T11:08:45.232174
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:08:45.276178700
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:08:45.319703300
+Looking for: 217 1 32 2024-11-23 10:57:24.20657 0 salut2024-11-23T11:08:45.367697700
+Looking for: 218 32 1 2024-11-23 10:57:31.865491 217 ce zici fra ti-am dat reply2024-11-23T11:08:45.410859400
+Looking for: 220 1 32 2024-11-23 10:57:38.626727 0 si asta nu are reply2024-11-23T11:08:45.460067900
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T11:08:45.505463900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:08:45.551459100
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T11:08:45.711688200
+Looking for all: 2024-11-23T11:08:45.763688600
+Looking for: 198 32 1 2024-11-23 00:26:39.985919 0 ciao2024-11-23T11:08:45.814783
+Looking for: 204 1 32 2024-11-23 10:36:55.011195 198 acest mesaj va avea id_reply = 1982024-11-23T11:08:45.864789600
+Looking for: 205 32 1 2024-11-23 10:37:46.458396 204 chiar are!2024-11-23T11:08:45.909311700
+Looking for: 208 1 32 2024-11-23 10:43:38.902494 0 salut2024-11-23T11:08:46.053122800
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:08:46.097138900
+Looking for: 210 1 32 2024-11-23 10:47:35.995523 209 si eu dau reply la 2092024-11-23T11:08:46.142667600
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:08:46.189669400
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:08:46.230301900
+Looking for: 217 1 32 2024-11-23 10:57:24.20657 0 salut2024-11-23T11:08:46.280525400
+Looking for: 218 32 1 2024-11-23 10:57:31.865491 217 ce zici fra ti-am dat reply2024-11-23T11:08:46.328037
+Looking for: 220 1 32 2024-11-23 10:57:38.626727 0 si asta nu are reply2024-11-23T11:08:46.371040200
+Looking for all: 2024-11-23T11:08:57.083814400
+Looking for all: 2024-11-23T11:08:58.383207600
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:09:07.179651700
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T11:09:07.221047700
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:09:07.364032900
+Looking for all: 2024-11-23T11:09:07.409020600
+Looking for: 198 32 1 2024-11-23 00:26:39.985919 0 ciao2024-11-23T11:09:07.455661600
+Looking for: 204 1 32 2024-11-23 10:36:55.011195 198 acest mesaj va avea id_reply = 1982024-11-23T11:09:07.501159900
+Looking for: 205 32 1 2024-11-23 10:37:46.458396 204 chiar are!2024-11-23T11:09:07.540826600
+Looking for: 208 1 32 2024-11-23 10:43:38.902494 0 salut2024-11-23T11:09:07.583250300
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:09:07.623838
+Looking for: 210 1 32 2024-11-23 10:47:35.995523 209 si eu dau reply la 2092024-11-23T11:09:07.664415100
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:09:07.708237300
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:09:07.751997500
+Looking for: 217 1 32 2024-11-23 10:57:24.20657 0 salut2024-11-23T11:09:07.897932200
+Looking for: 218 32 1 2024-11-23 10:57:31.865491 217 ce zici fra ti-am dat reply2024-11-23T11:09:07.939141400
+Looking for: 220 1 32 2024-11-23 10:57:38.626727 0 si asta nu are reply2024-11-23T11:09:07.981107400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:09:08.022482
+Looking for: Utilizator{firstName='Adi', lastName='Beleaua'}2024-11-23T11:09:08.062761300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:09:08.102747100
+Looking for all: 2024-11-23T11:09:08.256977200
+Looking for: 198 32 1 2024-11-23 00:26:39.985919 0 ciao2024-11-23T11:09:08.304577
+Looking for: 204 1 32 2024-11-23 10:36:55.011195 198 acest mesaj va avea id_reply = 1982024-11-23T11:09:08.346543100
+Looking for: 205 32 1 2024-11-23 10:37:46.458396 204 chiar are!2024-11-23T11:09:08.388679400
+Looking for: 208 1 32 2024-11-23 10:43:38.902494 0 salut2024-11-23T11:09:08.436033900
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:09:08.486547500
+Looking for: 210 1 32 2024-11-23 10:47:35.995523 209 si eu dau reply la 2092024-11-23T11:09:08.538551900
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:09:08.690954400
+Looking for: 209 32 1 2024-11-23 10:46:10.530427 208 dau reply la mesajul 2082024-11-23T11:09:08.845929700
+Looking for: 217 1 32 2024-11-23 10:57:24.20657 0 salut2024-11-23T11:09:08.889772600
+Looking for: 218 32 1 2024-11-23 10:57:31.865491 217 ce zici fra ti-am dat reply2024-11-23T11:09:08.933775100
+Looking for: 220 1 32 2024-11-23 10:57:38.626727 0 si asta nu are reply2024-11-23T11:09:08.976968300
+Looking for: 222 32 1 2024-11-23 10:57:42.526528 0 corect2024-11-23T11:09:22.466824700
+Saving: null 1 32 2024-11-23 11:09:22.4678315 222 am dat reply la mesajul "corect"2024-11-23T11:09:22.627798700
+Looking for: 222 32 1 2024-11-23 10:57:42.526528 0 corect2024-11-23T11:09:22.689822600
+Looking for: 222 32 1 2024-11-23 10:57:42.526528 0 corect2024-11-23T11:09:22.732338600
+Looking for: 223 1 32 2024-11-23 11:09:22.467832 222 am dat reply la mesajul "corect"2024-11-23T11:09:31.247840800
+Saving: null 32 1 2024-11-23 11:09:31.2478408 223 da ma da2024-11-23T11:09:31.297697400
+Looking for: 223 1 32 2024-11-23 11:09:22.467832 222 am dat reply la mesajul "corect"2024-11-23T11:09:31.339604600
+Looking for: 223 1 32 2024-11-23 11:09:22.467832 222 am dat reply la mesajul "corect"2024-11-23T11:09:31.489023300
