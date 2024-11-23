@@ -81,23 +81,6 @@ public class Service implements Observable<EntityChangeEvent> {
                         }
                     }
             );
-            this.repoUseri.findOne(id)
-                    .get()
-                    .getFriends()
-                    .forEach(
-                            idUser -> {
-                                try {
-                                    this.repoUseri.findOne(idUser)
-                                            .get()
-                                            .removeFriend(
-                                                    this.repoUseri.findOne(id)
-                                                            .get()
-                                            );
-                                } catch (SQLException ex) {
-                                    Logger.LogException("connect", "", ex.getMessage());
-                                }
-                            }
-                    );
             this.repoCereri.findAll()
                     .forEach(
                             cerere -> {
@@ -110,12 +93,32 @@ public class Service implements Observable<EntityChangeEvent> {
                                 }
                             }
                     );
+
+            this.repoMessage.findAll()
+                    .forEach(
+                            message -> {
+                                if (message.getId_to() == id || message.getId_from() == id) {
+                                    try {
+                                        this.repoMessage.delete(message.getId());
+                                    } catch (SQLException e) {
+                                        System.out.println("IOException " + e.getMessage());
+                                    } catch (IOException e) {
+                                        System.out.println("IOException " + e.getMessage());
+                                    }
+                                }
+                            }
+                    );
             var user = this.repoUseri.delete(id);
-            user.ifPresent(utilizator -> notifyObservers(new EntityChangeEvent<>(ChangeEventType.DELETE, utilizator)));
+            if (user.isPresent()) {
+                EntityChangeEvent<Utilizator> event = new EntityChangeEvent<>(ChangeEventType.DELETE, user.get());
+                notifyObservers(event);
+            }
         } catch (ValidationException e) {
             Logger.LogException("delete", "" + id, "Trying to delete an invalid user");
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
+        } catch (IOException e) {
+            System.out.println("IOException " + e.getMessage());
         }
     }
 
@@ -123,17 +126,16 @@ public class Service implements Observable<EntityChangeEvent> {
         Optional<Utilizator> oldUser = Optional.empty();
         try {
             oldUser = this.repoUseri.findOne(u.getId());
+            this.repoUseri.update(u);
+            if(oldUser.isPresent()) {
+                EntityChangeEvent<Utilizator> event = new EntityChangeEvent<>(ChangeEventType.UPDATE, u, oldUser.get());
+                notifyObservers(event);
+            }
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         }
-        if(oldUser.isPresent()) {
-            try {
-                this.repoUseri.update(u);
-            } catch (SQLException ex) {
-                Logger.LogException("connect", "", ex.getMessage());
-            }
-        }
     }
+
 
     public void addPrietenie (long id1, long id2)
     {
@@ -158,8 +160,6 @@ public class Service implements Observable<EntityChangeEvent> {
             Optional<Utilizator>  user2 = this.repoUseri.findOne(id2);
             if (user1.isEmpty() || user2.isEmpty())
                 Logger.LogException("delete", "null friendship", "");
-            user1.get().removeFriend(user2.get());
-            user2.get().removeFriend(user1.get());
             Optional<Prietenie> deleted = this.repoPrieteni.delete(new Tuple<>(
                     id1, id2));
             if (deleted.isPresent())
