@@ -1,18 +1,16 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.Utilizator;
+import com.example.demo.events.ChangeEventType;
 import com.example.demo.events.EntityChangeEvent;
-import com.example.demo.logs.Logger;
 import com.example.demo.service.Service;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -158,7 +156,11 @@ public class AccountController extends IController {
 
     @Override
     public void update(EntityChangeEvent utilizatorEntityChangeEvent) {
-        //does nothing
+        if (utilizatorEntityChangeEvent.getType() == ChangeEventType.DELETE && utilizatorEntityChangeEvent.getData() instanceof Utilizator) {
+            if (super.context.getCurrentUser() == utilizatorEntityChangeEvent.getData()) {
+                this.handleLogout(new ActionEvent());
+            }
+        }
     }
 
 
