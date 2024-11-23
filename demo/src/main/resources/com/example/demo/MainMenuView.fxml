@@ -9,6 +9,7 @@
 <HBox  xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.demo.controller.MainMenuController"
+            stylesheets="@../../../css/stylesH.css"
             prefHeight="400.0" prefWidth="600.0">
     <VBox fx:id="sidebar" style="-fx-background-color: #333; -fx-padding: 10; -fx-spacing: 10;" prefWidth="150">
         <VBox alignment="CENTER" spacing="20.0">
