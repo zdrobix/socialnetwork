@@ -220,14 +220,14 @@ public class Service implements Observable<EntityChangeEvent> {
 
     public Message addMessage(Long id_from, Long id_to, Long id_reply, String text) {
         try {
-            if (id_reply != 0 && this.repoMessage.findOne(id_reply).isEmpty())
+            if (id_reply != 0L && this.repoMessage.findOne(id_reply).isEmpty())
                 return null;
             if (id_from == id_to)
                 return null;
             Optional<Message> message = this.repoMessage.save(
                     new Message(
-                            id_from,
                             id_to,
+                            id_from,
                             Timestamp.valueOf(LocalDateTime.now()),
                             id_reply,
                             text
@@ -261,6 +261,20 @@ public class Service implements Observable<EntityChangeEvent> {
                     }
             );
             return messages;
+        } catch (SQLException ex) {
+            Logger.LogException("connect", "", ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
+    }
+
+    public Message getMessage (Long id) {
+        try {
+            Optional<Message> result = this.repoMessage.findOne(id);
+            if (result.isEmpty())
+                return null;
+            return result.get();
         } catch (SQLException ex) {
             Logger.LogException("connect", "", ex.getMessage());
         } catch (IOException ex) {
