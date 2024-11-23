@@ -85,18 +85,20 @@ public class ChatController extends IController{
             return;
         if (entityChangeEvent.getType() == ChangeEventType.ADD) {
             this.addMessageChat((Message) entityChangeEvent.getData());
-            System.out.println((Message) entityChangeEvent.getData());
         }
     }
 
     public void handleSendMessage(ActionEvent actionEvent) {
-        var message = this.service.addMessage(
+        if (this.selectedMessageId == null)
+            this.selectedMessageId = 0L;
+        this.service.addMessage(
                 this.idCurrent,
                 this.selectedId,
-                0L,
+                this.selectedMessageId,
                 this.messageTextField.getText()
         );
         this.messageTextField.setText("");
+        this.selectedMessageId = null;
     }
 
     private void addMessageChat(Message message) {
@@ -106,22 +108,56 @@ public class ChatController extends IController{
         messageLabel.setPrefWidth(Region.USE_COMPUTED_SIZE);
         messageLabel.setMinWidth(Region.USE_PREF_SIZE);
         messageLabel.setPrefHeight(Region.USE_COMPUTED_SIZE);
-        if (message.getId_from() == this.idCurrent) {
+        if (message.getId_to() == context.getCurrentUser().getId()) {
             messageLabel.getStyleClass().add("message-user1");
             Button buttonReply = getButtonReply(message.getId());
-            this.messageHistory.getChildren().add(
-                    new HBox(
-                            messageLabel,
-                            new Label(" "),
-                            buttonReply
-                    )
-            );
+            if (message.getId_reply() == 0L)
+                this.messageHistory.getChildren().add(
+                        new HBox(
+                                messageLabel,
+                                new Label(" "),
+                                buttonReply
+                        )
+                );
+            else {
+                Label replyLabel = new Label(this.service.getMessage(message.getId_reply()).getText());
+                replyLabel.setWrapText(true);
+                replyLabel.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                replyLabel.setMinWidth(Region.USE_PREF_SIZE);
+                replyLabel.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                replyLabel.getStyleClass().add("message-reply-user1");
+                this.messageHistory.getChildren().add(
+                        new VBox(
+                                replyLabel,
+                                new HBox(
+                                        messageLabel,
+                                        new Label(" "),
+                                        buttonReply
+                                )
+                        )
+                );
+            }
         }
-        if (message.getId_to() == this.idCurrent) {
+        if (message.getId_from() == context.getCurrentUser().getId()) {
             messageLabel.getStyleClass().add("message-user2");
-            this.messageHistory.getChildren().add(
-                    messageLabel
-            );
+            if (message.getId_reply() == 0L)
+                this.messageHistory.getChildren().add(
+                        messageLabel
+                );
+            else {
+                Label replyLabel = new Label(this.service.getMessage(message.getId_reply()).getText());
+                replyLabel.setWrapText(true);
+                replyLabel.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                replyLabel.setMinWidth(Region.USE_PREF_SIZE);
+                replyLabel.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                replyLabel.getStyleClass().add("message-reply-user2");
+                this.messageHistory.getChildren().add(
+                        new VBox(
+                                replyLabel,
+                                messageLabel
+                        )
+                );
+            }
         }
         Platform.runLater(() -> scrollPane.setVvalue(1.0));
     }
