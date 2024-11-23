@@ -118,8 +118,20 @@ public class MessageDatabaseRepository implements Repository<Long, Message> {
 
     @Override
     public Optional<Message> delete(Long id) throws SQLException, IOException {
-        //not implemented
-        return Optional.empty();
+        if (id == null)
+            throw new IllegalArgumentException("id is null");
+        var messageToDelete = this.findOne(id).get();
+        if (messageToDelete == null)
+            return Optional.empty();
+        var connection = connectToDb(this.connectionListCredentials);
+        if (connection == null)
+            return Optional.empty();
+        PreparedStatement statement = connection
+                .prepareStatement("DELETE FROM MESSAGES WHERE id = ?");
+        statement.setLong(1, id);
+        statement.executeUpdate();
+        logger.LogModify("delete", messageToDelete.toString());
+        return Optional.of(messageToDelete);
     }
 
     @Override
