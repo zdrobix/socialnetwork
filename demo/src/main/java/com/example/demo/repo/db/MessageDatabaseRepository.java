@@ -6,10 +6,7 @@ import com.example.demo.logs.Logger;
 import com.example.demo.repo.Repository;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Types;
+import java.sql.*;
 import java.util.*;
 
 import static com.example.demo.repo.db.UserDatabaseRepository.connectToDb;
@@ -106,6 +103,15 @@ public class MessageDatabaseRepository implements Repository<Long, Message> {
         statement.setString(5, message.getText());
         statement.executeUpdate();
         logger.LogModify("save", message.toString());
+        PreparedStatement statement2 = connection
+                .prepareStatement("SELECT id FROM MESSAGES WHERE id_to = ? AND id_from = ? AND datetime = ?");
+        statement2.setLong(1, message.getId_to());
+        statement2.setLong(2, message.getId_from());
+        statement2.setTimestamp(3, message.getDateTime());
+        ResultSet result = statement2.executeQuery();
+        if (result.next())
+            message.setId(result.getLong(1));
+        else throw new SQLException();
         connection.close();
         return Optional.of(message);
     }
