@@ -10,10 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,16 +42,19 @@ public class HomeController extends IController{
     @FXML
     private TextField searchTextField;
 
+    @FXML
+    private Button deleteButton, adminButton1, adminButton2;
+
     private Long selectedId = null;
 
     @Override
     public void setController(Service service) {
         this.service = service;
-        if (super.context.getCurrentUser() == null) {
+        if (super.context.getCurrentUser() == null)
             this.subheader.setText("Welcome to SocialNetwork!\nAccess the account tab to login or sign up.");
-        }
         service.addObserver(this);
         this.initModel();
+        this.initializeAdminPanel();
     }
 
     @FXML
@@ -96,6 +96,27 @@ public class HomeController extends IController{
         model.setAll(users);
     }
 
+    private void initializeAdminPanel() {
+        deleteButton.setDisable(true);
+        adminButton1.setDisable(true);
+        adminButton2.setDisable(true);
+        deleteButton.setVisible(false);
+        adminButton1.setVisible(false);
+        adminButton2.setVisible(false);
+
+        if (super.context.getCurrentUser() == null)
+            return;
+
+        if (super.context.getCurrentUser().getId() == 35L) {
+            deleteButton.setDisable(false);
+            adminButton1.setDisable(false);
+            adminButton2.setDisable(false);
+            deleteButton.setVisible(true);
+            adminButton1.setVisible(true);
+            adminButton2.setVisible(true);
+        }
+    }
+
     @Override
     public void update(EntityChangeEvent utilizatorEntityChangeEvent) {
         if (!(utilizatorEntityChangeEvent.getData() instanceof Utilizator))
@@ -108,7 +129,7 @@ public class HomeController extends IController{
                 break;
             case UPDATE:
                 this.model.set(
-                        this.tableView.getSelectionModel().getSelectedIndex(),
+                        this.model.indexOf((Utilizator) utilizatorEntityChangeEvent.getOldData()),
                         (Utilizator) utilizatorEntityChangeEvent.getData()
                 );
                 break;
@@ -177,5 +198,11 @@ public class HomeController extends IController{
         stage.setWidth(400);
         stage.setHeight(400);
         stage.show();
+    }
+
+    public void handleDelete(ActionEvent actionEvent) {
+        this.service.deleteUtilizator(
+                this.selectedId
+        );
     }
 }

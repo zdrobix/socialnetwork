@@ -8257,3 +8257,326 @@ Looking for: Utilizator{firstName='Cristian', lastName='Stan'}2024-11-23T11:52:3
 Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:52:30.352989400
 Looking for: Utilizator{firstName='Cristian', lastName='Stan'}2024-11-23T11:52:30.504501600
 Looking for all: 2024-11-23T11:52:30.549851200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:58:35.862933400
+Looking for all: 2024-11-23T11:58:35.953331100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:58:36.036853900
+Looking for all: 2024-11-23T11:58:36.104382800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:58:57.291996100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:58:57.332208400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:58:57.474470600
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T11:58:57.513928500
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:07:45.724278700
+Looking for all: 2024-11-23T12:07:45.934537700
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:07:46.006487500
+Looking for all: 2024-11-23T12:07:46.071303900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:08:22.223762800
+Looking for all: 2024-11-23T12:08:22.304456800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:08:22.384670200
+Looking for all: 2024-11-23T12:08:22.452877300
+Looking for: Utilizator{firstName='Marius', lastName='Popica'}2024-11-23T12:08:37.325162
+Looking for: Utilizator{firstName='Vicenzio', lastName='Martins'}2024-11-23T12:08:37.369942700
+Looking for: Utilizator{firstName='Cosminp', lastName='Tudor'}2024-11-23T12:08:37.415984500
+Looking for: Utilizator{firstName='Ana', lastName='Iliescu'}2024-11-23T12:08:37.459992
+Looking for: Utilizator{firstName='Iulia', lastName='Constantin'}2024-11-23T12:08:37.507156800
+Looking for: Utilizator{firstName='Andrei', lastName='Ionescu'}2024-11-23T12:08:37.559880900
+Looking for: Utilizator{firstName='Bob', lastName='Salut'}2024-11-23T12:08:37.612152400
+Looking for: Utilizator{firstName='Mihail', lastName='Teodor'}2024-11-23T12:08:37.681136800
+Looking for: Utilizator{firstName='a', lastName='a'}2024-11-23T12:08:37.726471600
+Looking for: Utilizator{firstName='Mihai', lastName='Gheorghe'}2024-11-23T12:08:37.783563700
+Looking for: Utilizator{firstName='George', lastName='Barbu'}2024-11-23T12:08:37.831167
+Looking for: Utilizator{firstName='Diana', lastName='Nicolae'}2024-11-23T12:08:37.888636200
+Looking for: Utilizator{firstName='Maria', lastName='Popescu'}2024-11-23T12:08:37.959769600
+Looking for: Utilizator{firstName='Lucian', lastName='Ranga'}2024-11-23T12:08:38.027916200
+Looking for: Utilizator{firstName='Alex', lastName='Alexandrescu'}2024-11-23T12:08:38.272677300
+Looking for all: 2024-11-23T12:08:51.356673900
+Looking for all: 2024-11-23T12:08:54.726904
+Looking for: Utilizator{firstName='Alex', lastName='Alexandrescu'}2024-11-23T12:08:58.825004900
+Looking for: Utilizator{firstName='Alex', lastName='Alexandrescu'}2024-11-23T12:09:08.127755100
+Looking for: Utilizator{firstName='Alex', lastName='Alexandrescu'}2024-11-23T12:09:13.244278200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:16:35.526543300
+Looking for all: 2024-11-23T12:16:35.721839200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:16:35.801527500
+Looking for all: 2024-11-23T12:16:35.869872900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:17:57.431836300
+Looking for all: 2024-11-23T12:17:57.513096400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:17:57.600139
+Looking for all: 2024-11-23T12:17:57.673810700
+Looking for all: 2024-11-23T12:18:12.197522500
+Looking for all: 2024-11-23T12:18:13.068330900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:18:33.520111800
+Looking for all: 2024-11-23T12:18:33.622703900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:18:33.702947300
+Looking for all: 2024-11-23T12:18:33.766991800
+Looking for all: 2024-11-23T12:19:02.765009300
+Looking for all: 2024-11-23T12:19:03.702287400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:24:54.812768100
+Looking for all: 2024-11-23T12:24:54.912791300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:24:55.126649
+Looking for all: 2024-11-23T12:24:55.221250400
+Looking for all: 2024-11-23T12:25:07.209845600
+Looking for all: 2024-11-23T12:25:08.130990700
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:27:08.697214300
+Looking for all: 2024-11-23T12:27:08.794892800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:27:08.886606800
+Looking for all: 2024-11-23T12:27:08.955221800
+Looking for all: 2024-11-23T12:27:20.509699200
+Looking for all: 2024-11-23T12:27:22.468907100
+Looking for all: 2024-11-23T12:27:37.294264300
+Saving: Utilizator{firstName='aa', lastName='aa'}2024-11-23T12:27:37.446616800
+Looking for all: 2024-11-23T12:27:44.478037800
+Looking for: Utilizator{firstName='aa', lastName='aa'}2024-11-23T12:27:48.408082600
+Looking for all: 2024-11-23T12:27:48.668922900
+Looking for: Utilizator{firstName='aa', lastName='aa'}2024-11-23T12:27:48.715526500
+Deleting: Utilizator{firstName='aa', lastName='aa'}2024-11-23T12:27:48.764411800
+Looking for: Utilizator{firstName='Alex', lastName='Alexandrescu'}2024-11-23T12:27:54.415119600
+Looking for all: 2024-11-23T12:27:54.929758400
+Looking for all: 2024-11-23T12:28:00.687906
+Looking for: Utilizator{firstName='aa', lastName='aa'}2024-11-23T12:28:08.268081500
+Looking for all: 2024-11-23T12:28:08.527575
+Looking for: Utilizator{firstName='aa', lastName='aa'}2024-11-23T12:28:08.674885500
+Deleting: Utilizator{firstName='aa', lastName='aa'}2024-11-23T12:28:08.724624100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:28:41.503295300
+Looking for all: 2024-11-23T12:28:41.613224200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:28:41.707859800
+Looking for all: 2024-11-23T12:28:41.789747600
+Looking for all: 2024-11-23T12:29:21.344337400
+Saving: Utilizator{firstName='123', lastName='123'}2024-11-23T12:29:21.397725600
+Looking for all: 2024-11-23T12:29:23.550197200
+Looking for all: 2024-11-23T12:29:35.983280800
+Looking for all: 2024-11-23T12:29:36.824475700
+Looking for all: 2024-11-23T12:29:42.803031200
+Looking for: Utilizator{firstName='123', lastName='123'}2024-11-23T12:29:56.993221800
+Looking for all: 2024-11-23T12:29:57.349124900
+Looking for: Utilizator{firstName='123', lastName='123'}2024-11-23T12:29:57.393394600
+Deleting: Utilizator{firstName='123', lastName='123'}2024-11-23T12:29:57.441545900
+Looking for all: 2024-11-23T12:30:08.986798500
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:30:55.682729300
+Looking for all: 2024-11-23T12:30:55.777471200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:30:55.866124300
+Looking for all: 2024-11-23T12:30:56.045475600
+Looking for all: 2024-11-23T12:31:40.271919300
+Looking for all: 2024-11-23T12:31:47.665599800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:32:18.103472700
+Looking for all: 2024-11-23T12:32:18.226412700
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:32:18.340710800
+Looking for all: 2024-11-23T12:32:18.426812600
+Looking for all: 2024-11-23T12:33:31.324534700
+Saving: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:33:31.376239800
+Looking for all: 2024-11-23T12:33:37.493514700
+Looking for all: 2024-11-23T12:33:38.441813700
+Looking for: Utilizator{firstName='Marius', lastName='Popica'}2024-11-23T12:33:50.844862800
+Looking for: Utilizator{firstName='Vicenzio', lastName='Martins'}2024-11-23T12:33:50.897311500
+Looking for: Utilizator{firstName='Cosminp', lastName='Tudor'}2024-11-23T12:33:50.940153
+Looking for: Utilizator{firstName='Ana', lastName='Iliescu'}2024-11-23T12:33:51.101126200
+Looking for: Utilizator{firstName='Iulia', lastName='Constantin'}2024-11-23T12:33:51.157895
+Looking for: Utilizator{firstName='Andrei', lastName='Ionescu'}2024-11-23T12:33:51.218089300
+Looking for: Utilizator{firstName='Bob', lastName='Salut'}2024-11-23T12:33:51.371536500
+Looking for: Utilizator{firstName='Mihail', lastName='Teodor'}2024-11-23T12:33:51.418705200
+Looking for: Utilizator{firstName='a', lastName='a'}2024-11-23T12:33:51.461177500
+Looking for: Utilizator{firstName='Mihai', lastName='Gheorghe'}2024-11-23T12:33:51.506322100
+Looking for: Utilizator{firstName='George', lastName='Barbu'}2024-11-23T12:33:51.650048400
+Looking for: Utilizator{firstName='Diana', lastName='Nicolae'}2024-11-23T12:33:51.699047100
+Looking for: Utilizator{firstName='Maria', lastName='Popescu'}2024-11-23T12:33:51.756037600
+Looking for: Utilizator{firstName='Lucian', lastName='Ranga'}2024-11-23T12:33:51.810800400
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:33:51.954367800
+Looking for all: 2024-11-23T12:33:56.156781600
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:33:59.322800200
+Looking for: Utilizator{firstName='Marius', lastName='Popica'}2024-11-23T12:34:01.008959300
+Looking for: Utilizator{firstName='Vicenzio', lastName='Martins'}2024-11-23T12:34:01.052795400
+Looking for: Utilizator{firstName='Cosminp', lastName='Tudor'}2024-11-23T12:34:01.092592700
+Looking for: Utilizator{firstName='Ana', lastName='Iliescu'}2024-11-23T12:34:01.131427300
+Looking for: Utilizator{firstName='Iulia', lastName='Constantin'}2024-11-23T12:34:01.170791
+Looking for: Utilizator{firstName='Andrei', lastName='Ionescu'}2024-11-23T12:34:01.314222800
+Looking for: Utilizator{firstName='Bob', lastName='Salut'}2024-11-23T12:34:01.353797200
+Looking for: Utilizator{firstName='Mihail', lastName='Teodor'}2024-11-23T12:34:01.496338800
+Looking for: Utilizator{firstName='a', lastName='a'}2024-11-23T12:34:01.546570700
+Looking for: Utilizator{firstName='Mihai', lastName='Gheorghe'}2024-11-23T12:34:01.585772100
+Looking for: Utilizator{firstName='George', lastName='Barbu'}2024-11-23T12:34:01.623537500
+Looking for: Utilizator{firstName='Diana', lastName='Nicolae'}2024-11-23T12:34:01.666730800
+Looking for: Utilizator{firstName='Maria', lastName='Popescu'}2024-11-23T12:34:01.710762500
+Looking for: Utilizator{firstName='Lucian', lastName='Ranga'}2024-11-23T12:34:01.753856300
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:01.878765600
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:05.358570900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:34:05.512967200
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:05.824222900
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:06.025144500
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:08.966539200
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:09.011738700
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:10.267879600
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:10.427398500
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:11.985331500
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:12.036873200
+Looking for all: 2024-11-23T12:34:13.955843400
+Looking for all: 2024-11-23T12:34:15.895236200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:34:18.658537900
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:18.708068200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:34:18.753558700
+Looking for all: 2024-11-23T12:34:18.910492100
+Looking for all: 2024-11-23T12:34:22.196358400
+Saving: null 1 30 2024-11-23 12:34:24.8639636 0 salut2024-11-23T12:34:25.034382700
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:27.414335
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:34:27.566516800
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:34:27.612890800
+Looking for all: 2024-11-23T12:34:27.670493
+Looking for: 235 1 30 2024-11-23 12:34:24.863964 0 salut2024-11-23T12:34:31.055839200
+Saving: null 30 1 2024-11-23 12:34:31.0568449 235 da fra2024-11-23T12:34:31.203978500
+Looking for: 235 1 30 2024-11-23 12:34:24.863964 0 salut2024-11-23T12:34:31.248270
+Looking for: 235 1 30 2024-11-23 12:34:24.863964 0 salut2024-11-23T12:34:31.287423800
+Saving: null 1 30 2024-11-23 12:34:40.5807129 0 aceste mesaje ar trevui sa nu mai fie in baza de date2024-11-23T12:34:40.627927200
+Looking for: 237 1 30 2024-11-23 12:34:40.580713 0 aceste mesaje ar trevui sa nu mai fie in baza de date2024-11-23T12:34:43.970800
+Saving: null 30 1 2024-11-23 12:34:43.9708 237 ok2024-11-23T12:34:44.016954100
+Looking for: 237 1 30 2024-11-23 12:34:40.580713 0 aceste mesaje ar trevui sa nu mai fie in baza de date2024-11-23T12:34:44.060847200
+Looking for: 237 1 30 2024-11-23 12:34:40.580713 0 aceste mesaje ar trevui sa nu mai fie in baza de date2024-11-23T12:34:44.199938600
+Saving: null 30 1 2024-11-23 12:34:44.6556557 0 ok2024-11-23T12:34:44.816874400
+Saving: null 30 1 2024-11-23 12:34:45.3493339 0 ok2024-11-23T12:34:45.391969300
+Looking for: 240 30 1 2024-11-23 12:34:45.349334 0 ok2024-11-23T12:34:49.620160900
+Saving: null 1 30 2024-11-23 12:34:49.6201609 240 bine fra2024-11-23T12:34:49.775397400
+Looking for: 240 30 1 2024-11-23 12:34:45.349334 0 ok2024-11-23T12:34:49.820379600
+Looking for: 240 30 1 2024-11-23 12:34:45.349334 0 ok2024-11-23T12:34:49.974141
+Looking for: 239 30 1 2024-11-23 12:34:44.655656 0 ok2024-11-23T12:34:52.864667400
+Saving: null 1 30 2024-11-23 12:34:52.8646674 239 s2024-11-23T12:34:53.015517700
+Looking for: 239 30 1 2024-11-23 12:34:44.655656 0 ok2024-11-23T12:34:53.061141500
+Looking for: 239 30 1 2024-11-23 12:34:44.655656 0 ok2024-11-23T12:34:53.106300700
+Looking for: Utilizator{firstName='Lucian', lastName='Ranga'}2024-11-23T12:35:00.480764
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:35:00.517892100
+Looking for: Utilizator{firstName='Lucian', lastName='Ranga'}2024-11-23T12:35:00.561094700
+Looking for all: 2024-11-23T12:35:00.705917800
+Saving: null 4 30 2024-11-23 12:35:02.4900483 0 salut2024-11-23T12:35:02.644091900
+Saving: null 4 30 2024-11-23 12:35:03.1718917 0 salut2024-11-23T12:35:03.336400
+Saving: null 4 30 2024-11-23 12:35:03.9067332 0 salut2024-11-23T12:35:03.956343100
+Looking for all: 2024-11-23T12:35:53.895373100
+Looking for: Utilizator{firstName='Alex', lastName='Alexandrescu'}2024-11-23T12:35:56.072676600
+Looking for all: 2024-11-23T12:35:58.121096
+Looking for all: 2024-11-23T12:36:03.205682400
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:36:04.961496500
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:36:05.041858800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:36:05.080761
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:36:05.121457600
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:36:05.158484300
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:36:05.387862100
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:36:05.535283600
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:36:05.676408300
+Looking for all: 2024-11-23T12:36:06.322328700
+Looking for: 235 1 30 2024-11-23 12:34:24.863964 0 salut2024-11-23T12:36:06.471202700
+Deleting: 235 1 30 2024-11-23 12:34:24.863964 0 salut2024-11-23T12:36:06.640173500
+Looking for: 236 30 1 2024-11-23 12:34:31.056845 235 da fra2024-11-23T12:36:06.785896100
+Deleting: 236 30 1 2024-11-23 12:34:31.056845 235 da fra2024-11-23T12:36:06.946080400
+Looking for: 237 1 30 2024-11-23 12:34:40.580713 0 aceste mesaje ar trevui sa nu mai fie in baza de date2024-11-23T12:36:06.986000600
+Deleting: 237 1 30 2024-11-23 12:34:40.580713 0 aceste mesaje ar trevui sa nu mai fie in baza de date2024-11-23T12:36:07.148878
+Looking for: 238 30 1 2024-11-23 12:34:43.9708 237 ok2024-11-23T12:36:07.187421600
+Deleting: 238 30 1 2024-11-23 12:34:43.9708 237 ok2024-11-23T12:36:07.231073900
+Looking for: 239 30 1 2024-11-23 12:34:44.655656 0 ok2024-11-23T12:36:07.272706400
+Deleting: 239 30 1 2024-11-23 12:34:44.655656 0 ok2024-11-23T12:36:07.426369200
+Looking for: 240 30 1 2024-11-23 12:34:45.349334 0 ok2024-11-23T12:36:07.575859
+Deleting: 240 30 1 2024-11-23 12:34:45.349334 0 ok2024-11-23T12:36:07.619601
+Looking for: 241 1 30 2024-11-23 12:34:49.620161 240 bine fra2024-11-23T12:36:07.661791900
+Deleting: 241 1 30 2024-11-23 12:34:49.620161 240 bine fra2024-11-23T12:36:07.704971700
+Looking for: 242 1 30 2024-11-23 12:34:52.864667 239 s2024-11-23T12:36:07.742310
+Deleting: 242 1 30 2024-11-23 12:34:52.864667 239 s2024-11-23T12:36:07.892083600
+Looking for: 243 4 30 2024-11-23 12:35:02.490048 0 salut2024-11-23T12:36:08.040562600
+Deleting: 243 4 30 2024-11-23 12:35:02.490048 0 salut2024-11-23T12:36:08.084738200
+Looking for: 244 4 30 2024-11-23 12:35:03.171892 0 salut2024-11-23T12:36:08.224635300
+Deleting: 244 4 30 2024-11-23 12:35:03.171892 0 salut2024-11-23T12:36:08.270302300
+Looking for: 245 4 30 2024-11-23 12:35:03.906733 0 salut2024-11-23T12:36:08.411705300
+Deleting: 245 4 30 2024-11-23 12:35:03.906733 0 salut2024-11-23T12:36:08.558518500
+Looking for: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:36:08.597565700
+Deleting: Utilizator{firstName='userul', lastName='userul'}2024-11-23T12:36:08.648979700
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:39:54.001039100
+Looking for all: 2024-11-23T12:39:54.086591400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:39:54.176532
+Looking for all: 2024-11-23T12:39:54.240325100
+Looking for all: 2024-11-23T12:40:09.460725600
+Saving: Utilizator{firstName='q', lastName='q'}2024-11-23T12:40:09.509693200
+Looking for all: 2024-11-23T12:40:11.662824900
+Looking for all: 2024-11-23T12:40:18.348821800
+Looking for all: 2024-11-23T12:40:19.109913200
+Looking for all: 2024-11-23T12:40:21.809678500
+Looking for: Utilizator{firstName='q', lastName='q'}2024-11-23T12:40:23.242432500
+Looking for all: 2024-11-23T12:40:23.382679400
+Looking for: Utilizator{firstName='q', lastName='q'}2024-11-23T12:40:23.424678800
+Deleting: Utilizator{firstName='q', lastName='q'}2024-11-23T12:40:23.473873900
+Looking for all: 2024-11-23T12:40:31.039889
+Looking for all: 2024-11-23T12:40:36.813569800
+Looking for all: 2024-11-23T12:40:41.705244200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:42:18.447836
+Looking for all: 2024-11-23T12:42:18.634888500
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:42:18.713607100
+Looking for all: 2024-11-23T12:42:18.783507400
+Looking for all: 2024-11-23T12:42:32.556152700
+Looking for all: 2024-11-23T12:42:36.818307500
+Saving: Utilizator{firstName='q', lastName='q'}2024-11-23T12:42:36.982590700
+Looking for all: 2024-11-23T12:42:39.832984600
+Looking for all: 2024-11-23T12:42:44.712121900
+Looking for all: 2024-11-23T12:42:45.760887900
+Looking for all: 2024-11-23T12:42:49.539206600
+Looking for: Utilizator{firstName='q', lastName='q'}2024-11-23T12:42:50.736558200
+Looking for all: 2024-11-23T12:42:51.090658900
+Looking for: Utilizator{firstName='q', lastName='q'}2024-11-23T12:42:51.130648
+Deleting: Utilizator{firstName='q', lastName='q'}2024-11-23T12:42:51.179534600
+Looking for: null2024-11-23T12:43:02.478652100
+Looking for all: 2024-11-23T12:43:04.262741500
+Looking for all: 2024-11-23T12:43:10.345652200
+Looking for all: 2024-11-23T12:43:11.900594200
+Looking for all: 2024-11-23T12:43:13.957134900
+Looking for all: 2024-11-23T12:43:16.777823300
+Looking for all: 2024-11-23T12:43:18.725685800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:45:17.081865900
+Looking for all: 2024-11-23T12:45:17.174439
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:45:17.259945400
+Looking for all: 2024-11-23T12:45:17.439764400
+Looking for all: 2024-11-23T12:45:30.791640800
+Saving: Utilizator{firstName='s', lastName='s'}2024-11-23T12:45:30.843277400
+Looking for all: 2024-11-23T12:45:33.329532
+Looking for all: 2024-11-23T12:45:36.460317400
+Looking for all: 2024-11-23T12:45:37.676438500
+Looking for all: 2024-11-23T12:45:41.042438600
+Looking for all: 2024-11-23T12:45:43.185706200
+Looking for: Utilizator{firstName='s', lastName='s'}2024-11-23T12:45:45.474420300
+Looking for all: 2024-11-23T12:45:45.733673400
+Looking for: Utilizator{firstName='s', lastName='s'}2024-11-23T12:45:45.775725300
+Deleting: Utilizator{firstName='s', lastName='s'}2024-11-23T12:45:45.827731200
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:47:47.624997700
+Looking for all: 2024-11-23T12:47:47.708267
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:47:47.791447900
+Looking for all: 2024-11-23T12:47:47.858256
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:47:59.497015700
+Looking for: Utilizator{firstName='Alex1', lastName='Zdroba'}2024-11-23T12:48:03.165970900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:52:50.322398100
+Looking for all: 2024-11-23T12:52:50.394800800
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:52:50.596766100
+Looking for all: 2024-11-23T12:52:50.760871
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:53:00.543374600
+Looking for: Utilizator{firstName='Alex1', lastName='Zdroba'}2024-11-23T12:54:27.255853300
+Looking for all: 2024-11-23T12:54:27.342121400
+Looking for: Utilizator{firstName='Alex1', lastName='Zdroba'}2024-11-23T12:54:27.425228400
+Looking for all: 2024-11-23T12:54:27.596122500
+Looking for: Utilizator{firstName='Alex1', lastName='Zdroba'}2024-11-23T12:55:32.550280700
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:55:36.135728300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:55:36.187868300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:55:36.241705400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:55:36.286262100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:55:41.920885900
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:55:42.066465700
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:55:42.113882300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:55:42.271903800
+Looking for: Utilizator{firstName='Marius', lastName='Popica'}2024-11-23T12:55:45.024382900
+Looking for: Utilizator{firstName='Vicenzio', lastName='Martins'}2024-11-23T12:55:45.069773300
+Looking for: Utilizator{firstName='Cosminp', lastName='Tudor'}2024-11-23T12:55:45.218979600
+Looking for: Utilizator{firstName='Ana', lastName='Iliescu'}2024-11-23T12:55:45.260874600
+Looking for: Utilizator{firstName='Iulia', lastName='Constantin'}2024-11-23T12:55:45.303131100
+Looking for: Utilizator{firstName='Andrei', lastName='Ionescu'}2024-11-23T12:55:45.450384700
+Looking for: Utilizator{firstName='Bob', lastName='Salut'}2024-11-23T12:55:45.495487100
+Looking for: Utilizator{firstName='Mihail', lastName='Teodor'}2024-11-23T12:55:45.537077800
+Looking for: Utilizator{firstName='a', lastName='a'}2024-11-23T12:55:45.679805500
+Looking for: Utilizator{firstName='Mihai', lastName='Gheorghe'}2024-11-23T12:55:45.726437700
+Looking for: Utilizator{firstName='George', lastName='Barbu'}2024-11-23T12:55:45.870022900
+Looking for: Utilizator{firstName='Diana', lastName='Nicolae'}2024-11-23T12:55:45.912677
+Looking for: Utilizator{firstName='Maria', lastName='Popescu'}2024-11-23T12:55:45.958346900
+Looking for: Utilizator{firstName='Lucian', lastName='Ranga'}2024-11-23T12:55:46.001436900
+Looking for all: 2024-11-23T12:55:48.331432300
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:58:02.340756800
+Looking for all: 2024-11-23T12:58:02.444805400
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:58:02.546153
+Looking for all: 2024-11-23T12:58:02.635975100
+Looking for: Utilizator{firstName='Alex', lastName='Zdroba'}2024-11-23T12:58:13.715937400
+Looking for: Utilizator{firstName='Alexx', lastName='Zdroba'}2024-11-23T12:58:19.021106900
