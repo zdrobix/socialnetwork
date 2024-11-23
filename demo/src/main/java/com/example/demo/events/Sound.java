@@ -5,9 +5,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class Sound {
-    public static void playSound() {
+    public static void playSound(String path) {
         try {
-            File audioFile = new File("Q:\\info\\java\\lab3\\demo\\src\\main\\resources\\sound\\notification.wav");
+            File audioFile = new File(path);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);

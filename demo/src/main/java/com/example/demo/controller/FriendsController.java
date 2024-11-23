@@ -150,7 +150,7 @@ public class FriendsController extends IController{
                     Cerere cerere = (Cerere) utilizatorEntityChangeEvent.getData();
                     this.utilizatorCache.put(cerere.getFrom(), this.service.getUtilizator(cerere.getFrom()));
                     if (cerere.getTo() == super.context.getCurrentUser().getId())
-                        Sound.playSound();
+                        Sound.playSound("Q:\\info\\java\\lab3\\demo\\src\\main\\resources\\sound\\notification.wav");
                     if (cerere.getTo() == super.context.getCurrentUser().getId())
                         this.modelCereri.add(cerere);
                 }

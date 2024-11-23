@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -108,22 +109,10 @@ public class AccountController extends IController {
         labelSignUp.setUnderline(true);
     }
 
-    public void setController (Service service_) {
-        this.service = service_;
-        if (super.context.getCurrentUser() != null)
-            this.showUserInfo();
-        else this.showLoginVbox(null);
-    }
-
     public void handleLogout(ActionEvent actionEvent) {
         super.context.setCurrentUser(null);
         userInfoVbox.setVisible(false);
         this.showLoginVbox(null);
-    }
-
-    @Override
-    public void update(EntityChangeEvent utilizatorEntityChangeEvent) {
-        //does nothing
     }
 
     public void handleUpdate(ActionEvent actionEvent) {
@@ -157,5 +146,27 @@ public class AccountController extends IController {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void setController (Service service_) {
+        this.service = service_;
+        if (super.context.getCurrentUser() != null)
+            this.showUserInfo();
+        else this.showLoginVbox(null);
+        this.addListenerEnter();
+    }
+
+    @Override
+    public void update(EntityChangeEvent utilizatorEntityChangeEvent) {
+        //does nothing
+    }
+
+
+    private void addListenerEnter() {
+        passwordTextFieldLogIn.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                handleLogin(new ActionEvent());
+            }
+        });
     }
 }

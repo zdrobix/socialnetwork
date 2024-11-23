@@ -153,6 +153,7 @@ public class HomeController extends IController{
         stage.setScene(new Scene(userLayout));
 
         UserInfoController userInfoController = fxmlLoader.getController();
+        userInfoController.setContext(super.context);
         userInfoController.setId(this.selectedId);
         userInfoController.setController(service);
 

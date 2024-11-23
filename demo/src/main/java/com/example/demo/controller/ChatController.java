@@ -5,6 +5,7 @@ import com.example.demo.domain.Message;
 import com.example.demo.domain.MessageFormatter;
 import com.example.demo.events.ChangeEventType;
 import com.example.demo.events.EntityChangeEvent;
+import com.example.demo.events.Sound;
 import com.example.demo.service.Service;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -42,7 +43,6 @@ public class ChatController extends IController{
         this.service.addObserver(this);
         this.idCurrent = super.context.getCurrentUser().getId();
         this.initialize2();
-        this.initialize2();
     }
 
     public void setId(Long selectedId) {
@@ -52,29 +52,25 @@ public class ChatController extends IController{
     void initialize2() {
         titleChatBox.setText("Chat with " + this.service.getUtilizator(selectedId).getFirstName());
         var sortedMessages = this.service.loadMessagesBetween(this.idCurrent, this.selectedId);
-        if (sortedMessages.isEmpty()) {
-            this.populateEmpty(15);
-            return;
-        }
-        this.populateEmpty(15 - sortedMessages.size());
-        sortedMessages
-                .sort(Comparator.comparing(Message::getDateTime));
-        sortedMessages
-                .forEach(
-                        message ->
-                            this.addMessageChat(
-                                    message
-                            )
-
-                );
+        this.messageHistory.getChildren().clear();
         this.addListenerSendMessage();
+
+        this.populateEmpty(sortedMessages.size());
+
+        if (sortedMessages.size() == 0)
+            return;
+        sortedMessages
+                    .sort(Comparator.comparing(Message::getDateTime));
+        sortedMessages
+                    .forEach(
+                            this::addMessageChat
+                    );
     }
 
     private void populateEmpty (int size) {
-        this.messageHistory.getChildren().clear();
-        for (int i = 15 - size; i > 0; i--) {
+        for (int i = 7 - size; i > 0; i--) {
             Label empty = new Label("");
-            empty.getStyleClass().add("empty");
+            empty.getStyleClass().add("emptylabel"); System.out.println("da");
             this.messageHistory.getChildren().add(empty);
         }
     }
@@ -83,8 +79,9 @@ public class ChatController extends IController{
     public void update(EntityChangeEvent entityChangeEvent) {
         if (!(entityChangeEvent.getData() instanceof Message))
             return;
+        var message = (Message)entityChangeEvent.getData();
         if (entityChangeEvent.getType() == ChangeEventType.ADD) {
-            this.addMessageChat((Message) entityChangeEvent.getData());
+            this.addMessageChat(message);
         }
     }
 
