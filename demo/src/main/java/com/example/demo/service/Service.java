@@ -123,7 +123,7 @@ public class Service implements Observable<EntityChangeEvent> {
     }
 
     public void updateUtilizator(Utilizator u) {
-        Optional<Utilizator> oldUser = Optional.empty();
+        Optional<Utilizator> oldUser;
         try {
             oldUser = this.repoUseri.findOne(u.getId());
             this.repoUseri.update(u);

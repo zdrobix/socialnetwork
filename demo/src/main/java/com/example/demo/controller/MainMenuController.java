@@ -59,6 +59,6 @@ public class MainMenuController extends IController {
 
     @Override
     public void update(EntityChangeEvent utilizatorEntityChangeEvent) {
-
+        //nothing to implement
     }
 }

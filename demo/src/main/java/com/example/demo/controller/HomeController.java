@@ -144,7 +144,7 @@ public class HomeController extends IController{
         if (this.searchTextField.getText().isEmpty()) {
             this.initModel();
         }
-        Iterable<Utilizator> messages = service
+        Iterable<Utilizator> userSearch = service
                 .getAll()
                 .stream()
                 .filter(
@@ -153,7 +153,7 @@ public class HomeController extends IController{
                                 user.getLastName().toLowerCase().startsWith(searchTextField.getText().trim().toLowerCase())
         )
                 .collect(Collectors.toList());
-        List<Utilizator> users = StreamSupport.stream(messages.spliterator(), false)
+        List<Utilizator> users = StreamSupport.stream(userSearch.spliterator(), false)
                 .collect(Collectors.toList());
         model.setAll(users);
     }
