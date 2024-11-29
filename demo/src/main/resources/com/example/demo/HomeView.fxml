@@ -20,13 +20,19 @@
                             <TextField fx:id="searchTextField" promptText="Search" prefWidth="250.0"/>
                             <Button text="Search" onAction="#handleSearch" prefWidth="75.0"/>
                         </HBox>
-                        <TableView fx:id="tableView" maxHeight="200.0" prefWidth="300.0" >
-                            <columns>
-                                <TableColumn fx:id="tableColumnFirstName" text="First Name" />
-                                <TableColumn fx:id="tableColumnLastName" text="Last Name" />
-                                <TableColumn fx:id="tableColumnPhoto" text="Photo" />
-                            </columns>
-                        </TableView>
+                        <HBox spacing="10.0">
+                            <TableView fx:id="tableView" maxHeight="200.0" prefWidth="300.0" >
+                                <columns>
+                                    <TableColumn fx:id="tableColumnFirstName" text="First Name" />
+                                    <TableColumn fx:id="tableColumnLastName" text="Last Name" />
+                                    <TableColumn fx:id="tableColumnPhoto" text="Photo" />
+                                </columns>
+                            </TableView>
+                            <VBox spacing="20.0">
+                                <Button fx:id="previousPageButton" text="↑" onAction="#handlePreviousPage" prefHeight="90.0" prefWidth="5.0"/>
+                                <Button fx:id="nextPageButton" text="↓" onAction="#handleNextPage"  prefHeight="90.0" prefWidth="5.0"/>
+                            </VBox>
+                        </HBox>
                         <HBox spacing="20.0">
                             <Button text="Send request" onAction="#handleSendRequest" prefWidth="100.0"/>
                             <Button text="Open profile" onAction="#handleOpenProfile" prefWidth="100.0"/>

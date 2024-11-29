@@ -45,7 +45,13 @@ public class HomeController extends IController{
     @FXML
     private Button deleteButton, adminButton1, adminButton2;
 
+    @FXML
+    private Button previousPageButton, nextPageButton;
+
     private Long selectedId = null;
+
+    private int pageNr = 0;
+    private final int pageSize = 7;
 
     @Override
     public void setController(Service service) {
@@ -90,10 +96,7 @@ public class HomeController extends IController{
     }
 
     private void initModel() {
-        Iterable<Utilizator> messages = service.getAll();
-        List<Utilizator> users = StreamSupport.stream(messages.spliterator(), false)
-                .collect(Collectors.toList());
-        model.setAll(users);
+        model.setAll(service.getAllOnPage(this.pageNr, this.pageSize, service.getAll()));
     }
 
     private void initializeAdminPanel() {
@@ -155,7 +158,7 @@ public class HomeController extends IController{
                 .collect(Collectors.toList());
         List<Utilizator> users = StreamSupport.stream(userSearch.spliterator(), false)
                 .collect(Collectors.toList());
-        model.setAll(users);
+        model.setAll(this.service.getAllOnPage(1, this.pageSize, users));
     }
 
     public void handleSendRequest(ActionEvent actionEvent) {
@@ -204,5 +207,27 @@ public class HomeController extends IController{
         this.service.deleteUtilizator(
                 this.selectedId
         );
+    }
+
+    public void handlePreviousPage(ActionEvent actionEvent) {
+        long totalPages = (this.service.getAll().size() + this.pageSize - 1) / this.pageSize;
+        if (this.pageNr > 0) {
+            this.previousPageButton.setDisable(false);
+            this.pageNr--;
+            initModel();
+        }
+        this.previousPageButton.setDisable(this.pageNr <= 0);
+        this.nextPageButton.setDisable(this.pageNr >= totalPages - 1);
+    }
+
+    public void handleNextPage(ActionEvent actionEvent) {
+        long totalPages = (this.service.getAll().size() + this.pageSize - 1) / this.pageSize;
+        if (this.pageNr < totalPages - 1) {
+            this.pageNr++;
+            this.previousPageButton.setDisable(false);
+            initModel();
+        }
+        this.previousPageButton.setDisable(this.pageNr <= 0);
+        this.nextPageButton.setDisable(this.pageNr >= totalPages - 1);
     }
 }

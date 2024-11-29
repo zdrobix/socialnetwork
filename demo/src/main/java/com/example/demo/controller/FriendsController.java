@@ -6,6 +6,7 @@ import com.example.demo.domain.Utilizator;
 import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.events.Sound;
 import com.example.demo.service.Service;
+
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -19,9 +20,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 public class FriendsController extends IController{
 

@@ -305,6 +305,17 @@ public class Service implements Observable<EntityChangeEvent> {
         return null;
     }
 
+    public List<Utilizator> getAllOnPage (int pageNr, int pageSize, List<Utilizator> userList) {
+        if (pageNr < 0 || pageSize <= 0 || userList == null || userList.isEmpty())
+            return new ArrayList<>();
+        if (pageNr * pageSize >= userList.size())
+            return new ArrayList<>();
+        return userList.subList(
+                pageNr * pageSize,
+                Math.min(pageNr * pageSize + pageSize, userList.size())
+        );
+    }
+
     public Utilizator login (String username, String password) {
         try {
             Optional<Username> loginfind = this.repoLogin.findOne(username);
