@@ -59,7 +59,7 @@ public class HomeController extends IController{
         if (super.context.getCurrentUser() == null)
             this.subheader.setText("Welcome to SocialNetwork!\nAccess the account tab to login or sign up.");
         service.addObserver(this);
-        this.initModel();
+        this.initModel(this.service.getAllOnPage(this.pageNr, pageSize, this.service.getAll()));
         this.initializeAdminPanel();
     }
 
@@ -95,8 +95,8 @@ public class HomeController extends IController{
         });
     }
 
-    private void initModel() {
-        model.setAll(service.getAllOnPage(this.pageNr, this.pageSize, service.getAll()));
+    private void initModel(List<Utilizator> listUser) {
+        model.setAll(listUser);
     }
 
     private void initializeAdminPanel() {
@@ -145,7 +145,7 @@ public class HomeController extends IController{
     public void handleSearch(ActionEvent actionEvent) {
         model.clear();
         if (this.searchTextField.getText().isEmpty()) {
-            this.initModel();
+            this.initModel(this.service.getAllOnPage(this.pageNr, this.pageSize, this.service.getAll()));
         }
         Iterable<Utilizator> userSearch = service
                 .getAll()
@@ -214,7 +214,7 @@ public class HomeController extends IController{
         if (this.pageNr > 0) {
             this.previousPageButton.setDisable(false);
             this.pageNr--;
-            initModel();
+            initModel(service.getAllOnPage(this.pageNr, this.pageSize, service.getAll()));
         }
         this.previousPageButton.setDisable(this.pageNr <= 0);
         this.nextPageButton.setDisable(this.pageNr >= totalPages - 1);
@@ -225,7 +225,7 @@ public class HomeController extends IController{
         if (this.pageNr < totalPages - 1) {
             this.pageNr++;
             this.previousPageButton.setDisable(false);
-            initModel();
+            initModel(service.getAllOnPage(this.pageNr, this.pageSize, service.getAll()));
         }
         this.previousPageButton.setDisable(this.pageNr <= 0);
         this.nextPageButton.setDisable(this.pageNr >= totalPages - 1);
