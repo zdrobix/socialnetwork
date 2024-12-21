@@ -1,14 +1,21 @@
 package com.example.demo.controller;
 
+import com.example.demo.HelloApplication;
 import com.example.demo.domain.Utilizator;
 import com.example.demo.events.EntityChangeEvent;
 import com.example.demo.service.Service;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +89,27 @@ public class UserInfoController extends IController{
 
     @Override
     public void update(EntityChangeEvent entityChangeEvent) {
+
+    }
+
+    public void handleOpenChat(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/demo/ChatView.fxml"));
+
+        AnchorPane userLayout = fxmlLoader.load();
+        stage.setScene(new Scene(userLayout));
+
+        ChatController userInfoController = fxmlLoader.getController();
+        userInfoController.setContext(super.context);
+        userInfoController.setId(this.selectedId);
+        userInfoController.setController(service);
+
+        stage.setWidth(400);
+        stage.setHeight(400);
+        stage.show();
+    }
+
+    public void handleFollowButton(ActionEvent actionEvent) {
 
     }
 }

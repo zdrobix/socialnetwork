@@ -29,30 +29,30 @@ public class HelloApplication extends Application {
                         new UserDatabaseRepository(
                                 "jdbc:postgresql://localhost:5432/socialnetwork",
                                 "postgres",
-                                "parola",
+                                "password",
                                 new UtilizatorValidator()
                         ),
                         new FriendshipDatabaseRepository(
                                 "jdbc:postgresql://localhost:5432/socialnetwork",
                                 "postgres",
-                                "parola",
+                                "password",
                                 new PrietenieValidator()
                         ),
                         new FriendRequestDatabaseRepository(
                                 "jdbc:postgresql://localhost:5432/socialnetwork",
                                 "postgres",
-                                "parola",
+                                "password",
                                 new PrietenieValidator()
                         ),
                         new UserLoginDatabaseRepository(
                                 "jdbc:postgresql://localhost:5432/socialnetwork",
                                 "postgres",
-                                "parola"
+                                "password"
                         ),
                         new MessageDatabaseRepository(
                                 "jdbc:postgresql://localhost:5432/socialnetwork",
                                 "postgres",
-                                "parola"
+                                "password"
                         ));
         Stage stage = new Stage();
         initView(primaryStage);

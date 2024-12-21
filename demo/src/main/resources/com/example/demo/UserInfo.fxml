@@ -7,7 +7,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.demo.controller.UserInfoController"
-            stylesheets="@../../../css/styles.css"
+            stylesheets="@../../../css/stylesUser.css"
             prefHeight="400.0" prefWidth="600.0">
     <VBox alignment="CENTER_LEFT"
           AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0"
@@ -16,9 +16,23 @@
         <StackPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                    AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
                 <VBox alignment="CENTER_LEFT" spacing="20.0">
-                    <Label fx:id="nameLabel"></Label>
-                    <ImageView fx:id="imageView"></ImageView>
-                    <Label fx:id="friendsCommonLabel"></Label>
+                    <HBox spacing="20.0">
+                        <ImageView fx:id="imageView"></ImageView>
+                        <VBox>
+                            <HBox spacing="10.0">
+                                <Label fx:id="usernameLabel"></Label>
+                                <Button text="Chat" onAction="#handleOpenChat" prefWidth="100.0"/>
+                                <Button text="Follow" onAction="#handleFollowButton" prefWidth="100.0"/>
+                            </HBox>
+                            <HBox>
+                                <Label text="10 postari"/>
+                                <Label text="290 followers"/>
+                                <Label text="290 following"/>
+                            </HBox>
+                            <Label fx:id="nameLabel"/>
+                            <Label fx:id="friendsCommonLabel"></Label>
+                        </VBox>
+                    </HBox>
                 </VBox>
         </StackPane>
     </VBox>

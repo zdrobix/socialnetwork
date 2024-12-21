@@ -36,7 +36,6 @@
                         <HBox spacing="20.0">
                             <Button text="Send request" onAction="#handleSendRequest" prefWidth="100.0"/>
                             <Button text="Open profile" onAction="#handleOpenProfile" prefWidth="100.0"/>
-                            <Button text="Chat" onAction="#handleOpenChat" prefWidth="100.0"/>
                         </HBox>
                         <HBox spacing="20.0">
                             <Button fx:id="deleteButton" onAction="#handleDelete" prefWidth="100.0" text="Delete"/>

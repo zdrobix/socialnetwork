@@ -186,23 +186,6 @@ public class HomeController extends IController{
         stage.show();
     }
 
-    public void handleOpenChat(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/demo/ChatView.fxml"));
-
-        AnchorPane userLayout = fxmlLoader.load();
-        stage.setScene(new Scene(userLayout));
-
-        ChatController userInfoController = fxmlLoader.getController();
-        userInfoController.setContext(super.context);
-        userInfoController.setId(this.selectedId);
-        userInfoController.setController(service);
-
-        stage.setWidth(400);
-        stage.setHeight(400);
-        stage.show();
-    }
-
     public void handleDelete(ActionEvent actionEvent) {
         this.service.deleteUtilizator(
                 this.selectedId
